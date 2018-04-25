@@ -8,4 +8,40 @@
  
     <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
     
+    <ion-list>
+       <ion-card ion-item *ngFor="let item of items">
+    
+
+              <ion-item>
+                
+                <h2>{{ item.name }} </h2>
+                
+              </ion-item>
+
+        
+              <ion-card-content>
+                <p>{{ item.description }}</p>
+              </ion-card-content>
+
+            <!-- <ion-row>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="thumbsUp(item)">
+                    <ion-icon name="thumbs-up" ></ion-icon>
+                    <div>{{ numberOfLikes }} Likes</div>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="commentsPop(item)">
+                    <ion-icon name="text" ></ion-icon>
+                    <div>{{ numberOfComments }} Comments</div>
+                  </button>
+                </ion-col> 
+                
+              </ion-row> -->
+
+    </ion-card>
+    </ion-list>
+    
+    
+    
 </ion-content>

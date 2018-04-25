@@ -14,6 +14,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
+import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,6 +27,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
