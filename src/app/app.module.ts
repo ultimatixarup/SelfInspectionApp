@@ -17,6 +17,10 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +47,12 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     BarcodeScanner,
     ScreenOrientation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FileTransfer,
+  
+  FileTransferObject,
+  File,
+  Camera
   ]
 })
 export class AppModule {}

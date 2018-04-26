@@ -7,6 +7,18 @@
 <ion-content padding>
  
     <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
+    <button ion-button full (click)="getImage()">Select image from library</button>
+    
+    <ion-item>
+        
+        
+       
+      </ion-item>
+      <ion-item>
+        <h4>Image Preview</h4>
+        <img [src]="imageFileName"/>
+      </ion-item>
+     <button ion-button full (click)="uploadFile()">Upload</button>
     
     <ion-list>
        <ion-card ion-item *ngFor="let item of items">

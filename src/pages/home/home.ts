@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { Http } from '@angular/http';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -14,23 +16,34 @@ import { Http } from '@angular/http';
 export class HomePage {
 
  items: Array<{name: any,description: any}>;
+ 
+ imageURI:any;
+imageFileName:any;
+fileName:any;
 
-  constructor(public navCtrl: NavController, private barcodeScanner: BarcodeScanner,private screenOrientation: ScreenOrientation,public loadingCtrl: LoadingController,private http: Http) {
+  constructor(
+  public navCtrl: NavController, 
+  private barcodeScanner: BarcodeScanner,
+  private http: Http,
+  private transfer: FileTransfer,
+  private camera: Camera,
+  public loadingCtrl: LoadingController,
+  public toastCtrl: ToastController) {
 
   }
   
   scan(){
    
-   
+   let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+         });
    
     this.barcodeScanner.scan({
                     showTorchButton:true
                 }).then(barcodeData => {
         alert('Barcode data - ' + barcodeData.text);
         
-       let loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-         });
+       if(barcodeData.text){
         loading.present();
         this.http.get('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/'+barcodeData.text+'?format=json').subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
@@ -49,13 +62,81 @@ export class HomePage {
             
          
        });
+       }
         
         
         
     }).catch(err => {
         console.log('Error',err);
+        loading.dismiss();
     });
     
   }
+  
+  
+  
+  
+  
+  
+  getImage() {
+    
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+
+      this.camera.getPicture(options).then((imageData) => {
+      
+        this.imageURI = imageData;
+        this.fileName = this.imageURI.split("/")[this.imageURI.split("/").length-1];
+        alert(this.fileName);
+      }, (err) => {
+        console.log(err);
+        this.presentToast(err);
+      });
+}
+
+uploadFile() {
+  let loader = this.loadingCtrl.create({
+    content: "Uploading..."
+  });
+  loader.present();
+  const fileTransfer: FileTransferObject = this.transfer.create();
+
+  let options: FileUploadOptions = {
+    params: { 'upload_preset': 'upsbhvp2'}
+  }
+
+  fileTransfer.upload(this.imageURI, 'https://api.cloudinary.com/v1_1/hmcvojkyu/upload', options)
+    .then((data) => {
+    console.log(data);
+    
+    alert(JSON.parse(data.response).url+" Uploaded Successfully");
+    this.imageFileName = JSON.parse(data.response).url;
+    loader.dismiss();
+    this.presentToast("Image uploaded successfully");
+  }, (err) => {
+    alert(err);
+    loader.dismiss();
+    this.presentToast(err);
+  });
+}
+
+presentToast(msg) {
+  let toast = this.toastCtrl.create({
+    message: msg,
+    duration: 3000,
+    position: 'bottom'
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
+}
+
 
 }
