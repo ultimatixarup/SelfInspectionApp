@@ -14,12 +14,14 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
-import { Http } from '@angular/http';
+
 import { HttpModule } from '@angular/http';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
+
+import { InspectionPage } from '../pages/inspection/inspection';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { Camera } from '@ionic-native/camera';
     AboutPage,
     ContactPage,
     HomePage,
+    InspectionPage,
     TabsPage
   ],
   imports: [
@@ -40,6 +43,7 @@ import { Camera } from '@ionic-native/camera';
     AboutPage,
     ContactPage,
     HomePage,
+    InspectionPage,
     TabsPage
   ],
   providers: [

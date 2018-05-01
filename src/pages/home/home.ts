@@ -8,6 +8,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ToastController } from 'ionic-angular';
 
+import { InspectionPage } from '../inspection/inspection';
+
 
 @Component({
   selector: 'page-home',
@@ -20,6 +22,8 @@ export class HomePage {
  imageURI:any;
 imageFileName:any;
 fileName:any;
+type:any;
+vinScanned:any;
 
   constructor(
   public navCtrl: NavController, 
@@ -29,10 +33,41 @@ fileName:any;
   private camera: Camera,
   public loadingCtrl: LoadingController,
   public toastCtrl: ToastController) {
+  
+  
 
   }
   
+  
   scan(){
+  
+   let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+         });
+  
+  loading.present();
+        this.http.get('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5J6RE4H79BL013391?format=json').subscribe(resp => {
+              //alert(JSON.parse(resp['_body']).Results);
+              
+             var results = JSON.parse(resp['_body']).Results;
+             this.items = [];
+             for(var i=0;i<results.length;i++){
+                var item = {
+                    name : results[i].Variable,
+                    description: results[i].Value
+                };
+                this.items.push(item);
+             }
+             this.vinScanned = true;
+             loading.dismiss();
+            
+         
+       });
+  
+  }
+  
+  
+  scan1(){
    
    let loading = this.loadingCtrl.create({
             content: 'Please wait...'
@@ -136,6 +171,14 @@ presentToast(msg) {
   });
 
   toast.present();
+}
+
+
+goToInspection(type){
+
+    this.navCtrl.push(InspectionPage, {'type': type});
+
+
 }
 
 
