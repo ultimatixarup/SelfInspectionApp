@@ -22,6 +22,7 @@ import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
 
 import { InspectionPage } from '../pages/inspection/inspection';
+import { DetailPage } from '../pages/detail/detail';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InspectionPage } from '../pages/inspection/inspection';
     ContactPage,
     HomePage,
     InspectionPage,
+    DetailPage,
     TabsPage
   ],
   imports: [
@@ -44,6 +46,7 @@ import { InspectionPage } from '../pages/inspection/inspection';
     ContactPage,
     HomePage,
     InspectionPage,
+    DetailPage,
     TabsPage
   ],
   providers: [

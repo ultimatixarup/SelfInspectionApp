@@ -46,17 +46,23 @@ vinScanned:any;
          });
   
   loading.present();
-        this.http.get('https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5J6RE4H79BL013391?format=json').subscribe(resp => {
+        this.http.get('https://vehicle-service.herokuapp.com/vehicle?vin=5J6RE4H79BL013391').subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
               
-             var results = JSON.parse(resp['_body']).Results;
+             var results = JSON.parse(resp['_body']);
+             //alert(Object.keys(results));
+             
+             let keys = Object.keys(results);
+             
              this.items = [];
-             for(var i=0;i<results.length;i++){
-                var item = {
-                    name : results[i].Variable,
-                    description: results[i].Value
-                };
-                this.items.push(item);
+             for(var i=0;i<keys.length;i++){
+                if(typeof results[keys[i]] != "object"){
+                    var item = {
+                        name : keys[i],
+                        description: results[keys[i]]
+                    };
+                    this.items.push(item);
+                }
              }
              this.vinScanned = true;
              loading.dismiss();

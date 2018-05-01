@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { DetailPage } from '../detail/detail';
+
 /**
  * Generated class for the InspectionPage page.
  *
@@ -21,5 +23,11 @@ export class InspectionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad InspectionPage');
   }
+
+
+gotoDetails(type){
+    this.navCtrl.push(DetailPage,{'type':type});
+
+}
 
 }
