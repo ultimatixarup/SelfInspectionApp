@@ -22,16 +22,33 @@ import { LoadingController } from 'ionic-angular';
 })
 export class DetailPage {
 
- type:any;
+ 
+imageURI:any;
+imageFileName:any;
+fileName:any;
+type:any;
+vinScanned:any;
+header: any;
+image1:string;
+image2:string;
+image3:string;
+image4:string;
+source:string;
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, private transfer: FileTransfer,
   private camera: Camera,
   public loadingCtrl: LoadingController,
   public toastCtrl: ToastController) {
   
+  this.image1 = "assets/imgs/camera.png";
+  this.image2 = "assets/imgs/camera.png";
+  this.image3 = "assets/imgs/camera.png";
+  this.image4 = "assets/imgs/camera.png";
+  
+  
    this.type = navParams.get('type');
  //  alert(this.type);
-  
+  this.header = this.type;
     this.ionViewDidLoad();
   }
 
@@ -55,7 +72,7 @@ export class DetailPage {
        let data = JSON.parse(jsondata)[this.type];
       // alert(data);
        for(var i=0;i<data.length;i++){
-            let item ={ name: data[i] };
+            let item ={ name: data[i], data: '' };
             this.items.push(item);
        }
        
@@ -64,20 +81,32 @@ export class DetailPage {
   }
   
   
-   getImage() {
-    
+   getImage(source) {
+     this.source = source;
+     
+     /*const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        
+        mediaType: this.camera.MediaType.PICTURE
+      }*/
+      
+      
       const options: CameraOptions = {
         quality: 100,
         destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
+        targetWidth: 450,
+        targetHeight: 450,
         mediaType: this.camera.MediaType.PICTURE
-      }
+      };
 
       this.camera.getPicture(options).then((imageData) => {
       
         this.imageURI = imageData;
         this.fileName = this.imageURI.split("/")[this.imageURI.split("/").length-1];
-        alert(this.fileName);
+        this.uploadFile();
       }, (err) => {
         console.log(err);
         this.presentToast(err);
@@ -100,7 +129,19 @@ uploadFile() {
     console.log(data);
     
     alert(JSON.parse(data.response).url+" Uploaded Successfully");
-    this.imageFileName = JSON.parse(data.response).url;
+    if(this.source=="1"){
+        this.image1 = JSON.parse(data.response).url;
+    }
+     if(this.source=="2"){
+        this.image2 = JSON.parse(data.response).url;
+    }
+     if(this.source=="3"){
+        this.image3 = JSON.parse(data.response).url;
+    }
+     if(this.source=="4"){
+        this.image4 = JSON.parse(data.response).url;
+    }
+    
     loader.dismiss();
     this.presentToast("Image uploaded successfully");
   }, (err) => {

@@ -5,20 +5,22 @@
 </ion-header>
 
 <ion-content padding>
- 
-    <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
     
+    <br/><br/><br/><br/><br/><br/><br/><br/>    
+    <div style="margin-left:8%;width:100%;">
+        
+        <img style="height:80px;width:300px;" src="assets/imgs/barcode.gif">
+         
+        
+    </div>
+ <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
+   
+    <br/><br/>
+  <ion-item>
+    <ion-input placeholder="Enter Vin" [(ngModel)]="inputVin"></ion-input>
+  </ion-item>
     
-    <ion-item *ngIf="vinScanned">
-        <button ion-button full (click)="goToInspection()">Go to Inpsection >></button>
-    </ion-item>
- 
-    <ion-list>
-       <ion-item *ngFor="let item of items">
-                <h2>{{ item.name }}: {{ item.description }}</h2><p>
-                
-        </ion-item>
-    </ion-list>
+    <button ion-button full  (click)="search()">Search Vin</button>
     
     
     

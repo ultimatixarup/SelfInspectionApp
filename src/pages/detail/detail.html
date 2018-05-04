@@ -7,22 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>detail</ion-title>
+    <ion-title>{{ header }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    
+    <button ion-button full  (click)="scan()">Save Inspection</button>
     
     <table width="100%"><tr><td valign="top" width="50%">
                 
                 <div style="margin-left:1%;top:2px;width:100%;height:100%">
                    
-                 <a (click)="getImage()"> <img style="height:150px;width:150px;" src="assets/imgs/camera.png"></a>
+                 <a (click)="getImage(1)"> <img style="height:150px;width:150px;" [src]="image1"></a>
                     <div style="font-size:20px;color:black" align="center"><b>Front</b></div>
-                    <a (click)="getImage()"> <img style="height:150px;width:150px;" src="assets/imgs/camera.png"></a>
+                    <a (click)="getImage(2)"> <img style="height:150px;width:150px;" [src]="image2"></a>
                     <div style="font-size:20px;color:black" align="center"><b>Back</b></div>
                     
                 </div>
@@ -33,9 +33,9 @@
                    
                     <div style="margin-left:1%;top:2px;width:100%;height:100%">
                       
-                    <a (click)="getImage()"> <img style="height:150px;width:150px;" src="assets/imgs/camera.png"></a>
+                    <a (click)="getImage(3)"> <img style="height:150px;width:150px;" [src]="image3"></a>
                     <div style="font-size:20px;color:black" align="center"><b>Side</b></div>
-                    <a (click)="getImage()"> <img style="height:150px;width:150px;" src="assets/imgs/camera.png"></a>
+                    <a (click)="getImage(4)"> <img style="height:150px;width:150px;" [src]="image4"></a>
                     <div style="font-size:20px;color:black" align="center"><b>Side</b></div>
                    
 
@@ -53,7 +53,7 @@
         <ion-item *ngFor="let item of items">
            <ion-label>{{item.name}}</ion-label>
             
-            <ion-toggle [(ngModel)]="item.name"></ion-toggle>
+            <ion-toggle [(ngModel)]="item.value"></ion-toggle>
 
             
         </ion-item>

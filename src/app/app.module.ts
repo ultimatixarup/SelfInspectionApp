@@ -23,6 +23,7 @@ import { Camera } from '@ionic-native/camera';
 
 import { InspectionPage } from '../pages/inspection/inspection';
 import { DetailPage } from '../pages/detail/detail';
+import { VinresultPage } from '../pages/vinresult/vinresult';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DetailPage } from '../pages/detail/detail';
     HomePage,
     InspectionPage,
     DetailPage,
+    VinresultPage,
     TabsPage
   ],
   imports: [
@@ -47,6 +49,7 @@ import { DetailPage } from '../pages/detail/detail';
     HomePage,
     InspectionPage,
     DetailPage,
+    VinresultPage,
     TabsPage
   ],
   providers: [
