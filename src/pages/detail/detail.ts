@@ -8,6 +8,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ToastController } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
+
+import { AdddataPage } from '../adddata/adddata';
 /**
  * Generated class for the DetailPage page.
  *
@@ -83,6 +85,11 @@ source:string;
   
    getImage(source) {
      this.source = source;
+
+      if(this.source=='1'){
+       this.navCtrl.push(AdddataPage,{'type':this.source,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+       return;
+      }
      
      /*const options: CameraOptions = {
         quality: 100,
@@ -114,6 +121,9 @@ source:string;
 }
 
 uploadFile() {
+ 
+ 
+
   let loader = this.loadingCtrl.create({
     content: "Uploading..."
   });
@@ -128,8 +138,8 @@ uploadFile() {
     .then((data) => {
     console.log(data);
     
-    alert(JSON.parse(data.response).url+" Uploaded Successfully");
-    if(this.source=="1"){
+    //alert(JSON.parse(data.response).url+" Uploaded Successfully");
+    /*if(this.source=="1"){
         this.image1 = JSON.parse(data.response).url;
     }
      if(this.source=="2"){
@@ -141,9 +151,10 @@ uploadFile() {
      if(this.source=="4"){
         this.image4 = JSON.parse(data.response).url;
     }
-    
+    */
     loader.dismiss();
     this.presentToast("Image uploaded successfully");
+    this.navCtrl.push(AdddataPage,{'type':this.source,'image':JSON.parse(data.response).url});
   }, (err) => {
     alert(err);
     loader.dismiss();

@@ -1,0 +1,56 @@
+<!--
+  Generated template for the AdddataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>adddata</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <img [src] = "image"/>
+  <ion-item>
+    <ion-label>Locations</ion-label>
+    <ion-select [(ngModel)]="locationData">
+      <ion-option *ngFor="let location of locations" [value]="location.locationAdj">{{ location.locationAdj}}</ion-option>
+    </ion-select>
+  </ion-item>
+ <ion-item>
+    <ion-label>Category</ion-label>
+    <ion-select [(ngModel)]="categoryData" (ionChange)="optionSelected()">
+      <ion-option *ngFor="let category of catagories" [value]="category.name">{{ category.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Object</ion-label>
+    <ion-select [(ngModel)]="nounData">
+      <ion-option *ngFor="let noun of nouns" [value]="noun.noun">{{noun.noun}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Finding</ion-label>
+    <ion-select [(ngModel)]="findingData">
+      <ion-option *ngFor="let finding of findings" [value]="finding.findingAdj">{{finding.findingAdj}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Damage</ion-label>
+    <ion-select [(ngModel)]="damageData">
+      <ion-option *ngFor="let damage of damages" [value]="damage.damageClf">{{damage.damageClf}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+<ion-item>
+
+  <button ion-button full  (click)="addInspection()">Save Finding</button>
+
+</ion-item>
+
+
+</ion-content>

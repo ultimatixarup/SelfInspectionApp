@@ -25,6 +25,8 @@ import { InspectionPage } from '../pages/inspection/inspection';
 import { DetailPage } from '../pages/detail/detail';
 import { VinresultPage } from '../pages/vinresult/vinresult';
 
+import { AdddataPage } from '../pages/adddata/adddata';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +36,7 @@ import { VinresultPage } from '../pages/vinresult/vinresult';
     InspectionPage,
     DetailPage,
     VinresultPage,
+    AdddataPage,
     TabsPage
   ],
   imports: [
@@ -50,6 +53,7 @@ import { VinresultPage } from '../pages/vinresult/vinresult';
     InspectionPage,
     DetailPage,
     VinresultPage,
+    AdddataPage,
     TabsPage
   ],
   providers: [
