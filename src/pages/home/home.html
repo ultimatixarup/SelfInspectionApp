@@ -5,23 +5,13 @@
 </ion-header>
 
 <ion-content padding>
-    
-    <br/><br/><br/><br/><br/><br/><br/><br/>    
-    <div style="margin-left:8%;width:100%;">
-        
-        <img style="height:80px;width:300px;" src="assets/imgs/barcode.gif">
-         
-        
-    </div>
- <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
    
-    <br/><br/>
-  <ion-item>
-    <ion-input placeholder="Enter Vin" [(ngModel)]="inputVin"></ion-input>
-  </ion-item>
-    
-    <button ion-button full  (click)="search()">Search Vin</button>
-    
-    
-    
+
+ <div style="height:100%;background: url('assets/imgs/lfa.jpg');background-repeat:round">
+                   
+                    <div style="top:100px;left:30%" align="center"><button ion-button full  (click)="inspections()">Inspections</button></div>
+                     <div style="top:100px;left:30%" align="center"><button ion-button full  (click)="newinspection()">New Inspections</button></div>
+                     
+</div>
+
 </ion-content>

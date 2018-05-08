@@ -32,10 +32,20 @@ export class AdddataPage {
   findings:Array<{findingAdj:string}>;
   findingData:any;
   inspectionFindings:Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any}>;
-
+  itemdata:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
     this.image = this.navParams.get('image');
     this.source = this.navParams.get('source');
+    this.itemdata = this.navParams.get('itemdata');
+    if(this.itemdata){
+      this.locationData = this.itemdata.vifLocationAdj;
+      //this.categoryData = this.
+      this.findingData = this.itemdata.vifFindingAdj;
+      this.damageData = this.itemdata.vifDamageClf;
+    }
+
+
+
     this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
     this.findings = JSON.parse(window.localStorage.getItem("FINDINGS"));
     this.catagories = [];
@@ -85,7 +95,7 @@ let loader = this.loadingCtrl.create({
 
 addInspection(){
 
-    
+
 
 }
   

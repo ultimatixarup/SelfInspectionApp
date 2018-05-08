@@ -9,6 +9,10 @@ import { Http } from '@angular/http';
 
 import { LoadingController } from 'ionic-angular';
 
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
+
+import { VinsearchPage } from '../vinsearch/vinsearch';
+
 
 @Component({
   selector: 'page-home',
@@ -101,5 +105,14 @@ this.http.get('https://inspection-service.herokuapp.com/inspection/resources/fin
     this.navCtrl.push(VinresultPage,{vin:this.inputVin});
 
 
+  }
+
+  inspections(){
+    this.navCtrl.push(InspectiondetailsPage,{});
+
+  }
+
+  newinspection(){
+    this.navCtrl.push(VinsearchPage , {});
   }
   }

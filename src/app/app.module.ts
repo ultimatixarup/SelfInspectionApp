@@ -27,6 +27,12 @@ import { VinresultPage } from '../pages/vinresult/vinresult';
 
 import { AdddataPage } from '../pages/adddata/adddata';
 
+import { InspectiondetailsPage } from '../pages/inspectiondetails/inspectiondetails';
+
+import { FindingsearchPage } from '../pages/findingsearch/findingsearch';
+
+import { VinsearchPage } from '../pages/vinsearch/vinsearch'; 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,6 +43,9 @@ import { AdddataPage } from '../pages/adddata/adddata';
     DetailPage,
     VinresultPage,
     AdddataPage,
+    InspectiondetailsPage,
+    FindingsearchPage,
+    VinsearchPage,
     TabsPage
   ],
   imports: [
@@ -54,6 +63,9 @@ import { AdddataPage } from '../pages/adddata/adddata';
     DetailPage,
     VinresultPage,
     AdddataPage,
+    InspectiondetailsPage,
+    FindingsearchPage,
+    VinsearchPage,
     TabsPage
   ],
   providers: [
