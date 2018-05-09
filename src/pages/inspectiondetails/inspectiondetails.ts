@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+
 /**
  * Generated class for the InspectiondetailsPage page.
  *
@@ -23,7 +25,7 @@ export class InspectiondetailsPage {
     content: "Uploading..."
   });
   loader.present();
-    this.http.get('https://inspection-service.herokuapp.com/inspection').subscribe(resp => {
+    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
                                      // alert(resp['_body']);                                                                            
         this.inspections = JSON.parse(resp['_body']);
         loader.dismiss();

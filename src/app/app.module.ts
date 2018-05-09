@@ -33,6 +33,8 @@ import { FindingsearchPage } from '../pages/findingsearch/findingsearch';
 
 import { VinsearchPage } from '../pages/vinsearch/vinsearch'; 
 
+import { AppSettingsComponent } from '../components/app-settings/app-settings';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -46,6 +48,7 @@ import { VinsearchPage } from '../pages/vinsearch/vinsearch';
     InspectiondetailsPage,
     FindingsearchPage,
     VinsearchPage,
+    AppSettingsComponent,
     TabsPage
   ],
   imports: [
@@ -66,6 +69,7 @@ import { VinsearchPage } from '../pages/vinsearch/vinsearch';
     InspectiondetailsPage,
     FindingsearchPage,
     VinsearchPage,
+    AppSettingsComponent,
     TabsPage
   ],
   providers: [

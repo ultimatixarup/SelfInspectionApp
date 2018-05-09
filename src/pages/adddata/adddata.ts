@@ -4,6 +4,8 @@ import { Http } from '@angular/http';
 
 import { LoadingController } from 'ionic-angular';
 
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+
 /**
  * Generated class for the AdddataPage page.
  *
@@ -82,7 +84,7 @@ let loader = this.loadingCtrl.create({
     content: "Uploading..."
   });
   loader.present();
-    this.http.get('https://inspection-service.herokuapp.com/inspection/resources/noun?category='+this.categoryData).subscribe(resp => {
+    this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_NOUN+'?category='+this.categoryData).subscribe(resp => {
                                                                                                                   
         this.nouns = JSON.parse(resp['_body']);
         loader.dismiss();

@@ -13,6 +13,8 @@ import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 import { VinsearchPage } from '../vinsearch/vinsearch';
 
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+
 
 @Component({
   selector: 'page-home',
@@ -42,7 +44,7 @@ vinScanned:any;
 
   initializeCache(){
 
-  this.http.get('https://inspection-service.herokuapp.com/inspection/resources/noun').subscribe(resp => {
+  this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_NOUN).subscribe(resp => {
                                                                                                                  
     //alert(JSON.stringify(resp['_body'])); 
     setTimeout(() => {
@@ -50,7 +52,7 @@ vinScanned:any;
   }, 1000);
 });
 
-this.http.get('https://inspection-service.herokuapp.com/inspection/resources/location').subscribe(resp => {
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_LOCATION).subscribe(resp => {
                                                                                                                  
     //alert(JSON.stringify(resp['_body'])); 
     setTimeout(() => {
@@ -58,7 +60,7 @@ this.http.get('https://inspection-service.herokuapp.com/inspection/resources/loc
   }, 1000);
 });
 
-this.http.get('https://inspection-service.herokuapp.com/inspection/resources/damage').subscribe(resp => {
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_DAMAGE).subscribe(resp => {
                                                                                                                  
     //alert(JSON.stringify(resp['_body'])); 
     setTimeout(() => {
@@ -66,7 +68,7 @@ this.http.get('https://inspection-service.herokuapp.com/inspection/resources/dam
   }, 1000);
 });
 
-this.http.get('https://inspection-service.herokuapp.com/inspection/resources/finding').subscribe(resp => {
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp => {
                                                                                                                  
     //alert(JSON.stringify(resp['_body'])); 
     setTimeout(() => {

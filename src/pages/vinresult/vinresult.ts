@@ -11,6 +11,8 @@ import { ToastController } from 'ionic-angular';
 
 import { InspectionPage } from '../inspection/inspection';
 
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+
 
 @Component({
   selector: 'page-vinresult',
@@ -47,7 +49,7 @@ vinScanned:any;
          });
   
   loading.present();
-        this.http.get('https://vehicle-service.herokuapp.com/vehicle?vin='+this.vinScanned).subscribe(resp => {
+        this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.vinScanned).subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
               
              var results = JSON.parse(resp['_body']);
