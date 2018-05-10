@@ -13,6 +13,8 @@ import { InspectionPage } from '../inspection/inspection';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
+import { DetailPage } from '../detail/detail';
+
 
 @Component({
   selector: 'page-vinresult',
@@ -75,14 +77,14 @@ vinScanned:any;
   
   }
 
-goToInspection(type){
+goToInspections(type){
 
     this.navCtrl.push(InspectionPage, {'type': type});
 
 
 }
 goToNewInspection(){
-
+    this.navCtrl.push(DetailPage, {});
 
 }
 

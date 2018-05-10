@@ -10,6 +10,8 @@ import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
+
+import {FindingsearchPage } from '../findingsearch/findingsearch';
 /**
  * Generated class for the DetailPage page.
  *
@@ -176,6 +178,16 @@ presentToast(msg) {
   toast.present();
 }
   
-  
+  addFinding(){
+      let item = {}; // get vehicle and inspection information
+      this.navCtrl.push(AdddataPage , {itemdata: item,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+
+  }
+
+  showFinding(){
+
+    this.navCtrl.push(FindingsearchPage, {})
+
+  }
 
 }
