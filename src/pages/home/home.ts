@@ -30,6 +30,7 @@ fileName:any;
 type:any;
 inputVin:any;
 vinScanned:any;
+inspectorId:any;
 
   constructor(
   public navCtrl: NavController,public barcodeScanner:BarcodeScanner,public http:Http,public loadingCtrl: LoadingController) {
@@ -80,41 +81,12 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   }
   
   
-  scan(){
-   
-   
-    this.barcodeScanner.scan({
-                    showTorchButton:true
-                }).then(barcodeData => {
-        alert('Barcode data - ' + barcodeData.text);
-        
-       if(barcodeData.text){
-        
-         this.navCtrl.push(VinresultPage,{vin:barcodeData.text});
-       }
-        
-        
-        
-    }).catch(err => {
-        console.log('Error',err);
-        
-    });
-    
-  }
   
-  search(){
   
-    this.navCtrl.push(VinresultPage,{vin:this.inputVin});
 
-
-  }
-
-  inspections(){
-    this.navCtrl.push(InspectiondetailsPage,{});
-
-  }
-
-  newinspection(){
+  vinSearch(){
+    window.localStorage.setItem("INSPECTOR",this.inspectorId);
     this.navCtrl.push(VinsearchPage , {});
+    
   }
   }

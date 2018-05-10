@@ -81,6 +81,9 @@ goToInspection(type){
 
 
 }
+goToNewInspection(){
 
+
+}
 
 }

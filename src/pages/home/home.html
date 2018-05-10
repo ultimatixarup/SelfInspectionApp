@@ -6,12 +6,28 @@
 
 <ion-content padding>
    
+<ion-item>
+  <ion-label>Inspector Id</ion-label>
+  <ion-select [(ngModel)]="inspectorId">
+    <ion-option value="1">1</ion-option>
+    <ion-option value="2">2</ion-option>
+    <ion-option value="3">3</ion-option>
+    <ion-option value="4">4</ion-option>
+    <ion-option value="5">5</ion-option>
+    <ion-option value="6">6</ion-option>
+    <ion-option value="7">7</ion-option>
+    <ion-option value="8">8</ion-option>
+    <ion-option value="9">9</ion-option>
+    <ion-option value="10">10</ion-option>
+
+  </ion-select>
+</ion-item>
+
+</ion-select>
 
  <div style="height:100%;background: url('assets/imgs/lfa.jpg');background-repeat:round">
-                   
-                    <div style="top:100px;left:30%" align="center"><button ion-button full  (click)="inspections()">Inspections</button></div>
-                     <div style="top:100px;left:30%" align="center"><button ion-button full  (click)="newinspection()">New Inspections</button></div>
-                     
+        <div style="top:100px;left:30%" align="center"><button ion-button full  (click)="vinSearch()">Search Vin</button></div>
 </div>
 
 </ion-content>
+
