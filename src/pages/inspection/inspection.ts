@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DetailPage } from '../detail/detail';
 
+import { AdddataPage } from '../adddata/adddata';
+
 /**
  * Generated class for the InspectionPage page.
  *
@@ -17,7 +19,10 @@ import { DetailPage } from '../detail/detail';
 })
 export class InspectionPage {
 
+
+ inspectiondata:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.inspectiondata = this.navParams.get('data');
   }
 
   ionViewDidLoad() {
@@ -27,6 +32,11 @@ export class InspectionPage {
 
 gotoDetails(type){
     this.navCtrl.push(DetailPage,{'type':type});
+
+}
+
+addFinding(){
+    this.navCtrl.push(AdddataPage,{data:this.inspectiondata});
 
 }
 

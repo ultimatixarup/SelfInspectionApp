@@ -6,6 +6,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
+import { FindingsearchPage } from '../findingsearch/findingsearch';
+
 /**
  * Generated class for the AdddataPage page.
  *
@@ -35,13 +37,19 @@ export class AdddataPage {
   findingData:any;
   inspectionFindings:Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any}>;
   itemdata:any;
+  inspectorId:any;
+  inspectiondata:any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  
+    this.inspectiondata = navParams.get('data');
     this.image = this.navParams.get('image');
     this.source = this.navParams.get('source');
     this.itemdata = this.navParams.get('itemdata');
     if(this.itemdata){
       this.locationData = this.itemdata.vifLocationAdj;
-      //this.categoryData = this.
+     // this.categoryData = this.itemdata.
+      this.nounData = this.itemdata.vifNoun;
       this.findingData = this.itemdata.vifFindingAdj;
       this.damageData = this.itemdata.vifDamageClf;
     }
@@ -91,12 +99,27 @@ let loader = this.loadingCtrl.create({
     });
 
 
-    alert(this.categoryData);
+    //alert(this.categoryData);
   }
 
 
 addInspection(){
-
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: {id:this.inspectiondata.id}};
+ 
+ let loader = this.loadingCtrl.create({
+    content: "Loading..."
+  });
+  loader.present();
+    this.http.post(AppSettingsComponent.INSPECTION_FINDING,newfinding).subscribe(resp => {
+                                     // alert(resp['_body']);  
+                                     //alert(resp['_body']); 
+                                    // let newinspection = JSON.parse(resp['_body']);
+        
+        loader.dismiss();
+        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+    });
+ 
+ 
   
 
 }

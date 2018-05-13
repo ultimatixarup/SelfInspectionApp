@@ -7,14 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Inspection Entry</ion-title>
+    <ion-title>Finding Entry</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-   <img [src] = "image"/>
+    <button ion-button full  (click)="getImage()">Add Image</button>
+   
   <ion-item>
     <ion-label>Locations</ion-label>
     <ion-select [(ngModel)]="locationData">

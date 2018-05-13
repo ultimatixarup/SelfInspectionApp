@@ -30,7 +30,7 @@ itemdata:any;
     content: "Loading..."
   });
   loader.present();
-    this.http.get(AppSettingsComponent.INSPECTION_FINDING+'?inspectionID='+this.inspectionId).subscribe(resp => {
+    this.http.get(AppSettingsComponent.INSPECTION_FINDING+'?inspectionId='+this.inspectionId).subscribe(resp => {
                                      // alert(resp['_body']);                                                                            
         this.findings = JSON.parse(resp['_body']);
         loader.dismiss();
@@ -42,7 +42,11 @@ itemdata:any;
   }
 
   itemTapped(event, item){
-    this.navCtrl.push(AdddataPage , {itemdata: item,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: item,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+  }
+  
+  createFinding(){
+    this.navCtrl.push(AdddataPage , {data: this.itemdata,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
   }
 
 }

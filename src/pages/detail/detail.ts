@@ -14,6 +14,8 @@ import { AdddataPage } from '../adddata/adddata';
 import {FindingsearchPage } from '../findingsearch/findingsearch';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+
+import { InspectionPage } from '../inspection/inspection';
 /**
  * Generated class for the DetailPage page.
  *
@@ -48,6 +50,7 @@ image3:string;
 image4:string;
 source:string;
 vin:any;
+inspectorId:any;
 
 inspectionId : any;
 
@@ -206,7 +209,7 @@ presentToast(msg) {
     }
   
 
-    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:'',findings:[],photos:[]};
+    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:'NA'};
     this.insepction.inspectorId = window.localStorage.getItem("INSPECTOR");
 
   let loader = this.loadingCtrl.create({
@@ -215,9 +218,11 @@ presentToast(msg) {
   loader.present();
     this.http.post(AppSettingsComponent.INSPECTION_SERVICE,insepctioninput).subscribe(resp => {
                                      // alert(resp['_body']);  
-                                     alert(resp['_body']);                                                                          
+                                     //alert(resp['_body']); 
+                                     let newinspection = JSON.parse(resp['_body']);
         
         loader.dismiss();
+        this.navCtrl.push(InspectionPage,{data:newinspection});
     });
   }
     
