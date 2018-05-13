@@ -97,7 +97,7 @@ let loader = this.loadingCtrl.create({
 
 addInspection(){
 
-
+  
 
 }
   

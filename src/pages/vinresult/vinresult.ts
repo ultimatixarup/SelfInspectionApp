@@ -29,6 +29,7 @@ imageFileName:any;
 fileName:any;
 type:any;
 vinScanned:any;
+results:any;
 
   constructor(
   public navCtrl: NavController, 
@@ -54,17 +55,17 @@ vinScanned:any;
         this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.vinScanned).subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
               
-             var results = JSON.parse(resp['_body']);
+             this.results = JSON.parse(resp['_body']);
              //alert(Object.keys(results));
              
-             let keys = Object.keys(results);
+             let keys = Object.keys(this.results);
              
              this.items = [];
              for(var i=0;i<keys.length;i++){
-                if(typeof results[keys[i]] != "object"){
+                if(typeof this.results[keys[i]] != "object"){
                     var item = {
                         name : keys[i],
-                        description: results[keys[i]]
+                        description: this.results[keys[i]]
                     };
                     this.items.push(item);
                 }
@@ -84,7 +85,7 @@ goToInspections(type){
 
 }
 goToNewInspection(){
-    this.navCtrl.push(DetailPage, {});
+    this.navCtrl.push(DetailPage, {year:this.results.year,make:this.results.make,model:this.results.model,vin: this.results.vin});
 
 }
 

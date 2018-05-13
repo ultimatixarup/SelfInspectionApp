@@ -15,9 +15,9 @@
 
 <ion-content padding>
 <ion-item>
-  <h1>VIN: {{itemdata.vin}}</h1>
-  <h1>LIC: {{itemdata.licensePlateNumber}}</h1>
- <p> State: {{ itemdata.licensePlateState}} </p>
+  <h1>{{ itemdata.year }} / {{itemdata.make}} / {{itemdata.model}}</h1>
+  <h1>LIC: {{itemdata.licensePlateNumber}} &nbsp; State: {{ itemdata.licensePlateState}} </h1>
+    <p>Odometer: {{itemdata.odometer }}</p>
 </ion-item>
 <button ion-button full (click)="createFinding()">Add Finding </button>
 

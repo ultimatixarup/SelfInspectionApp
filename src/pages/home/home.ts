@@ -79,14 +79,23 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   }
   
   myInspections(){
-      this.navCtrl.push(InspectiondetailsPage,{});
+      if(this.inspectorId == ""){
+        alert("Please enter the inspector id");
+        return;
+      }
+      this.navCtrl.push(InspectiondetailsPage,{inspectorid:this.inspectorId});
   }
   
   
 
   vinSearch(){
+  
+  if(this.inspectorId){   
     window.localStorage.setItem("INSPECTOR",this.inspectorId);
     this.navCtrl.push(VinsearchPage , {});
+    } else {
+        alert("Please select the inspector id");
+    }
     
   }
   }

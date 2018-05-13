@@ -32,6 +32,9 @@ export class DetailPage {
 licensePlate:any;
 state:any;
 odoReading:any;
+make:any;
+model:any;
+year:any;
  
 imageURI:any;
 imageFileName:any;
@@ -44,6 +47,7 @@ image2:string;
 image3:string;
 image4:string;
 source:string;
+vin:any;
 
 inspectionId : any;
 
@@ -53,13 +57,16 @@ insepction: any;
   private camera: Camera,
   public loadingCtrl: LoadingController,
   public toastCtrl: ToastController) {
-    this.insepction = {id:"",vin:"",inspectorId:"",licensePlateNumber:"",licensePlateState:""};
+    this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
     this.image1 = "assets/imgs/camera.png";
     this.image2 = "assets/imgs/camera.png";
     this.image3 = "assets/imgs/camera.png";
     this.image4 = "assets/imgs/camera.png";
-    
-    
+    this.inspectorId = window.localStorage.getItem('INSPECTOR');
+    this.vin = this.navParams.get("vin");
+    this.year = this.navParams.get("year");
+    this.make = this.navParams.get("make");
+    this.model = this.navParams.get("model");
     this.type = navParams.get('type');
   //  alert(this.type);
     this.header = this.type;
@@ -187,6 +194,7 @@ presentToast(msg) {
   }
 
   saveInspection(vin,inspectorId){
+  
     if(this.licensePlate == ""){
       this.presentToast("Please enter License Plate");
       return;
@@ -196,20 +204,19 @@ presentToast(msg) {
     } else if(this.odoReading == ""){
       this.presentToast("Please enter Odometer reading");
     }
-//{id:"",vin:"",inspectorId:"",licensePlateNumber:"",licensePlateState:""};
-    this.insepction.licensePlateNumber = this.licensePlate;
-    this.insepction.licensePlateState = this.state;
-    this.insepction.vin =  vin;
-    this.insepction.inspectorId = inspectorId;
+  
+
+    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:'',findings:[],photos:[]};
+    this.insepction.inspectorId = window.localStorage.getItem("INSPECTOR");
 
   let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
   loader.present();
-    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+    this.http.post(AppSettingsComponent.INSPECTION_SERVICE,insepctioninput).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      alert(resp['_body']);                                                                          
-        this.inspectionId = JSON.parse(resp['_body']);
+        
         loader.dismiss();
     });
   }

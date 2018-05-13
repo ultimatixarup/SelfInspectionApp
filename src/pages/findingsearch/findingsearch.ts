@@ -19,7 +19,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
   templateUrl: 'findingsearch.html',
 })
 export class FindingsearchPage {
-findings : Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any}>;
+findings : Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any,photos:any,inspection:any}>;
 inspectionId:any;
 itemdata:any; 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {

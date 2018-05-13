@@ -21,17 +21,29 @@ import { DetailPage } from '../detail/detail';
   templateUrl: 'inspectiondetails.html',
 })
 export class InspectiondetailsPage {
-  inspections : Array<{id:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any}>;
+inspectorId:any;
+  inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:[],photos:[]}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  
+    this.inspectorId = navParams.get('inspectorId');
     let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
   loader.present();
-    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
-                                     // alert(resp['_body']);                                                                            
-        this.inspections = JSON.parse(resp['_body']);
-        loader.dismiss();
-    });
+    if(this.inspectorId){
+        this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'?inspectorId='+this.inspectorId).subscribe(resp => {
+                                         // alert(resp['_body']);                                                                            
+            this.inspections = JSON.parse(resp['_body']);
+            loader.dismiss();
+        });
+    } else {
+       this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+                                         // alert(resp['_body']);                                                                            
+            this.inspections = JSON.parse(resp['_body']);
+            loader.dismiss();
+        });
+    
+    }
   }
 
   ionViewDidLoad() {

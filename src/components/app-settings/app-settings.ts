@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
 export class AppSettingsComponent {
 
   text: string;
-  public static API_ENDPOINT='http://inspection-service-prod.herokuapp.com';
+  public static API_ENDPOINT='http://inspection-service.herokuapp.com';
 
     public static INSPECTION_SERVICE= AppSettingsComponent.API_ENDPOINT + '/inspection';
   public static INSPECTION_RESOURCE_NOUN= AppSettingsComponent.API_ENDPOINT + '/inspection/resources/noun';

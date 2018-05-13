@@ -19,24 +19,20 @@
 <ion-card ion-item *ngFor="let item of inspections" (click)="itemTapped($event, item)">
 
   <ion-item>
-    <h2>{{ item.licensePlateNumber}}</h2>
-    <p>VIN: {{ item.vin }} </p>
+    <h2>{{ item.make}} {{ item.model }}</h2>
+    <p>LIC: {{ item.licensePlateNumber }} State: {{ item.licensePlateState }}  </p>
   </ion-item>
 
   <img src="http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg">
 
   <ion-row>
     <ion-col>
-      <ion-note>Inspector: {{ item.inspectorId}}</ion-note>
+      <ion-note>Odometer: {{ item.odometer }}</ion-note>
     </ion-col>
     <ion-col>
-       <ion-note>License: {{ item.licensePlateNumber}}</ion-note>
+       <ion-note>Created Date: {{ item.createDate }}</ion-note>
     </ion-col>
-    <ion-col center text-center>
-      <ion-note>
-        State: {{ item.licensePlateState }}
-      </ion-note>
-    </ion-col>
+    
   </ion-row>
 
 </ion-card>

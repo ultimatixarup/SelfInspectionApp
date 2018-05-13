@@ -1,4 +1,4 @@
-<!--
+    <!--
   Generated template for the DetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -15,7 +15,7 @@
 
 <ion-content padding>
     <button ion-button full  (click)="saveInspection()">Save Inspection</button>
-
+   <ion-item><h1>{{this.year}} / {{this.make}} / {{this.model}}</h1></ion-item>
     <ion-item>
         <ion-label color="primary">License Plate</ion-label>
         <ion-input placeholder="License Plate" [(ngModel)]="licensePlate"></ion-input>
