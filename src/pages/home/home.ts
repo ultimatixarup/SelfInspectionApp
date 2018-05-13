@@ -3,8 +3,6 @@ import { NavController } from 'ionic-angular';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
-import { VinresultPage } from '../vinresult/vinresult';
-
 import { Http } from '@angular/http';
 
 import { LoadingController } from 'ionic-angular';
@@ -80,7 +78,9 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
 
   }
   
-  
+  myInspections(){
+      this.navCtrl.push(InspectiondetailsPage,{});
+  }
   
   
 

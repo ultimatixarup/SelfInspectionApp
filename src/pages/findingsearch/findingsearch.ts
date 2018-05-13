@@ -27,7 +27,7 @@ itemdata:any;
     this.inspectionId = navParams.get('id');
     this.itemdata = navParams.get('itemdata');
     let loader = this.loadingCtrl.create({
-    content: "Uploading..."
+    content: "Loading..."
   });
   loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_FINDING+'?inspectionID='+this.inspectionId).subscribe(resp => {

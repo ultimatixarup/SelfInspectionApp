@@ -12,6 +12,8 @@ import { LoadingController } from 'ionic-angular';
 import { AdddataPage } from '../adddata/adddata';
 
 import {FindingsearchPage } from '../findingsearch/findingsearch';
+
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 /**
  * Generated class for the DetailPage page.
  *
@@ -26,6 +28,10 @@ import {FindingsearchPage } from '../findingsearch/findingsearch';
 })
 export class DetailPage {
 
+
+licensePlate:any;
+state:any;
+odoReading:any;
  
 imageURI:any;
 imageFileName:any;
@@ -38,36 +44,26 @@ image2:string;
 image3:string;
 image4:string;
 source:string;
+
+inspectionId : any;
+
+insepction: any;
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, private transfer: FileTransfer,
   private camera: Camera,
   public loadingCtrl: LoadingController,
   public toastCtrl: ToastController) {
+    this.insepction = {id:"",vin:"",inspectorId:"",licensePlateNumber:"",licensePlateState:""};
+    this.image1 = "assets/imgs/camera.png";
+    this.image2 = "assets/imgs/camera.png";
+    this.image3 = "assets/imgs/camera.png";
+    this.image4 = "assets/imgs/camera.png";
+    
+    
+    this.type = navParams.get('type');
+  //  alert(this.type);
+    this.header = this.type;
   
-  this.image1 = "assets/imgs/camera.png";
-  this.image2 = "assets/imgs/camera.png";
-  this.image3 = "assets/imgs/camera.png";
-  this.image4 = "assets/imgs/camera.png";
-  
-  
-   this.type = navParams.get('type');
- //  alert(this.type);
-  this.header = this.type;
-    this.ionViewDidLoad();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailPage');
-    
-    this.http.get('assets/data/inspection.json').subscribe(resp => {
-             console.log(resp);
-             this.buildPage(resp['_body']);
-             
-    });
-    
-    
-    
-    
   }
   
   buildPage(jsondata){
@@ -190,4 +186,38 @@ presentToast(msg) {
 
   }
 
-}
+  saveInspection(vin,inspectorId){
+    if(this.licensePlate == ""){
+      this.presentToast("Please enter License Plate");
+      return;
+    } else if(this.state == ""){
+      this.presentToast("Please enter License State");
+      return;
+    } else if(this.odoReading == ""){
+      this.presentToast("Please enter Odometer reading");
+    }
+//{id:"",vin:"",inspectorId:"",licensePlateNumber:"",licensePlateState:""};
+    this.insepction.licensePlateNumber = this.licensePlate;
+    this.insepction.licensePlateState = this.state;
+    this.insepction.vin =  vin;
+    this.insepction.inspectorId = inspectorId;
+
+  let loader = this.loadingCtrl.create({
+    content: "Loading..."
+  });
+  loader.present();
+    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+                                     // alert(resp['_body']);  
+                                     alert(resp['_body']);                                                                          
+        this.inspectionId = JSON.parse(resp['_body']);
+        loader.dismiss();
+    });
+  }
+    
+
+
+  }
+
+
+
+

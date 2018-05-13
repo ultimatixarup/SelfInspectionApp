@@ -6,6 +6,8 @@ import { FindingsearchPage } from '../findingsearch/findingsearch';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
+import { DetailPage } from '../detail/detail';
+
 /**
  * Generated class for the InspectiondetailsPage page.
  *
@@ -22,7 +24,7 @@ export class InspectiondetailsPage {
   inspections : Array<{id:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
     let loader = this.loadingCtrl.create({
-    content: "Uploading..."
+    content: "Loading..."
   });
   loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
@@ -38,6 +40,10 @@ export class InspectiondetailsPage {
 
    itemTapped(event, item) {
       this.navCtrl.push(FindingsearchPage, {id:item.id,itemdata : item});
+  }
+
+  startInspection(){
+      this.navCtrl.push(DetailPage, {});
 
   }
 
