@@ -150,7 +150,27 @@ let inspectionjson = {id:this.inspectionId};
   
   if(this.type == 'update'){
     findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+this.findingId;
-  } 
+    this.http.patch(findingEndpoint,newfinding).subscribe(resp => {
+                                     // alert(resp['_body']);  
+                                     //alert(resp['_body']); 
+                                    // let newinspection = JSON.parse(resp['_body']);
+        
+        loader.dismiss();
+        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+    },
+    
+     err => { 
+                loader.dismiss();
+                alert(err);
+            }
+    
+    );
+    
+    
+    
+    
+    
+  } else {
   
  
     this.http.post(findingEndpoint,newfinding).subscribe(resp => {
@@ -169,7 +189,7 @@ let inspectionjson = {id:this.inspectionId};
     
     );
  
- 
+ }
   
 
 }
