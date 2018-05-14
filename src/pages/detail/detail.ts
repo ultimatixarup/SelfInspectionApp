@@ -57,6 +57,7 @@ inspectionId : any;
 insepction: any;
 
 inspectiondata:any;
+odometer:any;
 
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, private transfer: FileTransfer,

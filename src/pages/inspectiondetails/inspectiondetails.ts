@@ -25,7 +25,7 @@ import { InspectionPage } from '../inspection/inspection';
 })
 export class InspectiondetailsPage {
 inspectorId:any;
-  inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:[],photos:[]}>;
+  inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
   
     this.inspectorId = navParams.get('inspectorId');
@@ -57,10 +57,7 @@ inspectorId:any;
       this.navCtrl.push(FindingsearchPage, {id:item.id,itemdata : item});
   }
 
-  startInspection(){
-      this.navCtrl.push(DetailPage, {data:item});
-
-  }
+ 
   
   openInspection(item){
     this.navCtrl.push(InspectionPage,{data:item});

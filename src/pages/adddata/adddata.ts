@@ -7,10 +7,8 @@ import { LoadingController } from 'ionic-angular';
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
 import { FindingsearchPage } from '../findingsearch/findingsearch';
-import { SelectSearchableModule } from 'ionic-select-searchable';
-
-
 import { SelectSearchable } from 'ionic-select-searchable';
+
 
 /**
  * Generated class for the AdddataPage page.
@@ -18,6 +16,12 @@ import { SelectSearchable } from 'ionic-select-searchable';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+class Port {
+        
+}
+
+
 
 @IonicPage()
 @Component({
@@ -47,6 +51,8 @@ ports: Port[];
   inspectorId:any;
   inspectiondata:any;
   findingId:any;
+  inspectionId:any;
+  type:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
   
@@ -58,7 +64,9 @@ ports: Port[];
     this.image = this.navParams.get('image');
     this.source = this.navParams.get('source');
     this.itemdata = this.navParams.get('itemdata');
+    this.type=this.navParams.get('type');
     if(this.itemdata){
+    
       this.locationData = this.itemdata.vifLocationAdj;
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
@@ -68,7 +76,13 @@ ports: Port[];
       this.damageData = this.itemdata.vifDamageClf;
       this.findingId = this.itemdata.id;
       //alert(this.itemdata);
-      this.inspectionId = this.itemdata.id;
+      if(this.type=='update'){
+        this.findingId = this.itemdata.id;
+        this.inspectionId = this.itemdata.inspection.id;
+      }
+      if(this.type == 'new')
+        this.inspectionId = this.itemdata.id;
+      
     }
 
 
@@ -122,8 +136,9 @@ let loader = this.loadingCtrl.create({
 
 addInspection(){
 
-
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: {id:this.inspectionId}};
+let inspectionjson = {id:this.inspectionId};
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData.noun, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: inspectionjson};
+ 
  
  let loader = this.loadingCtrl.create({
     content: "Loading..."
@@ -131,10 +146,13 @@ addInspection(){
   loader.present();
   
   let findingEndpoint = AppSettingsComponent.INSPECTION_FINDING;
-  /*if(this.findingId){
-    findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+this.findingId;
-  } */
+ 
   
+  if(this.type == 'update'){
+    findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+this.findingId;
+  } 
+  
+ 
     this.http.post(findingEndpoint,newfinding).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
