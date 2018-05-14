@@ -7,6 +7,10 @@ import { LoadingController } from 'ionic-angular';
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
 import { FindingsearchPage } from '../findingsearch/findingsearch';
+import { SelectSearchableModule } from 'ionic-select-searchable';
+
+
+import { SelectSearchable } from 'ionic-select-searchable';
 
 /**
  * Generated class for the AdddataPage page.
@@ -21,6 +25,9 @@ import { FindingsearchPage } from '../findingsearch/findingsearch';
   templateUrl: 'adddata.html',
 })
 export class AdddataPage {
+
+ports: Port[];
+    port: Port;
 
   image:any;
   source:any;
@@ -39,9 +46,14 @@ export class AdddataPage {
   itemdata:any;
   inspectorId:any;
   inspectiondata:any;
+  findingId:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
   
+  
+    this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
+    this.ports = JSON.parse(window.localStorage.getItem("NOUNS"));
+    
     this.inspectiondata = navParams.get('data');
     this.image = this.navParams.get('image');
     this.source = this.navParams.get('source');
@@ -50,13 +62,18 @@ export class AdddataPage {
       this.locationData = this.itemdata.vifLocationAdj;
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
+      this.port = {noun:this.itemdata.vifNoun};
+      this.itemdata.vifNoun;
       this.findingData = this.itemdata.vifFindingAdj;
       this.damageData = this.itemdata.vifDamageClf;
+      this.findingId = this.itemdata.id;
+      //alert(this.itemdata);
+      this.inspectionId = this.itemdata.id;
     }
 
 
 
-    this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
+   
     this.findings = JSON.parse(window.localStorage.getItem("FINDINGS"));
     this.catagories = [];
     for(var i=0;i<this.nounsData.length;i++){
@@ -104,24 +121,45 @@ let loader = this.loadingCtrl.create({
 
 
 addInspection(){
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: {id:this.inspectiondata.id}};
+
+
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: {id:this.inspectionId}};
  
  let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
   loader.present();
-    this.http.post(AppSettingsComponent.INSPECTION_FINDING,newfinding).subscribe(resp => {
+  
+  let findingEndpoint = AppSettingsComponent.INSPECTION_FINDING;
+  /*if(this.findingId){
+    findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+this.findingId;
+  } */
+  
+    this.http.post(findingEndpoint,newfinding).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
                                     // let newinspection = JSON.parse(resp['_body']);
         
         loader.dismiss();
         this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
-    });
+    },
+    
+     err => { 
+                loader.dismiss();
+                alert(err);
+            }
+    
+    );
  
  
   
 
 }
+
+
+portChange(event: { component: SelectSearchable, value: any }) {
+        console.log('port:', event.value);
+        this.nounData = event.value;
+    }
   
 }

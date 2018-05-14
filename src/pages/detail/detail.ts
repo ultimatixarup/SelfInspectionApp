@@ -55,6 +55,9 @@ inspectorId:any;
 inspectionId : any;
 
 insepction: any;
+
+inspectiondata:any;
+
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, private transfer: FileTransfer,
   private camera: Camera,
@@ -73,6 +76,17 @@ insepction: any;
     this.type = navParams.get('type');
   //  alert(this.type);
     this.header = this.type;
+    this.inspectiondata = this.navParams.get("data");
+    if(this.inspectiondata){
+        this.vin = this.inspectiondata.vin;
+        this.year = this.inspectiondata.year;
+        this.make = this.inspectiondata.make;
+        this.model = this.inspectiondata.model;
+        this.licensePlate = this.inspectiondata.licensePlateNumber;
+        this.state = this.inspectiondata.licensePlateState;
+        this.odometer = this.inspectiondata.odometer;
+        this.inspectionId = this.inspectiondata.id;
+    }
   
   }
   
@@ -185,17 +199,12 @@ presentToast(msg) {
 }
   
   addFinding(){
-      let item = {}; // get vehicle and inspection information
-      this.navCtrl.push(AdddataPage , {itemdata: item,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+      alert(this.inspectiondata.id);
+      this.navCtrl.push(AdddataPage , {itemdata: this.inspectiondata,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
 
   }
 
-  showFinding(){
-
-    this.navCtrl.push(FindingsearchPage, {})
-
-  }
-
+  
   saveInspection(vin,inspectorId){
   
     if(this.licensePlate == ""){
@@ -216,16 +225,37 @@ presentToast(msg) {
     content: "Loading..."
   });
   loader.present();
-    this.http.post(AppSettingsComponent.INSPECTION_SERVICE,insepctioninput).subscribe(resp => {
+  
+    let inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE;
+    /*if(this.inspectionId){
+        inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + this.inspectionId;
+    }*/
+  
+  
+    this.http.post(inspectionEndpoint,insepctioninput).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
                                      let newinspection = JSON.parse(resp['_body']);
         
         loader.dismiss();
         this.navCtrl.push(InspectionPage,{data:newinspection});
-    });
+    },
+     err => { 
+                loader.dismiss();
+                alert(err);
+            }
+    
+    
+    
+    
+    );
   }
     
+    
+    listFindings(){
+
+        this.navCtrl.push(FindingsearchPage, {id:this.inspectiondata.id,itemdata : this.inspectiondata});
+    }
 
 
   }

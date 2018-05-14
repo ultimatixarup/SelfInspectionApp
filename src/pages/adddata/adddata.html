@@ -22,18 +22,23 @@
       <ion-option *ngFor="let location of locations" [value]="location.locationAdj">{{ location.locationAdj}}</ion-option>
     </ion-select>
   </ion-item>
- <ion-item>
-    <ion-label>Category</ion-label>
-    <ion-select [(ngModel)]="categoryData" (ionChange)="optionSelected()">
-      <ion-option *ngFor="let category of catagories" [value]="category.name">{{ category.name}}</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label>Object</ion-label>
-    <ion-select [(ngModel)]="nounData">
-      <ion-option *ngFor="let noun of nouns" [value]="noun.noun">{{noun.noun}}</ion-option>
-    </ion-select>
-  </ion-item>
+ 
+    
+    <ion-item>
+    <select-searchable
+        [(ngModel)]="port"
+        [items]="ports"
+        itemValueField="noun"
+        itemTextField="noun"
+        [canSearch]="true"
+        (onChange)="portChange($event)">
+        <ng-template selectSearchableLabelTemplate>
+            Objects
+        </ng-template>
+    </select-searchable>
+</ion-item>
+      
+  
   <ion-item>
     <ion-label>Finding</ion-label>
     <ion-select [(ngModel)]="findingData">

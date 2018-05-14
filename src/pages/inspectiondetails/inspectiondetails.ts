@@ -8,6 +8,9 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { DetailPage } from '../detail/detail';
 
+import { InspectionPage } from '../inspection/inspection';
+
+
 /**
  * Generated class for the InspectiondetailsPage page.
  *
@@ -55,8 +58,12 @@ inspectorId:any;
   }
 
   startInspection(){
-      this.navCtrl.push(DetailPage, {});
+      this.navCtrl.push(DetailPage, {data:item});
 
+  }
+  
+  openInspection(item){
+    this.navCtrl.push(InspectionPage,{data:item});
   }
 
 }

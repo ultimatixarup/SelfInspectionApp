@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-    <button ion-button full  (click)="saveInspection()">Save Inspection</button>
+    
    <ion-item><h1>{{this.year}} / {{this.make}} / {{this.model}}</h1></ion-item>
     <ion-item>
         <ion-label color="primary">License Plate</ion-label>
@@ -82,35 +82,21 @@
         <ion-input placeholder="Odometer" [(ngModel)]="odometer"></ion-input>
     </ion-item>
     
-    <table width="100%"><tr><td valign="top" width="50%">
-                
-                <div style="margin-left:1%;top:2px;width:100%;height:100%">
-                   
-                 <a (click)="getImage(1)"> <img style="height:150px;width:150px;" [src]="image1"></a>
-                    <div style="font-size:20px;color:black" align="center"><b>Front</b></div>
-                    <a (click)="getImage(2)"> <img style="height:150px;width:150px;" [src]="image2"></a>
-                    <div style="font-size:20px;color:black" align="center"><b>Back</b></div>
-                    
-                </div>
-                        
-                  
-                    </td>
-        <td valign="top">
-                   
-                    <div style="margin-left:1%;top:2px;width:100%;height:100%">
-                      
-                    <a (click)="getImage(3)"> <img style="height:150px;width:150px;" [src]="image3"></a>
-
-                    <div style="font-size:20px;color:black" align="center"><b>Side</b></div>
-                    <a (click)="getImage(4)"> <img style="height:150px;width:150px;" [src]="image4"></a>
-                    <div style="font-size:20px;color:black" align="center"><b>Side</b></div>
-                   
-
-                </div>
-                    
-                    </td>
-                    </tr></table>
+    <button ion-button icon-left clear small (click)="saveInspection()">
+            <ion-icon name="brush" ></ion-icon>
+            <div>Update Inspection</div>
+    </button>
     
-   <button ion-button full  (click)="addFinding()">Add Finding</button>
-   <button ion-button full  (click)="showFinding()">Show Findings</button>
+    <button ion-button icon-left clear small (click)="listFindings()">
+            <ion-icon name="folder-open" ></ion-icon>
+            <div>Findings</div>
+          </button>
+    
+    <button ion-button icon-left clear small (click)="addFinding()">
+            <ion-icon name="add" ></ion-icon>
+            <div>Add Findings</div>
+    </button>
+    
+   
+   
 </ion-content>

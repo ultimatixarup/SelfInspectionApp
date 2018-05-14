@@ -35,6 +35,8 @@ import { VinsearchPage } from '../pages/vinsearch/vinsearch';
 
 import { AppSettingsComponent } from '../components/app-settings/app-settings';
 
+import { SelectSearchableModule } from 'ionic-select-searchable';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -54,6 +56,7 @@ import { AppSettingsComponent } from '../components/app-settings/app-settings';
   imports: [
     BrowserModule,
     HttpModule,
+    SelectSearchableModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

@@ -5,6 +5,9 @@ import { DetailPage } from '../detail/detail';
 
 import { AdddataPage } from '../adddata/adddata';
 
+import { FindingsearchPage } from '../findingsearch/findingsearch';
+
+
 /**
  * Generated class for the InspectionPage page.
  *
@@ -38,6 +41,16 @@ gotoDetails(type){
 addFinding(){
     this.navCtrl.push(AdddataPage,{data:this.inspectiondata});
 
+}
+
+listFindings(item){
+
+    this.navCtrl.push(FindingsearchPage, {id:item.id,itemdata : item});
+}
+
+update(data){
+  
+    this.navCtrl.push(DetailPage, {data : data});
 }
 
 }

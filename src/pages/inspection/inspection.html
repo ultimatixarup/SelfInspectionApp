@@ -29,7 +29,27 @@
     </ion-item>
         
         <img [src]="inspectiondata.defaultPhotoId" onerror="this.src='assets/imgs/lex.jpg';" />
+        
+         <button ion-button icon-left clear small (click)="addFinding()">
+            <ion-icon name="add" ></ion-icon>
+            <div>Add Finding</div>
+          </button>
+        
+          <button ion-button icon-left clear small (click)="listFindings(inspectiondata)">
+            <ion-icon name="folder-open" ></ion-icon>
+            <div>Findings</div>
+          </button>
+        
+          <button ion-button icon-left clear small (click)="addPhoto()">
+            <ion-icon name="camera" ></ion-icon>
+            <div>Add Photo</div>
+          </button>
+        
+        <button ion-button icon-left clear small (click)="update(inspectiondata)">
+            <ion-icon name="brush" ></ion-icon>
+            <div>Update Inspection</div>
+          </button>
     
-<button ion-button full  (click)="addFinding()">Add Finding</button>
+
 </ion-content>
 
