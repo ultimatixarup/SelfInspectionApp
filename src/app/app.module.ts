@@ -35,6 +35,10 @@ import { VinsearchPage } from '../pages/vinsearch/vinsearch';
 
 import { AppSettingsComponent } from '../components/app-settings/app-settings';
 
+import { ImageTakerComponent } from '../components/image-taker/image-taker';
+
+
+
 import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
@@ -51,6 +55,8 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     FindingsearchPage,
     VinsearchPage,
     AppSettingsComponent,
+    ImageTakerComponent,
+    
     TabsPage
   ],
   imports: [
@@ -73,12 +79,14 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     FindingsearchPage,
     VinsearchPage,
     AppSettingsComponent,
+    ImageTakerComponent,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     BarcodeScanner,
+    ImageTakerComponent,
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FileTransfer,

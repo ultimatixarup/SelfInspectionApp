@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Http } from '@angular/http';
 
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ToastController } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
@@ -16,6 +14,9 @@ import {FindingsearchPage } from '../findingsearch/findingsearch';
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
+
+import { InspectionPage } from '../inspection/inspection';
+
 /**
  * Generated class for the DetailPage page.
  *
@@ -60,10 +61,9 @@ inspectiondata:any;
 odometer:any;
 
  items: Array<{name:string}>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, private transfer: FileTransfer,
-  private camera: Camera,
-  public loadingCtrl: LoadingController,
-  public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
+  public loadingCtrl: LoadingController,public toastCtrl:ToastController
+  ) {
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
     this.image1 = "assets/imgs/camera.png";
     this.image2 = "assets/imgs/camera.png";
@@ -106,98 +106,7 @@ odometer:any;
   }
   
   
-   getImage(source) {
-     this.source = source;
-
-      if(this.source=='1'){
-       this.navCtrl.push(AdddataPage,{'type':this.source,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
-       return;
-      }
-     
-     /*const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        
-        mediaType: this.camera.MediaType.PICTURE
-      }*/
-      
-      
-      const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        targetWidth: 450,
-        targetHeight: 450,
-        mediaType: this.camera.MediaType.PICTURE
-      };
-
-      this.camera.getPicture(options).then((imageData) => {
-      
-        this.imageURI = imageData;
-        this.fileName = this.imageURI.split("/")[this.imageURI.split("/").length-1];
-        this.uploadFile();
-      }, (err) => {
-        console.log(err);
-        this.presentToast(err);
-      });
-}
-
-uploadFile() {
- 
- 
-
-  let loader = this.loadingCtrl.create({
-    content: "Uploading..."
-  });
-  loader.present();
-  const fileTransfer: FileTransferObject = this.transfer.create();
-
-  let options: FileUploadOptions = {
-    params: { 'upload_preset': 'upsbhvp2'}
-  }
-
-  fileTransfer.upload(this.imageURI, 'https://api.cloudinary.com/v1_1/hmcvojkyu/upload', options)
-    .then((data) => {
-    console.log(data);
-    
-    //alert(JSON.parse(data.response).url+" Uploaded Successfully");
-    /*if(this.source=="1"){
-        this.image1 = JSON.parse(data.response).url;
-    }
-     if(this.source=="2"){
-        this.image2 = JSON.parse(data.response).url;
-    }
-     if(this.source=="3"){
-        this.image3 = JSON.parse(data.response).url;
-    }
-     if(this.source=="4"){
-        this.image4 = JSON.parse(data.response).url;
-    }
-    */
-    loader.dismiss();
-    this.presentToast("Image uploaded successfully");
-    this.navCtrl.push(AdddataPage,{'type':this.source,'image':JSON.parse(data.response).url});
-  }, (err) => {
-    alert(err);
-    loader.dismiss();
-    this.presentToast(err);
-  });
-}
-
-presentToast(msg) {
-  let toast = this.toastCtrl.create({
-    message: msg,
-    duration: 3000,
-    position: 'bottom'
-  });
-
-  toast.onDidDismiss(() => {
-    console.log('Dismissed toast');
-  });
-
-  toast.present();
-}
+   
   
   addFinding(){
       alert(this.inspectiondata.id);
@@ -282,7 +191,19 @@ presentToast(msg) {
         this.navCtrl.push(FindingsearchPage, {id:this.inspectiondata.id,itemdata : this.inspectiondata});
     }
 
+presentToast(msg) {
+  let toast = this.toastCtrl.create({
+    message: msg,
+    duration: 3000,
+    position: 'bottom'
+  });
 
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
+}
   }
 
 

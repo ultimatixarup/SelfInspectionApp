@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-    <button ion-button full  (click)="getImage()">Add Image</button>
+    <button ion-button full  (click)="addImage()" *ngIf = "type == 'update'">Add Image</button>
    
   <ion-item>
     <ion-label>Locations</ion-label>
@@ -55,6 +55,7 @@
 <ion-item>
 
   <button ion-button full  (click)="addInspection()">Save Finding</button>
+  <button ion-button full  (click)="listFinding()">List Findings</button>    
 
 </ion-item>
 

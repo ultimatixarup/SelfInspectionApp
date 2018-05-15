@@ -6,6 +6,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
+import { ImageTakerComponent } from '../../components/image-taker/image-taker'
+
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 import { SelectSearchable } from 'ionic-select-searchable';
 
@@ -53,8 +55,9 @@ ports: Port[];
   findingId:any;
   inspectionId:any;
   type:any;
+  addimage:any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
   
     this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
@@ -79,9 +82,11 @@ ports: Port[];
       if(this.type=='update'){
         this.findingId = this.itemdata.id;
         this.inspectionId = this.itemdata.inspection.id;
+        this.addimage = true;
       }
       if(this.type == 'new')
         this.inspectionId = this.itemdata.id;
+        this.addimage = false;
       
     }
 
@@ -153,10 +158,11 @@ let inspectionjson = {id:this.inspectionId};
     this.http.patch(findingEndpoint,newfinding).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
-                                    // let newinspection = JSON.parse(resp['_body']);
+                                    //let newinspection = JSON.parse(resp['_body']);
+                                    this.type = 'update';
         
         loader.dismiss();
-        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+       // this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
     },
     
      err => { 
@@ -176,10 +182,13 @@ let inspectionjson = {id:this.inspectionId};
     this.http.post(findingEndpoint,newfinding).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
-                                    // let newinspection = JSON.parse(resp['_body']);
+                                let newfinding = JSON.parse(resp['_body']);
+                                this.type = 'update';
+                                this.findingId = newfinding.id;
+                                this.inspectionId = newfinding.inspection.id;
         
         loader.dismiss();
-        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+        //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
     },
     
      err => { 
@@ -190,14 +199,31 @@ let inspectionjson = {id:this.inspectionId};
     );
  
  }
+ }
+ 
+ 
+    
+    listFinding(){
+        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+    }
   
 
+
+
+
+addImage(){
+    
+    let imageData = this.imageTaker.addImage();
+    alert(JSON.stringify(imageData));
+
+
 }
-
-
-portChange(event: { component: SelectSearchable, value: any }) {
+  portChange(event: { component: SelectSearchable, value: any }) {
         console.log('port:', event.value);
         this.nounData = event.value;
     }
-  
+
 }
+
+
+
