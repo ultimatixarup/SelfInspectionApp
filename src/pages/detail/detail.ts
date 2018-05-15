@@ -15,7 +15,7 @@ import {FindingsearchPage } from '../findingsearch/findingsearch';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
-import { InspectionPage } from '../inspection/inspection';
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 /**
  * Generated class for the DetailPage page.
  *
@@ -228,28 +228,52 @@ presentToast(msg) {
   loader.present();
   
     let inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE;
-    /*if(this.inspectionId){
+    if(this.inspectionId){
         inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + this.inspectionId;
-    }*/
-  
-  
-    this.http.post(inspectionEndpoint,insepctioninput).subscribe(resp => {
+         this.http.patch(inspectionEndpoint,insepctioninput).subscribe(resp => {
                                      // alert(resp['_body']);  
                                      //alert(resp['_body']); 
                                      let newinspection = JSON.parse(resp['_body']);
+                                     
         
-        loader.dismiss();
-        this.navCtrl.push(InspectionPage,{data:newinspection});
-    },
-     err => { 
+            loader.dismiss();
+            
+            this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
+        },
+         err => { 
+                    loader.dismiss();
+                    alert(err);
+                }
+
+
+
+
+        );
+        
+        
+        
+        
+    } else {
+  
+  
+            this.http.post(inspectionEndpoint,insepctioninput).subscribe(resp => {
+                                             // alert(resp['_body']);  
+                                             //alert(resp['_body']); 
+                                             let newinspection = JSON.parse(resp['_body']);
+
                 loader.dismiss();
-                alert(err);
-            }
-    
-    
-    
-    
-    );
+                this.navCtrl.push(InspectionPage,{data:newinspection});
+            },
+             err => { 
+                        loader.dismiss();
+                        alert(err);
+                    }
+
+
+
+
+            );
+    }
   }
     
     
