@@ -32,6 +32,8 @@ imageURI:any;
  inspectiondata:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
     this.inspectiondata = this.navParams.get('data');
+    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + this.inspectiondata.defaultPhotoId + "/content";
+    
   }
 
   ionViewDidLoad() {
@@ -67,14 +69,52 @@ addImage(src){
 
 this.imageTaker.addImage(src,function(data){
  
- alert("image data="+JSON.stringify(data));
- 
+    if(this.inspectionId && this.findingId){
+            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: this.inspectionId}};
+            let loader = this.loadingCtrl.create({
+                content: "Saving..."
+              });
+              loader.present();
+
+              let inspectionPhotoEndpoint = AppSettingsComponent.INSPECTION_PHOTO;
+              
+              
+              this.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
+        
+                    loader.dismiss();
+                    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + data.id + "/content";
+                    //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+                },
+
+                 err => { 
+                            loader.dismiss();
+                            alert(err);
+                        }
+
+                );
+              
+              this.imageId = data.id;
+              
+              
+              
+              
+              
+              
+
+    } else {
+        alert("Need a valid inspection ID and Finding ID");
+        
+    }
+    
+    
+
+
 });
-
-
 }
 
-
+imagePath(photoId){
+    return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+  }
 
 
 }

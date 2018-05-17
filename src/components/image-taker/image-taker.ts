@@ -33,7 +33,7 @@ export class ImageTakerComponent {
   
   public addImage(src,callback) {
     
-     alert("using image taker");
+    // alert("using image taker");
      
      
     

@@ -23,7 +23,7 @@
     <p>LIC: {{ item.licensePlateNumber }} State: {{ item.licensePlateState }}  </p>
   </ion-item>
     
-  <img src="http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg">
+  <img [src]="imagePath(item.defaultPhotoId)" onerror="this.src='assets/imgs/not-available.png';" />
 
   <ion-row>
     <ion-col>

@@ -74,6 +74,7 @@ ports: Port[];
     this.type=this.navParams.get('type');
     if(this.itemdata){
     
+      this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + this.itemdata.defaultPhotoId + "/content";
       this.locationData = this.itemdata.vifLocationAdj;
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
@@ -184,8 +185,7 @@ let inspectionjson = {id:this.inspectionId};
   
  
     this.http.post(findingEndpoint,newfinding).subscribe(resp => {
-                                     // alert(resp['_body']);  
-                                     //alert(resp['_body']); 
+                                  
                                 let newfinding = JSON.parse(resp['_body']);
                                 this.type = 'update';
                                 this.findingId = newfinding.id;
@@ -221,11 +221,47 @@ addImage(src){
 
 this.imageTaker.addImage(src,function(data){
  
- alert("image data="+JSON.stringify(data));
- 
+    if(this.inspectionId && this.findingId){
+            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: this.inspectionId},finding: {id: this.findingId}};
+            let loader = this.loadingCtrl.create({
+                content: "Saving..."
+              });
+              loader.present();
+
+              let inspectionPhotoEndpoint = AppSettingsComponent.INSPECTION_PHOTO;
+              
+              
+              this.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
+        
+                    loader.dismiss();
+                    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + data.id + "/content";
+                    //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+                },
+
+                 err => { 
+                            loader.dismiss();
+                            alert(err);
+                        }
+
+                );
+              
+              this.imageId = data.id;
+              
+              
+              
+              
+              
+              
+
+    } else {
+        alert("Need a valid inspection ID and Finding ID");
+        
+    }
+    
+    
+
+
 });
-
-
 }
 
 
