@@ -75,6 +75,7 @@ odometer:any;
     this.make = this.navParams.get("make");
     this.model = this.navParams.get("model");
     this.type = navParams.get('type');
+    this.inspectorId = window.localStorage.getItem("INSPECTOR");
   //  alert(this.type);
     this.header = this.type;
     this.inspectiondata = this.navParams.get("data");

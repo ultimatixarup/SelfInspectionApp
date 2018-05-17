@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Http } from '@angular/http';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject,FileUploadOptions } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ToastController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
@@ -31,39 +31,33 @@ export class ImageTakerComponent {
     this.text = 'Hello World';
   }
   
-  public addImage() {
+  public addImage(src,callback) {
     
+     alert("using image taker");
      
-     /*const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        
-        mediaType: this.camera.MediaType.PICTURE
-      }*/
-      
-      
-      const options: CameraOptions = {
+     
+    
+     const options: CameraOptions = {
         quality: 100,
         destinationType: this.camera.DestinationType.FILE_URI,
         encodingType: this.camera.EncodingType.JPEG,
         targetWidth: 450,
         targetHeight: 450,
-        mediaType: this.camera.MediaType.PICTURE
+        sourceType: src
       };
 
       this.camera.getPicture(options).then((imageData) => {
       
         this.imageURI = imageData;
-        this.fileName = this.imageURI.split("/")[this.imageURI.split("/").length-1];
-        return this.uploadFile();
+        
+        return this.uploadFile(callback);
       }, (err) => {
         console.log(err);
         this.presentToast(err);
       });
 }
 
-uploadFile() {
+uploadFile(callback) {
  
  
 
@@ -73,16 +67,23 @@ uploadFile() {
   loader.present();
   const fileTransfer: FileTransferObject = this.transfer.create();
 
-  
+  let options: FileUploadOptions = {
+     fileKey: 'file',
+     fileName: 'name.jpg',
+     mimeType: 'image/jpeg',
+     headers: {}
+     
+  }
+ 
 
-  fileTransfer.upload(this.imageURI, AppSettingsComponent.MEDIA_ENDPOINT)
+  fileTransfer.upload(this.imageURI, AppSettingsComponent.MEDIA_ENDPOINT,options)
     .then((data) => {
     console.log(data);
     
     
     loader.dismiss();
     this.presentToast("Image uploaded successfully");
-    return data;
+    callback(data);
   }, (err) => {
     alert(err);
     loader.dismiss();

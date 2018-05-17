@@ -79,11 +79,13 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   }
   
   myInspections(){
-      if(this.inspectorId == ""){
-        alert("Please enter the inspector id");
-        return;
+      if(this.inspectorId){
+        window.localStorage.setItem("INSPECTOR",this.inspectorId);
+        this.navCtrl.push(InspectiondetailsPage,{inspectorid:this.inspectorId});
+      } else {
+        alert("Please select the inspector id");
       }
-      this.navCtrl.push(InspectiondetailsPage,{inspectorid:this.inspectorId});
+      
   }
   
   

@@ -14,7 +14,17 @@
 
 
 <ion-content padding>
-    <button ion-button full  (click)="addImage()" *ngIf = "type == 'update'">Add Image</button>
+    <div style="background-color: lightblue;">
+        
+          <button ion-button icon-left clear small (click)="addImage(1)">
+            <ion-icon name="camera" ></ion-icon>
+            <div>Take Photo</div>
+          </button>
+          <button ion-button icon-left clear small (click)="addImage(0)">
+            <ion-icon name="albums" ></ion-icon>
+            <div>Chose from Album</div>
+          </button>
+    </div>
    
   <ion-item>
     <ion-label>Locations</ion-label>

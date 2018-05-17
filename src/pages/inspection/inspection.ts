@@ -8,6 +8,11 @@ import { AdddataPage } from '../adddata/adddata';
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 
 
+import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+import { ImageTakerComponent } from '../../components/image-taker/image-taker';
+
+import { LoadingController } from 'ionic-angular';
+
 /**
  * Generated class for the InspectionPage page.
  *
@@ -22,9 +27,10 @@ import { FindingsearchPage } from '../findingsearch/findingsearch';
 })
 export class InspectionPage {
 
-
+imageId:any;
+imageURI:any;
  inspectiondata:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
     this.inspectiondata = this.navParams.get('data');
   }
 
@@ -52,5 +58,23 @@ update(data){
   
     this.navCtrl.push(DetailPage, {data : data});
 }
+
+
+
+addImage(src){
+
+
+
+this.imageTaker.addImage(src,function(data){
+ 
+ alert("image data="+JSON.stringify(data));
+ 
+});
+
+
+}
+
+
+
 
 }

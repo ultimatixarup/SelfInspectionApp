@@ -39,6 +39,11 @@ import { ImageTakerComponent } from '../components/image-taker/image-taker';
 
 
 
+import { CameraPage } from '../pages/camera/camera'; 
+
+
+
+
 import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
@@ -54,9 +59,10 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     InspectiondetailsPage,
     FindingsearchPage,
     VinsearchPage,
+    CameraPage,
     AppSettingsComponent,
     ImageTakerComponent,
-    
+   
     TabsPage
   ],
   imports: [
@@ -78,8 +84,10 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     InspectiondetailsPage,
     FindingsearchPage,
     VinsearchPage,
+    CameraPage,
     AppSettingsComponent,
     ImageTakerComponent,
+
     TabsPage
   ],
   providers: [

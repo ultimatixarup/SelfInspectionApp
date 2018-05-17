@@ -39,10 +39,14 @@
             <ion-icon name="folder-open" ></ion-icon>
             <div>Findings</div>
           </button>
-        
-          <button ion-button icon-left clear small (click)="addPhoto()">
+        <br/>
+          <button ion-button icon-left clear small (click)="addImage(1)">
             <ion-icon name="camera" ></ion-icon>
-            <div>Add Photo</div>
+            <div>Take Photo</div>
+          </button>
+          <button ion-button icon-left clear small (click)="addImage(0)">
+            <ion-icon name="albums" ></ion-icon>
+            <div>Chose from Album</div>
           </button>
         
         <button ion-button icon-left clear small (click)="update(inspectiondata)">

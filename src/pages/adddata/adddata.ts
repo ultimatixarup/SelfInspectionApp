@@ -6,10 +6,13 @@ import { LoadingController } from 'ionic-angular';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
-import { ImageTakerComponent } from '../../components/image-taker/image-taker'
 
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 import { SelectSearchable } from 'ionic-select-searchable';
+
+
+
+import { ImageTakerComponent } from '../../components/image-taker/image-taker';
 
 
 /**
@@ -34,7 +37,7 @@ export class AdddataPage {
 
 ports: Port[];
     port: Port;
-
+  imageId:any;
   image:any;
   source:any;
   nounsData:Array<{noun:string,category:string,vsa:string,ewu:string}>;
@@ -56,6 +59,7 @@ ports: Port[];
   inspectionId:any;
   type:any;
   addimage:any;
+  imageURI:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
@@ -211,13 +215,20 @@ let inspectionjson = {id:this.inspectionId};
 
 
 
-addImage(){
-    
-    let imageData = this.imageTaker.addImage();
-    alert(JSON.stringify(imageData));
+addImage(src){
+
+
+
+this.imageTaker.addImage(src,function(data){
+ 
+ alert("image data="+JSON.stringify(data));
+ 
+});
 
 
 }
+
+
   portChange(event: { component: SelectSearchable, value: any }) {
         console.log('port:', event.value);
         this.nounData = event.value;

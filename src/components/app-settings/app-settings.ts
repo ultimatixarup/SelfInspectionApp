@@ -15,7 +15,7 @@ export class AppSettingsComponent {
   text: string;
   public static API_ENDPOINT='http://inspection-service.herokuapp.com';
   
-  public static MEDIA_ENDPOINT='http://media-service.herokuapp.com/media'
+  public static MEDIA_ENDPOINT='http://media-service-dev.herokuapp.com/media';
 
     public static INSPECTION_SERVICE= AppSettingsComponent.API_ENDPOINT + '/inspection';
   public static INSPECTION_RESOURCE_NOUN= AppSettingsComponent.API_ENDPOINT + '/inspection/resources/noun';

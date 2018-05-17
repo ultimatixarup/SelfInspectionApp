@@ -6,7 +6,7 @@ import { FindingsearchPage } from '../findingsearch/findingsearch';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
-import { DetailPage } from '../detail/detail';
+
 
 import { InspectionPage } from '../inspection/inspection';
 
@@ -29,6 +29,7 @@ inspectorId:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
   
     this.inspectorId = navParams.get('inspectorId');
+    
     let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
