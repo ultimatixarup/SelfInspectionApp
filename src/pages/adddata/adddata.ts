@@ -218,11 +218,18 @@ let inspectionjson = {id:this.inspectionId};
 addImage(src){
 
 
+alert(this.inspectionId);
+    alert(this.findingId);
+    
+    let miscinfo = { inspectionid: this.inspectionId,findingId:this.findingId };
 
-this.imageTaker.addImage(src,function(data){
- 
+this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
+    alert("callback"+JSON.parse(data.response).id);
+    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + JSON.parse(data.response).id + "/content";
+    alert(miscinfo.inspectionId);
+    alert(miscinfo.findingId);
     if(this.inspectionId && this.findingId){
-            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: this.inspectionId},finding: {id: this.findingId}};
+            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: miscinfo.inspectionId},finding: {id: miscinfo.findingId}};
             let loader = this.loadingCtrl.create({
                 content: "Saving..."
               });
@@ -235,6 +242,7 @@ this.imageTaker.addImage(src,function(data){
         
                     loader.dismiss();
                     this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + data.id + "/content";
+                    alert(this.imageURI);
                     //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
                 },
 

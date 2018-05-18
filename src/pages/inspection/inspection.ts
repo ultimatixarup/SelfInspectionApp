@@ -65,12 +65,12 @@ update(data){
 
 addImage(src){
 
+let miscinfo = { inspectionid: this.inspectiondata.id };
 
-
-this.imageTaker.addImage(src,function(data){
+this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
  
-    if(this.inspectionId && this.findingId){
-            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: this.inspectionId}};
+    if(miscinfo.inspectionId){
+            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: miscinfo.inspectionId}};
             let loader = this.loadingCtrl.create({
                 content: "Saving..."
               });
