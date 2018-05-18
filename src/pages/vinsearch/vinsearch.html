@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Vin Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    <br/><br/><br/><br/><br/><br/><br/><br/>    
+    <div style="margin-left:8%;width:100%;">
+        
+        <img style="height:80px;width:300px;" src="assets/imgs/barcode.gif">
+         
+        
+    </div>
+ <button ion-button full  (click)="scan()">Scan Vin Barcode</button>
+   
+    <br/><br/>
+  <ion-item>
+    <ion-input placeholder="Enter Vin" [(ngModel)]="inputVin"></ion-input>
+  </ion-item>
+    
+    <button ion-button full  (click)="search()">Search Vin</button>
+
+    
+</ion-content>

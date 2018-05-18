@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Vin Result</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    
+    
+    <ion-item>
+        <button ion-button full (click)="goToNewInspection()">New Inspection >></button>
+    </ion-item>
+ 
+    <ion-list>
+       <ion-item *ngFor="let item of items">
+                <h2>{{ item.name }}: {{ item.description }}</h2><p>
+                
+        </ion-item>
+    </ion-list>
+    
+    
+    
+</ion-content>
+

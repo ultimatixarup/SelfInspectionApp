@@ -1,0 +1,56 @@
+<!--
+  Generated template for the InspectiondetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Inspection Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-list>
+<ion-card ion-item *ngFor="let item of inspections">
+ 
+  <ion-item>
+    <h2>{{ item.make}} {{ item.model }}</h2>
+    <p>LIC: {{ item.licensePlateNumber }} State: {{ item.licensePlateState }}  </p>
+  </ion-item>
+    
+  <img [src]="imagePath(item.defaultPhotoId)" onerror="this.src='assets/imgs/not-available.png';" />
+
+  <ion-row>
+    <ion-col>
+      <ion-note>Odometer: {{ item.odometer }}</ion-note>
+    </ion-col>
+    <ion-col>
+       <ion-note>Created Date: {{ item.createDate }}</ion-note>
+    </ion-col>
+    
+  </ion-row>
+    <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small (click)="itemTapped($event, item)">
+        <ion-icon name="folder-open" ></ion-icon>
+        <div>Findings</div>
+      </button>
+    </ion-col>
+     <ion-col>
+      <button ion-button icon-left clear small (click)="openInspection(item)">
+        <ion-icon name="open" ></ion-icon>
+        <div>Open</div>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+</ion-list>
+
+
+</ion-content>

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the InspectionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Inspection</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    
+    <ion-content padding>
+        
+    <ion-item><h1>Inpsection ID: {{ inspectiondata.id }}</h1></ion-item>
+   <ion-item><h1>{{inspectiondata.year}} / {{inspectiondata.make}} / {{inspectiondata.model}}</h1></ion-item>
+        <ion-item><h1>{{inspectiondata.vin}}</h1></ion-item>
+    <ion-item>
+        <ion-label color="primary">License Plate: {{ inspectiondata.licensePlateNumber }} / State : {{inspectiondata.licensePlateState}}</ion-label>
+    </ion-item>
+     <ion-item>
+        <ion-label color="primary">Odometer Reading : {{inspectiondata.odometer }}</ion-label>
+       
+    </ion-item>
+        
+        <img [src]="imagePath(inspectiondata.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
+        
+         <button ion-button icon-left clear small (click)="addFinding()">
+            <ion-icon name="add" ></ion-icon>
+            <div>Add Finding</div>
+          </button>
+        
+          <button ion-button icon-left clear small (click)="listFindings(inspectiondata)">
+            <ion-icon name="folder-open" ></ion-icon>
+            <div>Findings</div>
+          </button>
+        <br/>
+          <button ion-button icon-left clear small (click)="addImage(1)">
+            <ion-icon name="camera" ></ion-icon>
+            <div>Take Photo</div>
+          </button>
+          <button ion-button icon-left clear small (click)="addImage(0)">
+            <ion-icon name="albums" ></ion-icon>
+            <div>Chose from Album</div>
+          </button>
+        
+        <button ion-button icon-left clear small (click)="update(inspectiondata)">
+            <ion-icon name="brush" ></ion-icon>
+            <div>Update Inspection</div>
+          </button>
+    
+
+</ion-content>
+
