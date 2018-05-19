@@ -17,44 +17,38 @@
     
     <ion-content padding>
         
-    <ion-item><h1>Inpsection ID: {{ inspectiondata.id }}</h1></ion-item>
-   <ion-item><h1>{{inspectiondata.year}} / {{inspectiondata.make}} / {{inspectiondata.model}}</h1></ion-item>
-        <ion-item><h1>{{inspectiondata.vin}}</h1></ion-item>
-    <ion-item>
-        <ion-label color="primary">License Plate: {{ inspectiondata.licensePlateNumber }} / State : {{inspectiondata.licensePlateState}}</ion-label>
-    </ion-item>
-     <ion-item>
-        <ion-label color="primary">Odometer Reading : {{inspectiondata.odometer }}</ion-label>
+   <ion-row><ion-col><h1><font color="blue">{{inspectiondata.year}}  {{inspectiondata.make}}  {{inspectiondata.model}}</font></h1></ion-col><ion-col></ion-col><ion-col><h2>{{ inspectiondata.licensePlateNumber }} {{inspectiondata.licensePlateState}}</h2></ion-col></ion-row>
+   <ion-row><ion-col>
+       <h2>{{ inspectiondata.createDate }}</h2>
+    </ion-col><ion-col><h2>{{ inspectiondata.odometer }}MILES</h2></ion-col><ion-col><h2>{{ inspectiondata.vin }}</h2></ion-col></ion-row>
        
-    </ion-item>
-        
+   
             <img [src]="imageURI" onerror="this.src='assets/imgs/not-available.png';" />
-
+        <ion-row><ion-col>
+            <button ion-button icon-left clear small (click)="update(inspectiondata)">
+                <ion-icon name="brush" ></ion-icon>
+                <div>Update Inspection</div>
+            </button>    
+        </ion-col></ion-row>
+        <ion-row>
+            <ion-col>
+            
+             <button ion-button icon-left clear small (click)="addFinding()">
+                <ion-icon name="add" ></ion-icon>
+                <div>Add Finding</div>
+              </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button icon-left clear small (click)="listFindings(inspectiondata)">
+                    <ion-icon name="folder-open" ></ion-icon>
+                    <div>Findings</div>
+                  </button>
+            
+            </ion-col>
         
-         <button ion-button icon-left clear small (click)="addFinding()">
-            <ion-icon name="add" ></ion-icon>
-            <div>Add Finding</div>
-          </button>
+        </ion-row>
         
-          <button ion-button icon-left clear small (click)="listFindings(inspectiondata)">
-            <ion-icon name="folder-open" ></ion-icon>
-            <div>Findings</div>
-          </button>
-        <br/>
-          <button ion-button icon-left clear small (click)="addImage(1)">
-            <ion-icon name="camera" ></ion-icon>
-            <div>Take Photo</div>
-          </button>
-          <button ion-button icon-left clear small (click)="addImage(0)">
-            <ion-icon name="albums" ></ion-icon>
-            <div>Chose from Album</div>
-          </button>
         
-        <button ion-button icon-left clear small (click)="update(inspectiondata)">
-            <ion-icon name="brush" ></ion-icon>
-            <div>Update Inspection</div>
-          </button>
-    
 
 </ion-content>
 

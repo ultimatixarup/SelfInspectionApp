@@ -75,6 +75,7 @@ ports: Port[];
     if(this.itemdata){
     
       this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + this.itemdata.defaultPhotoId + "/content";
+      this.imageId = this.itemdata.defaultPhotoId;
       this.locationData = this.itemdata.vifLocationAdj;
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
@@ -146,8 +147,29 @@ let loader = this.loadingCtrl.create({
 
 addInspection(){
 
+    
+
+   if(this.findingData && this.findingData === ""){
+      alert("Please enter Finding");
+      return;
+    } else if(this.locationData && this.locationData === ""){
+      alert("Please enter Location");
+      return;
+    } else if(this.nounData && this.nounData === ""){
+      alert("Please enter Object");
+      return;
+    } else if(this.damageData && this.damageData === ""){
+      alert("Please enter Damage");
+      return;
+    } else if(this.nounData && this.nounData === ""){
+      alert("Please enter Object");
+      return;
+    }
+
+if(this.findingData && this.locationData && this.nounData && this.damageData && this.nounData){
+
 let inspectionjson = {id:this.inspectionId};
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData.noun, vifDamageClf: this.damageData, "defaultPhotoId": "comingsoon", inspection: inspectionjson};
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData.noun, vifDamageClf: this.damageData, defaultPhotoId: this.imageId+'', inspection: inspectionjson};
  
  
  let loader = this.loadingCtrl.create({
@@ -192,7 +214,7 @@ let inspectionjson = {id:this.inspectionId};
                                 this.inspectionId = newfinding.inspection.id;
         
         loader.dismiss();
-        //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
     },
     
      err => { 
@@ -201,6 +223,14 @@ let inspectionjson = {id:this.inspectionId};
             }
     
     );
+ 
+ }
+ 
+ //this.listFinding();
+ 
+ } else {
+ 
+    alert("Please enter all information");
  
  }
  }
@@ -222,68 +252,9 @@ addImage(src){
 
 this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
     //let imageid = JSON.parse(data.response).id;
-    let imageid = 10;
-     //alert("miscinfo="+JSON.stringify(miscinfo));
-    miscinfo.caller.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + imageid + "/content";
-  
-            let loader = miscinfo.caller.loadingCtrl.create({
-                content: "Saving..."
-              });
-           // loader.present();
-           
-           
-           
-            let inspectionjson = {"id":miscinfo.caller.inspectionId};
- let newfinding = {"vifFindingAdj": miscinfo.caller.findingData , "vifLocationAdj": miscinfo.caller.locationData, "vifNoun": miscinfo.caller.nounData.noun, "vifDamageClf": miscinfo.caller.damageData, "defaultPhotoId": imageid+'', "inspection": inspectionjson};
-            
-            
-            
-            
-            let findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+miscinfo.caller.findingId;
+   let imageid = 10;
+    miscinfo.caller.imageId = imageid;
          
-            miscinfo.caller.http.patch(findingEndpoint,newfinding).subscribe(resp => {
-                                             // alert(resp['_body']);  
-                                             //alert(resp['_body']); 
-                                            //let newinspection = JSON.parse(resp['_body']);
-                                            
-
-                
-               
-            },
-
-             err => { 
-                        loader.dismiss();
-                        alert(err);
-                    }
-
-            );
- 
- 
- 
-  
-    
-            let inspectionFindingPhoto = {publicId: imageid , category: "NA",inspection: {id: miscinfo.caller.inspectionId},finding: {id: miscinfo.caller.findingId}};
-            
-              loader.present();
-
-              let inspectionPhotoEndpoint = AppSettingsComponent.INSPECTION_PHOTO;
-              
-              
-              miscinfo.caller.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
-        
-                    loader.dismiss();
-                    miscinfo.caller.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + imageid + "/content";
-                    alert(miscinfo.caller.imageURI);
-                    //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
-                },
-
-                 err => { 
-                            loader.dismiss();
-                            alert(err);
-                        }
-
-                );
-              
 });
 }
 
@@ -292,6 +263,10 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
         console.log('port:', event.value);
         this.nounData = event.value;
     }
+    
+    imagePath(photoId){
+        return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+      }
 
 }
 
