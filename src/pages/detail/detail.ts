@@ -65,10 +65,7 @@ odometer:any;
   public loadingCtrl: LoadingController,public toastCtrl:ToastController
   ) {
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
-    this.image1 = "assets/imgs/camera.png";
-    this.image2 = "assets/imgs/camera.png";
-    this.image3 = "assets/imgs/camera.png";
-    this.image4 = "assets/imgs/camera.png";
+ 
     this.inspectorId = window.localStorage.getItem('INSPECTOR');
     this.vin = this.navParams.get("vin");
     this.year = this.navParams.get("year");

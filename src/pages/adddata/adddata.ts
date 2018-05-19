@@ -217,32 +217,63 @@ let inspectionjson = {id:this.inspectionId};
 
 addImage(src){
 
-
-alert(this.inspectionId);
-    alert(this.findingId);
     
-    let miscinfo = { inspectionid: this.inspectionId,findingId:this.findingId };
+    let miscinfo = { caller: this};
 
 this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
-    alert("callback"+JSON.parse(data.response).id);
-    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + JSON.parse(data.response).id + "/content";
-    alert(miscinfo.inspectionId);
-    alert(miscinfo.findingId);
-    if(this.inspectionId && this.findingId){
-            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: miscinfo.inspectionId},finding: {id: miscinfo.findingId}};
-            let loader = this.loadingCtrl.create({
+    //let imageid = JSON.parse(data.response).id;
+    let imageid = 10;
+     //alert("miscinfo="+JSON.stringify(miscinfo));
+    miscinfo.caller.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + imageid + "/content";
+  
+            let loader = miscinfo.caller.loadingCtrl.create({
                 content: "Saving..."
               });
+           // loader.present();
+           
+           
+           
+            let inspectionjson = {"id":miscinfo.caller.inspectionId};
+ let newfinding = {"vifFindingAdj": miscinfo.caller.findingData , "vifLocationAdj": miscinfo.caller.locationData, "vifNoun": miscinfo.caller.nounData.noun, "vifDamageClf": miscinfo.caller.damageData, "defaultPhotoId": imageid+'', "inspection": inspectionjson};
+            
+            
+            
+            
+            let findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+miscinfo.caller.findingId;
+         
+            miscinfo.caller.http.patch(findingEndpoint,newfinding).subscribe(resp => {
+                                             // alert(resp['_body']);  
+                                             //alert(resp['_body']); 
+                                            //let newinspection = JSON.parse(resp['_body']);
+                                            
+
+                
+               
+            },
+
+             err => { 
+                        loader.dismiss();
+                        alert(err);
+                    }
+
+            );
+ 
+ 
+ 
+  
+    
+            let inspectionFindingPhoto = {publicId: imageid , category: "NA",inspection: {id: miscinfo.caller.inspectionId},finding: {id: miscinfo.caller.findingId}};
+            
               loader.present();
 
               let inspectionPhotoEndpoint = AppSettingsComponent.INSPECTION_PHOTO;
               
               
-              this.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
+              miscinfo.caller.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
         
                     loader.dismiss();
-                    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + data.id + "/content";
-                    alert(this.imageURI);
+                    miscinfo.caller.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + imageid + "/content";
+                    alert(miscinfo.caller.imageURI);
                     //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
                 },
 
@@ -253,22 +284,6 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
 
                 );
               
-              this.imageId = data.id;
-              
-              
-              
-              
-              
-              
-
-    } else {
-        alert("Need a valid inspection ID and Finding ID");
-        
-    }
-    
-    
-
-
 });
 }
 

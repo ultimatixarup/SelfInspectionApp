@@ -33,10 +33,8 @@ export class ImageTakerComponent {
   
   public addImage(src,miscinfo,callback) {
     
-    // alert("using image taker");
-     
-     
-    
+   callback("",miscinfo);
+   /*
      const options: CameraOptions = {
           targetWidth: 500,
           targetHeight: 500,
@@ -57,7 +55,7 @@ export class ImageTakerComponent {
         console.log(err);
         this.presentToast(err);
       });
-      this.camera.cleanup();
+      this.camera.cleanup();*/
       
       
       
@@ -89,7 +87,8 @@ uploadFile(callback,miscinfo) {
     
     loader.dismiss();
     this.presentToast("Image uploaded successfully");
-    callback(data,miscinfo);
+    alert("calling callback "+JSON.stringify(miscinfo));
+   
   }, (err) => {
     alert(err);
     loader.dismiss();

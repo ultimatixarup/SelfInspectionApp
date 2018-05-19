@@ -28,7 +28,8 @@
        
     </ion-item>
         
-        <img [src]="imagePath(inspectiondata.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
+            <img [src]="imageURI" onerror="this.src='assets/imgs/not-available.png';" />
+
         
          <button ion-button icon-left clear small (click)="addFinding()">
             <ion-icon name="add" ></ion-icon>

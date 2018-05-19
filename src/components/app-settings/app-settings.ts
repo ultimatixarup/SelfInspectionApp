@@ -23,7 +23,7 @@ export class AppSettingsComponent {
   public static INSPECTION_RESOURCE_DAMAGE = AppSettingsComponent.API_ENDPOINT + '/inspection/resources/damage';
   public static INSPECTION_RESOURCE_FINDING = AppSettingsComponent.API_ENDPOINT + '/inspection/resources/finding';
   public static INSPECTION_FINDING = AppSettingsComponent.API_ENDPOINT + '/inspection/finding';
-  public static VIN_SEARCH = 'https://vehicle-service.herokuapp.com/vehicle';
+  public static VIN_SEARCH = 'https://vehicle-service-dev.herokuapp.com/vehicle';
   public static INSPECTION_PHOTO = AppSettingsComponent.API_ENDPOINT + '/inspection/photo';
   
   
