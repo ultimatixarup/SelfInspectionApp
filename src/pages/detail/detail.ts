@@ -224,8 +224,8 @@ addImage(src){
     let miscinfo = { caller: this};
 
     this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
-        //let imageid = JSON.parse(data.response).id;
-        let imageid = 10;
+        let imageid = JSON.parse(data.response).id;
+        //let imageid = 1;
         miscinfo.caller.imageId = imageid;
     });
 }

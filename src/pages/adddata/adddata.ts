@@ -189,7 +189,7 @@ let inspectionjson = {id:this.inspectionId};
                                     this.type = 'update';
         
         loader.dismiss();
-       // this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
+        this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
     },
     
      err => { 
@@ -251,8 +251,8 @@ addImage(src){
     let miscinfo = { caller: this};
 
 this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
-    //let imageid = JSON.parse(data.response).id;
-   let imageid = 10;
+    let imageid = JSON.parse(data.response).id;
+   //let imageid = 1;
     miscinfo.caller.imageId = imageid;
          
 });
