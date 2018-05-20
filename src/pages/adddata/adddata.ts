@@ -93,6 +93,7 @@ ports: Port[];
       if(this.type == 'new')
         this.inspectionId = this.itemdata.id;
         this.addimage = false;
+        this.imageId = "";
       
     }
 
@@ -247,15 +248,17 @@ let inspectionjson = {id:this.inspectionId};
 
 addImage(src){
 
+    //this.imageId = 1;
     
     let miscinfo = { caller: this};
 
 this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
     let imageid = JSON.parse(data.response).id;
-   //let imageid = 1;
+   
     miscinfo.caller.imageId = imageid;
          
 });
+
 }
 
 

@@ -97,6 +97,7 @@ vinresult:any;
         this.year = this.vinresult.year;
         this.make = this.vinresult.make;
         this.model = this.vinresult.model;
+        this.imageId="";
      }
   
   }
