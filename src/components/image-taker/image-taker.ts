@@ -31,33 +31,36 @@ export class ImageTakerComponent {
     this.text = 'Hello World';
   }
   
-  public addImage(src,callback) {
-    
-    // alert("using image taker");
-     
-     
+  public addImage(src,miscinfo,callback) {
+    //callback("",miscinfo);
     
      const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        targetWidth: 450,
-        targetHeight: 450,
-        sourceType: src
+          targetWidth: 500,
+          targetHeight: 500,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          sourceType: src
       };
+
+      
 
       this.camera.getPicture(options).then((imageData) => {
       
         this.imageURI = imageData;
         
-        return this.uploadFile(callback);
+        this.uploadFile(callback,miscinfo);
       }, (err) => {
+        alert(err);
         console.log(err);
         this.presentToast(err);
       });
+      this.camera.cleanup();
+      
+      
+      
 }
 
-uploadFile(callback) {
+uploadFile(callback,miscinfo) {
  
  
 
@@ -78,12 +81,13 @@ uploadFile(callback) {
 
   fileTransfer.upload(this.imageURI, AppSettingsComponent.MEDIA_ENDPOINT,options)
     .then((data) => {
-    console.log(data);
+    
     
     
     loader.dismiss();
     this.presentToast("Image uploaded successfully");
-    callback(data);
+    
+    callback(data,miscinfo);
   }, (err) => {
     alert(err);
     loader.dismiss();

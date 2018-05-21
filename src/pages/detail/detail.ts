@@ -17,6 +17,9 @@ import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 import { InspectionPage } from '../inspection/inspection';
 
+import { ImageTakerComponent } from '../../components/image-taker/image-taker';
+
+
 /**
  * Generated class for the DetailPage page.
  *
@@ -52,6 +55,7 @@ image4:string;
 source:string;
 vin:any;
 inspectorId:any;
+imageId:any;
 
 inspectionId : any;
 
@@ -60,26 +64,25 @@ insepction: any;
 inspectiondata:any;
 odometer:any;
 
+vinresult:any;
+
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
-  public loadingCtrl: LoadingController,public toastCtrl:ToastController
+  public loadingCtrl: LoadingController,public toastCtrl:ToastController,public imageTaker:ImageTakerComponent
   ) {
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
-    this.image1 = "assets/imgs/camera.png";
-    this.image2 = "assets/imgs/camera.png";
-    this.image3 = "assets/imgs/camera.png";
-    this.image4 = "assets/imgs/camera.png";
+ 
     this.inspectorId = window.localStorage.getItem('INSPECTOR');
-    this.vin = this.navParams.get("vin");
-    this.year = this.navParams.get("year");
-    this.make = this.navParams.get("make");
-    this.model = this.navParams.get("model");
+    
+    this.vinresult = this.navParams.get("vinresult");
+    
     this.type = navParams.get('type');
     this.inspectorId = window.localStorage.getItem("INSPECTOR");
   //  alert(this.type);
     this.header = this.type;
     this.inspectiondata = this.navParams.get("data");
     if(this.inspectiondata){
+         this.imageId = this.inspectiondata.defaultPhotoId;
         this.vin = this.inspectiondata.vin;
         this.year = this.inspectiondata.year;
         this.make = this.inspectiondata.make;
@@ -88,7 +91,14 @@ odometer:any;
         this.state = this.inspectiondata.licensePlateState;
         this.odometer = this.inspectiondata.odometer;
         this.inspectionId = this.inspectiondata.id;
-    }
+    } else {
+        
+        this.vin = this.vinresult.vin;
+        this.year = this.vinresult.year;
+        this.make = this.vinresult.make;
+        this.model = this.vinresult.model;
+        this.imageId="";
+     }
   
   }
   
@@ -118,18 +128,19 @@ odometer:any;
   
   saveInspection(vin,inspectorId){
   
-    if(this.licensePlate == ""){
-      this.presentToast("Please enter License Plate");
+    if(this.licensePlate && this.licensePlate === ""){
+      alert("Please enter License Plate");
       return;
-    } else if(this.state == ""){
-      this.presentToast("Please enter License State");
+    } else if(this.state && this.state === ""){
+      alert("Please enter License State");
       return;
-    } else if(this.odoReading == ""){
-      this.presentToast("Please enter Odometer reading");
+    } else if(this.odoReading && this.odoReading === ""){
+      alert("Please enter Odometer reading");
+      return;
     }
   
 
-    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:'NA'};
+    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:this.imageId+''};
     this.insepction.inspectorId = window.localStorage.getItem("INSPECTOR");
 
   let loader = this.loadingCtrl.create({
@@ -205,6 +216,27 @@ presentToast(msg) {
 
   toast.present();
 }
+
+
+
+addImage(src){
+
+    
+    let miscinfo = { caller: this};
+
+    this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
+        let imageid = JSON.parse(data.response).id;
+        //let imageid = 1;
+        miscinfo.caller.imageId = imageid;
+    });
+}
+
+imagePath(photoId){
+        return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+}
+
+
+
   }
 
 

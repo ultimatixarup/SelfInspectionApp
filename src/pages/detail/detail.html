@@ -14,8 +14,8 @@
 
 
 <ion-content padding>
-    
-   <ion-item><h1>{{this.year}} / {{this.make}} / {{this.model}}</h1></ion-item>
+    <ion-row><ion-col><h1><font color="blue">{{year}}  {{make}}  {{model}}</font></h1></ion-col></ion-row>
+  
     <ion-item>
         <ion-label color="primary">License Plate</ion-label>
         <ion-input placeholder="License Plate" [(ngModel)]="licensePlate"></ion-input>
@@ -82,11 +82,22 @@
         <ion-input placeholder="Odometer" [(ngModel)]="odometer"></ion-input>
     </ion-item>
     
-    
+    <div style="background-color: lightblue;">
+        
+          <button ion-button icon-left clear small (click)="addImage(1)">
+            <ion-icon name="camera" ></ion-icon>
+            <div>Take Photo</div>
+          </button>
+          <button ion-button icon-left clear small (click)="addImage(0)">
+            <ion-icon name="albums" ></ion-icon>
+            <div>Chose from Album</div>
+          </button>
+    </div>
+    <img [src]="imagePath(imageId)" onerror="this.src='assets/imgs/not-available.png';" />
     
     <button ion-button icon-left clear small (click)="saveInspection()">
             <ion-icon name="brush" ></ion-icon>
-            <div>Update Inspection</div>
+            <div>Create / Update Inspection</div>
     </button>
     
     <button ion-button icon-left clear small (click)="listFindings()">

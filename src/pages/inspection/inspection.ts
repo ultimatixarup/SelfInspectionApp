@@ -7,6 +7,8 @@ import { AdddataPage } from '../adddata/adddata';
 
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 
+import { Http } from '@angular/http';
+
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
@@ -30,8 +32,9 @@ export class InspectionPage {
 imageId:any;
 imageURI:any;
  inspectiondata:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent,public http:Http) {
     this.inspectiondata = this.navParams.get('data');
+    this.inspectiondata.createDate = this.stripDate(this.inspectiondata.createDate);
     this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + this.inspectiondata.defaultPhotoId + "/content";
     
   }
@@ -62,58 +65,12 @@ update(data){
 }
 
 
-
-addImage(src){
-
-
-
-this.imageTaker.addImage(src,function(data){
- 
-    if(this.inspectionId && this.findingId){
-            let inspectionFindingPhoto = {publicId: data.id , category: "NA",inspection: {id: this.inspectionId}};
-            let loader = this.loadingCtrl.create({
-                content: "Saving..."
-              });
-              loader.present();
-
-              let inspectionPhotoEndpoint = AppSettingsComponent.INSPECTION_PHOTO;
-              
-              
-              this.http.post(inspectionPhotoEndpoint,inspectionFindingPhoto).subscribe(resp => {
-        
-                    loader.dismiss();
-                    this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + data.id + "/content";
-                    //this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});
-                },
-
-                 err => { 
-                            loader.dismiss();
-                            alert(err);
-                        }
-
-                );
-              
-              this.imageId = data.id;
-              
-              
-              
-              
-              
-              
-
-    } else {
-        alert("Need a valid inspection ID and Finding ID");
-        
-    }
-    
-    
-
-
-});
-}
-
 imagePath(photoId){
     return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+  }
+  
+  stripDate(date){
+    return date.split('T')[0];
   }
 
 

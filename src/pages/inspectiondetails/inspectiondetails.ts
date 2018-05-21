@@ -29,13 +29,15 @@ imagepath:any;
   inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
-    this.inspectorId = navParams.get('inspectorId');
+    this.inspectorId = window.localStorage.getItem("INSPECTOR");
     
     let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
+  
   loader.present();
-    if(this.inspectorId){
+  
+    if(this.inspectorId > 0){
         this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'?inspectorId='+this.inspectorId).subscribe(resp => {
                                          // alert(resp['_body']);                                                                            
             this.inspections = JSON.parse(resp['_body']);

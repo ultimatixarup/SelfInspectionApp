@@ -16,38 +16,34 @@
 <ion-content padding>
 
 <ion-list>
-<ion-card ion-item *ngFor="let item of inspections">
+<ion-card ion-item *ngFor="let item of inspections" (click)="openInspection(item)">
  
-  <ion-item>
-    <h2>{{ item.make}} {{ item.model }}</h2>
-    <p>LIC: {{ item.licensePlateNumber }} State: {{ item.licensePlateState }}  </p>
-  </ion-item>
+ 
     
   <img [src]="imagePath(item.defaultPhotoId)" onerror="this.src='assets/imgs/not-available.png';" />
-
+ <ion-row>
+    <ion-col>
+    <h1><font color="blue">{{ item.year}} {{ item.make}} {{ item.model }}</font></h1> 
+     </ion-col>
+     <ion-col>   </ion-col>
+     <ion-col>
+    <h2>{{ item.licensePlateNumber }} {{ item.licensePlateState }}  </h2>
+    </ion-col>
+  </ion-row>
   <ion-row>
     <ion-col>
-      <ion-note>Odometer: {{ item.odometer }}</ion-note>
+       <h2>{{ item.createDate }}</h2>
     </ion-col>
     <ion-col>
-       <ion-note>Created Date: {{ item.createDate }}</ion-note>
+      <h2> {{ item.odometer }}MILES</h2>
     </ion-col>
+    <ion-col>
+      <h2> {{ item.vin }}</h2>
+    </ion-col>
+   
     
   </ion-row>
-    <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small (click)="itemTapped($event, item)">
-        <ion-icon name="folder-open" ></ion-icon>
-        <div>Findings</div>
-      </button>
-    </ion-col>
-     <ion-col>
-      <button ion-button icon-left clear small (click)="openInspection(item)">
-        <ion-icon name="open" ></ion-icon>
-        <div>Open</div>
-      </button>
-    </ion-col>
-  </ion-row>
+    
 
 </ion-card>
 </ion-list>

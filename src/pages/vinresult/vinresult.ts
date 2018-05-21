@@ -74,7 +74,15 @@ results:any;
              loading.dismiss();
             
          
-       });
+       },
+        err => { 
+                        loading.dismiss();
+                        alert(err);
+                    }
+
+            );
+       
+      
   
   }
 
@@ -85,7 +93,7 @@ goToInspections(type){
 
 }
 goToNewInspection(){
-    this.navCtrl.push(DetailPage, {year:this.results.year,make:this.results.make,model:this.results.model,vin: this.results.vin});
+    this.navCtrl.push(DetailPage, {vinresult : this.results });
 
 }
 
