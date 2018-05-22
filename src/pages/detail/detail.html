@@ -100,12 +100,12 @@
             <div>Create / Update Inspection</div>
     </button>
     
-    <button ion-button icon-left clear small (click)="listFindings()">
+    <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="listFindings()">
             <ion-icon name="folder-open" ></ion-icon>
             <div>Findings</div>
           </button>
     
-    <button ion-button icon-left clear small (click)="addFinding()">
+    <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="addFinding()">
             <ion-icon name="add" ></ion-icon>
             <div>Add Findings</div>
     </button>
