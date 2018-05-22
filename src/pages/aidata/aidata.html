@@ -1,0 +1,46 @@
+<!--
+  Generated template for the AidataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>AI Prediction</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-card>
+
+  
+   <img [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
+
+  <ion-row>
+    <ion-col>
+      <h2> <font color="red">{{ item.vifLocationAdj}} &nbsp; {{ item.vifNoun}} &nbsp; {{ item.vifFindingAdj}} &nbsp; {{ item.vifDamageClf}} </font></h2>
+    </ion-col>
+    
+  </ion-row>
+
+</ion-card>
+    
+    <ion-list>
+    
+        <ion-item [color]="even? 'primary' : 'secondary'" *ngFor="let data of probabilities">
+            <ion-label>{{ data.label}}  {{ data.confidence }}</ion-label>
+        
+        </ion-item> 
+    
+    
+    
+    
+    </ion-list>
+    
+    
+    
+    
+</ion-content>

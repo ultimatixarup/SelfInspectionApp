@@ -37,6 +37,8 @@ import { AppSettingsComponent } from '../components/app-settings/app-settings';
 
 import { ImageTakerComponent } from '../components/image-taker/image-taker';
 
+import { AidataPage } from '../pages/aidata/aidata';
+
 
 
 import { CameraPage } from '../pages/camera/camera'; 
@@ -60,6 +62,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     FindingsearchPage,
     VinsearchPage,
     CameraPage,
+    AidataPage,
     AppSettingsComponent,
     ImageTakerComponent,
    
@@ -85,6 +88,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     FindingsearchPage,
     VinsearchPage,
     CameraPage,
+    AidataPage,
     AppSettingsComponent,
     ImageTakerComponent,
 

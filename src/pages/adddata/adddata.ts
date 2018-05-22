@@ -70,12 +70,20 @@ ports: Port[];
     this.inspectiondata = navParams.get('data');
     this.image = this.navParams.get('image');
     this.source = this.navParams.get('source');
+    
+    
     this.itemdata = this.navParams.get('itemdata');
     this.type=this.navParams.get('type');
+    
+    
+    //alert(this.type);
     if(this.itemdata){
     
       this.imageURI = AppSettingsComponent.MEDIA_ENDPOINT + "/" + this.itemdata.defaultPhotoId + "/content";
+      
       this.imageId = this.itemdata.defaultPhotoId;
+      
+      
       this.locationData = this.itemdata.vifLocationAdj;
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
@@ -85,15 +93,19 @@ ports: Port[];
       this.damageData = this.itemdata.vifDamageClf;
       this.findingId = this.itemdata.id;
       //alert(this.itemdata);
-      if(this.type=='update'){
+      if(this.type == 0){
         this.findingId = this.itemdata.id;
         this.inspectionId = this.itemdata.inspection.id;
         this.addimage = true;
+        
       }
-      if(this.type == 'new')
+       else if(this.type == 1) {
+      
         this.inspectionId = this.itemdata.id;
         this.addimage = false;
+        
         this.imageId = "";
+        }
       
     }
 
@@ -124,6 +136,9 @@ ports: Port[];
     this.locations = JSON.parse(window.localStorage.getItem("LOCATIONS"));
     //alert(window.localStorage.getItem("DAMAGES"));
     this.damages = JSON.parse(window.localStorage.getItem("DAMAGES"));
+     
+    
+    
   }
 
   ionViewDidLoad() {
@@ -248,7 +263,8 @@ let inspectionjson = {id:this.inspectionId};
 
 addImage(src){
 
-    //this.imageId = 1;
+//this.imageId = "1";
+
     
     let miscinfo = { caller: this};
 

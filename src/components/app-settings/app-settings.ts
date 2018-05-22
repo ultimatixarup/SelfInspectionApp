@@ -27,7 +27,7 @@ export class AppSettingsComponent {
   public static INSPECTION_PHOTO = AppSettingsComponent.API_ENDPOINT + '/inspection/photo';
   
   
-  
+  public static AI_SERVICE= 'https://mockymockmok.herokuapp.com/damageAnalysis';
   
   constructor() {
     console.log('Hello AppSettingsComponent Component');

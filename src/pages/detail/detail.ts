@@ -91,6 +91,7 @@ vinresult:any;
         this.state = this.inspectiondata.licensePlateState;
         this.odometer = this.inspectiondata.odometer;
         this.inspectionId = this.inspectiondata.id;
+        
     } else {
         
         this.vin = this.vinresult.vin;
@@ -221,6 +222,7 @@ presentToast(msg) {
 
 addImage(src){
 
+    //this.imageId = 1;
     
     let miscinfo = { caller: this};
 

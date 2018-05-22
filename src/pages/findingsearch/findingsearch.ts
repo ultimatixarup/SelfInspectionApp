@@ -5,7 +5,9 @@ import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
 
-import { AppSettingsComponent } from '../../components/app-settings/app-settings'
+import { AidataPage } from '../aidata/aidata';
+
+import { AppSettingsComponent } from '../../components/app-settings/app-settings';
 /**
  * Generated class for the FindingsearchPage page.
  *
@@ -42,15 +44,19 @@ itemdata:any;
   }
 
   itemTapped(event, item){
-    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: item,type:'update',image:"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: item,type:0,image:"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
   }
   
   createFinding(){
-    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata:this.itemdata,type:'new',image:"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
+    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata:this.itemdata,type:1,image:"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
   }
   
   imagePath(photoId){
     return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+  }
+  
+  gotoAi(item){
+    this.navCtrl.push(AidataPage, {data:item});
   }
 
 }

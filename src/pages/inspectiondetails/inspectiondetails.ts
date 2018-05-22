@@ -6,7 +6,7 @@ import { FindingsearchPage } from '../findingsearch/findingsearch';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings'
 
-
+import { DetailPage } from '../detail/detail';
 
 import { InspectionPage } from '../inspection/inspection';
 
@@ -64,11 +64,17 @@ imagepath:any;
  
   
   openInspection(item){
-    this.navCtrl.push(InspectionPage,{data:item});
+    this.navCtrl.push(DetailPage, {data : item});
+   
   }
   
   imagePath(photoId){
     return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
   }
+  
+  listFindings(item){
+
+    this.navCtrl.push(FindingsearchPage, {id:item.id,itemdata : item});
+}
 
 }

@@ -15,24 +15,33 @@
 
 <ion-content padding>
     
-    <ion-row><ion-col><h1><font color="blue">{{itemdata.year}}  {{itemdata.make}}  {{itemdata.model}}</font></h1></ion-col><ion-col></ion-col><ion-col><h2>{{ itemdata.licensePlateNumber }} {{itemdata.licensePlateState}}</h2></ion-col></ion-row>
+    <ion-row><ion-col><h2><font color="blue">{{itemdata.year}}  {{itemdata.make}}  {{itemdata.model}}</font></h2></ion-col><ion-col></ion-col><ion-col><h3>{{ itemdata.licensePlateNumber }} {{itemdata.licensePlateState}}</h3></ion-col></ion-row>
    <ion-row><ion-col>
-       <h2>{{ itemdata.createDate }}</h2>
-    </ion-col><ion-col><h2>{{ itemdata.odometer }}MILES</h2></ion-col><ion-col><h2>{{ itemdata.vin }}</h2></ion-col></ion-row>
+       <h3>{{ itemdata.createDate }}</h3>
+       </ion-col><ion-col><h3>{{ itemdata.odometer }}MILES</h3></ion-col><ion-col><h3>{{ itemdata.vin }}</h3></ion-col></ion-row>
     
 <button ion-button full (click)="createFinding()">Add Finding </button>
 
 
 <ion-list>
-<ion-card ion-item *ngFor="let item of findings" (click)="itemTapped($event, item)">
-
-  
+<ion-card ion-item *ngFor="let item of findings">
+<ion-row>
+<ion-col>
+    <a href="#" (click)="gotoAi(item)">
+        <img style="height:20px;width:20px" src="assets/imgs/aiicon.jpeg" />
+          <ion-note>AI Damage</ion-note>
+    </a>
+      </ion-col>
+    </ion-row>
+  <a href="#" (click)="itemTapped($event, item)">
    <img [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
-
+</a>
   <ion-row>
+      
     <ion-col>
-      <h2> <font color="red">{{ item.vifLocationAdj}} &nbsp; {{ item.vifNoun}} &nbsp; {{ item.vifFindingAdj}} &nbsp; {{ item.vifDamageClf}} </font></h2>
+      <font color="red">{{ item.vifLocationAdj}} &nbsp; {{ item.vifNoun}} &nbsp; {{ item.vifFindingAdj}} <br/> {{ item.vifDamageClf}} </font>
     </ion-col>
+      
     
   </ion-row>
 
