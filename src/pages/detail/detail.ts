@@ -66,12 +66,15 @@ odometer:any;
 
 vinresult:any;
 
+inspectionupdate:any;
+
  items: Array<{name:string}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
   public loadingCtrl: LoadingController,public toastCtrl:ToastController,public imageTaker:ImageTakerComponent
   ) {
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
- 
+     this.inspectionupdate = true;
+     this.imageId=0;
     this.inspectorId = window.localStorage.getItem('INSPECTOR');
     
     this.vinresult = this.navParams.get("vinresult");
@@ -82,6 +85,7 @@ vinresult:any;
     this.header = this.type;
     this.inspectiondata = this.navParams.get("data");
     if(this.inspectiondata){
+    this.inspectionupdate = true;
          this.imageId = this.inspectiondata.defaultPhotoId;
         this.vin = this.inspectiondata.vin;
         this.year = this.inspectiondata.year;
@@ -93,7 +97,7 @@ vinresult:any;
         this.inspectionId = this.inspectiondata.id;
         
     } else {
-        
+        this.inspectionupdate = false;
         this.vin = this.vinresult.vin;
         this.year = this.vinresult.year;
         this.make = this.vinresult.make;
@@ -138,6 +142,11 @@ vinresult:any;
     } else if(this.odoReading && this.odoReading === ""){
       alert("Please enter Odometer reading");
       return;
+    } 
+    
+    if(this.imageId == 0){
+        alert("Please select a photo");
+        return;
     }
   
 

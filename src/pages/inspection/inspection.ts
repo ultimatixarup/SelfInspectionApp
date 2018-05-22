@@ -50,7 +50,8 @@ gotoDetails(type){
 }
 
 addFinding(){
-    this.navCtrl.push(AdddataPage,{data:this.inspectiondata,type:'new',itemdata:this.inspectiondata});
+this.navCtrl.push(AdddataPage , {data: this.inspectiondata,itemdata: this.inspectiondata,type:1 });
+    
 
 }
 
