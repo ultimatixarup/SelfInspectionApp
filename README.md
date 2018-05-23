@@ -1,26 +1,35 @@
 ## InspectionMaster: Vehicle inspection app using Hroku based inspection services from Toyota
 
-1. Install the the latest beta version of the Ionic CLI:
+The app uses ionic 2 framework uses Angular 5.2.10
+
+Pre-requisit to run the app on browser simulator:
+
+1. You need to first install node.js and npm, refer to following url.
+  ```
+   https://www.npmjs.com/get-npm
+  ```
+
+2. Install the the latest beta version of the Ionic CLI:
     ```
-    npm install -g ionic@beta
+    npm install -g ionic
     ```
 
-1. Clone this repository
+3. Clone this repository
     ```
     git clone https://github.tfs.toyota.com/yama-antaka/inspection-mobile-app
     ```
     
-1. Navigate to the barcodescanner directory:
+4. Navigate to the barcodescanner directory:
     ```
     cd barcodescanner
     ```
 
-1. Install the dependencies
+5. Install the dependencies
     ```
     npm install
     ```
     
-1. Start the app in the browser
+6. Start the app in the browser
     ```
     ionic serve
     ```
