@@ -24,10 +24,11 @@
     ```
     ionic serve
     ```
-    
-From here, you can build and deploy the app on different platforms using the traditional Ionic commands (`ionic build ios`, etc.)
+This will pop up a browser window with address (http://localhost:8100) and the app will be launched on the browser.
+You need to resize the browser to simulate the phone experience.
 
-Additional Resources:
+** Running app on browser window will not have camera related capabilities. **
+The camera plugin requires iOS simulator or a real device. Browser simlation shall not have any camera related functionality available.
 
 Additional Resources:
 
