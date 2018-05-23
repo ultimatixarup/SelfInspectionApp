@@ -25,7 +25,7 @@ probabilities:any;
     content: "Loading..."
   });
   loader.present();
-    this.http.get(AppSettingsComponent.AI_SERVICE+'?photoId='+this.item.defaultPhotoId).subscribe(resp => {
+    this.http.get(AppSettingsComponent.AI_SERVICE+'?imageId='+this.item.defaultPhotoId).subscribe(resp => {
                                      
         this.aidata = JSON.parse(resp['_body']);
         this.probabilities = this.aidata.probabilities;
