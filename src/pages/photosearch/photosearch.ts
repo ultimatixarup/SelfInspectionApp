@@ -8,6 +8,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings';
 
+import { ImageTakerComponent } from '../../components/image-taker/image-taker';
+
 /**
  * Generated class for the PhotosearchPage page.
  *
@@ -28,10 +30,14 @@ export class PhotosearchPage {
   categories:any;
   catData:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
   this.inspectionData = navParams.get('data');
-  this.categories =[{'name':'Exterior','value':'Exterior'},{'name':'Interior','value':'Interior'}];
+  this.categories =[{'name':'Exterior','value':'Exterior'},{'name':'Interior','value':'Interior'},
+  {'name':'Left','value':'Left'},
+  {'name':'Right','value':'Right'},
+  {'name':'Front','value':'Front'},
+  {'name':'Back','value':'Back'}];
   let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
@@ -60,7 +66,7 @@ export class PhotosearchPage {
   
   addPhoto(){
   
-  let data = {publicId: this.imageId, "category": "Exterior","inspection": {"id": this.inspectionData.id}};
+  let data = {publicId: this.imageId, "category": this.catData,"inspection": {"id": this.inspectionData.id}};
   let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
@@ -68,16 +74,14 @@ export class PhotosearchPage {
     this.http.post(AppSettingsComponent.INSPECTION_SERVICE+'/photo',data).subscribe(resp => {
                                     // alert(resp['_body']);                                                                            
         
-        loader.dismiss();
+       // loader.dismiss();
     },
     err=>{
         alert(err);
-        loader.dismiss();
+       // loader.dismiss();
     });
     
-    let loader = this.loadingCtrl.create({
-    content: "Loading..."
-  });
+   
     loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'/photo/?inspectionId='+this.inspectionData.id).subscribe(resp => {
                                     // alert(resp['_body']);                                                                            
@@ -95,8 +99,8 @@ export class PhotosearchPage {
   
   addImage(src){
 
-this.imageId = "1421";
-/*
+//this.imageId = "1421";
+
     
     let miscinfo = { caller: this};
 
@@ -105,7 +109,7 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
    
     miscinfo.caller.imageId = imageid;
          
-});*/
+});
 
 }
 

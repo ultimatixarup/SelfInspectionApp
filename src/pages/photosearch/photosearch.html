@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>photosearch</ion-title>
+    <ion-title>Inspection photo search</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -36,7 +36,7 @@
     <ion-list>
         <ion-card ion-item *ngFor="let item of photos">
           <img [src]="imagePath(item.publicId)"  onerror="this.src='assets/imgs/not-available.png';"  />
-            <ion-row><ion-col>{{ item.category }}</ion-col></ion-row>
+            <ion-row><ion-col><h3>{{ item.category }}</h3></ion-col></ion-row>
         </ion-card>
     </ion-list>
     
