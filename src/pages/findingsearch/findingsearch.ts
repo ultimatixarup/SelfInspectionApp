@@ -7,6 +7,8 @@ import { AdddataPage } from '../adddata/adddata';
 
 import { AidataPage } from '../aidata/aidata';
 
+import { PhotosearchPage } from '../photosearch/photosearch';
+
 import { AppSettingsComponent } from '../../components/app-settings/app-settings';
 /**
  * Generated class for the FindingsearchPage page.
@@ -58,5 +60,11 @@ itemdata:any;
   gotoAi(item){
     this.navCtrl.push(AidataPage, {data:item});
   }
+
+
+ photoSearch(){
+ 
+    this.navCtrl.push(PhotosearchPage, {data:this.itemdata});
+ }
 
 }

@@ -60,6 +60,7 @@ ports: Port[];
   type:any;
   addimage:any;
   imageURI:any;
+  nounValue:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
@@ -88,7 +89,7 @@ ports: Port[];
      // this.categoryData = this.itemdata.
       this.nounData = this.itemdata.vifNoun;
       this.port = {noun:this.itemdata.vifNoun};
-      this.itemdata.vifNoun;
+      
       this.findingData = this.itemdata.vifFindingAdj;
       this.damageData = this.itemdata.vifDamageClf;
       this.findingId = this.itemdata.id;
@@ -103,6 +104,7 @@ ports: Port[];
       
         this.inspectionId = this.itemdata.id;
         this.addimage = false;
+        
         
         this.imageId = "";
         }
@@ -183,9 +185,16 @@ addInspection(){
     }
 
 if(this.findingData && this.locationData && this.nounData && this.damageData && this.nounData){
+if(this.nounData.noun){
+    this.nounValue = this.nounData.noun;
+} else {
+    this.nounValue = this.itemdata.vifNoun;
+}
+
+
 
 let inspectionjson = {id:this.inspectionId};
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounData.noun, vifDamageClf: this.damageData, defaultPhotoId: this.imageId+'', inspection: inspectionjson};
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounValue, vifDamageClf: this.damageData, defaultPhotoId: this.imageId+'', inspection: inspectionjson};
  
  
  let loader = this.loadingCtrl.create({
@@ -196,7 +205,7 @@ let inspectionjson = {id:this.inspectionId};
   let findingEndpoint = AppSettingsComponent.INSPECTION_FINDING;
  
   
-  if(this.type == 'update'){
+  if(this.type == 0){
     findingEndpoint = AppSettingsComponent.INSPECTION_FINDING +'/'+this.findingId;
     this.http.patch(findingEndpoint,newfinding).subscribe(resp => {
                                      // alert(resp['_body']);  
