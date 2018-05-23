@@ -36,8 +36,9 @@ Pre-requisit to run the app on browser simulator:
 This will pop up a browser window with address (http://localhost:8100) and the app will be launched on the browser.
 You need to resize the browser to simulate the phone experience.
 
-** Running app on browser window will not have camera related capabilities. **
+# Running app on browser window will not have camera related capabilities like barcode scanning and photo upload. #
 The camera plugin requires iOS simulator or a real device. Browser simlation shall not have any camera related functionality available.
+
 
 Additional Resources:
 
