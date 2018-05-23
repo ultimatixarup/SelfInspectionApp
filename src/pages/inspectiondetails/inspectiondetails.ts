@@ -8,7 +8,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { DetailPage } from '../detail/detail';
 
-import { InspectionPage } from '../inspection/inspection';
+
 
 
 /**

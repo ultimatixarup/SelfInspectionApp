@@ -43,6 +43,8 @@ import { AidataPage } from '../pages/aidata/aidata';
 
 import { CameraPage } from '../pages/camera/camera'; 
 
+import { PhotosearchPage } from '../pages/photosearch/photosearch';
+
 
 
 
@@ -64,6 +66,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     CameraPage,
     AidataPage,
     AppSettingsComponent,
+    PhotosearchPage,
     ImageTakerComponent,
    
     TabsPage
@@ -90,6 +93,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     CameraPage,
     AidataPage,
     AppSettingsComponent,
+    PhotosearchPage,
     ImageTakerComponent,
 
     TabsPage
