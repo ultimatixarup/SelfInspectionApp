@@ -14,11 +14,31 @@
 
 
 <ion-content padding>
+    <ion-card>
+    <ion-row>
+    <ion-col>
+    <h1><font color="blue">{{ itemdata.year}} {{ itemdata.make}} {{ itemdata.model }}</font></h1> 
+        </ion-col></ion-row>
+    <ion-row>
+     <ion-col>
+    <h2>{{ itemdata.licensePlateNumber }} {{ itemdata.licensePlateState }}  </h2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+       <h2>{{ itemdata.createDate }}</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ itemdata.odometer }}MILES</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ itemdata.vin }}</h2>
+    </ion-col>
+   
     
-    <ion-row><ion-col><h2><font color="blue">{{itemdata.year}}  {{itemdata.make}}  {{itemdata.model}}</font></h2></ion-col><ion-col></ion-col><ion-col><h3>{{ itemdata.licensePlateNumber }} {{itemdata.licensePlateState}}</h3></ion-col></ion-row>
-   <ion-row><ion-col>
-       <h3>{{ itemdata.createDate }}</h3>
-       </ion-col><ion-col><h3>{{ itemdata.odometer }}MILES</h3></ion-col><ion-col><h3>{{ itemdata.vin }}</h3></ion-col></ion-row>
+  </ion-row>
+    
+    </ion-card>
     
     <ion-row>
         <ion-col><button ion-button full (click)="createFinding()">Add Finding </button></ion-col>

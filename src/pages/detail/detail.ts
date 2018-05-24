@@ -63,6 +63,7 @@ insepction: any;
 
 inspectiondata:any;
 odometer:any;
+updateLabel:any;
 
 vinresult:any;
 
@@ -86,6 +87,7 @@ inspectionupdate:any;
     this.inspectiondata = this.navParams.get("data");
     if(this.inspectiondata){
     this.inspectionupdate = true;
+    this.updateLabel = "Update Inspection";
          this.imageId = this.inspectiondata.defaultPhotoId;
         this.vin = this.inspectiondata.vin;
         this.year = this.inspectiondata.year;
@@ -98,6 +100,7 @@ inspectionupdate:any;
         
     } else {
         this.inspectionupdate = false;
+        this.updateLabel = "Create Inspection";
         this.vin = this.vinresult.vin;
         this.year = this.vinresult.year;
         this.make = this.vinresult.make;
