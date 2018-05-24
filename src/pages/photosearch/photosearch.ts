@@ -70,19 +70,14 @@ export class PhotosearchPage {
   let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
+  
+  
   loader.present();
     this.http.post(AppSettingsComponent.INSPECTION_SERVICE+'/photo',data).subscribe(resp => {
-                                    // alert(resp['_body']);                                                                            
-        
-       // loader.dismiss();
-    },
-    err=>{
-        alert(err);
-       // loader.dismiss();
-    });
-    
-   
-    loader.present();
+                                    // alert(resp['_body']);  
+                                    
+                                    
+                                    
     this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'/photo/?inspectionId='+this.inspectionData.id).subscribe(resp => {
                                     // alert(resp['_body']);                                                                            
         this.photos = JSON.parse(resp['_body']);
@@ -92,7 +87,19 @@ export class PhotosearchPage {
     alert(err);
     loader.dismiss();
     
+    });                     
+                                    
+        
+        
+    },
+    err=>{
+        alert(err);
+        loader.dismiss();
     });
+    
+  
+
+    
     
   
   }

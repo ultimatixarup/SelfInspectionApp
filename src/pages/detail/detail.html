@@ -14,8 +14,9 @@
 
 
 <ion-content padding>
+    <ion-card>
     <ion-row><ion-col><h1><font color="blue">{{year}}  {{make}}  {{model}}</font></h1></ion-col></ion-row>
-  
+  </ion-card>
     <ion-item>
         <ion-label color="primary">License Plate</ion-label>
         <ion-input placeholder="License Plate" [(ngModel)]="licensePlate"></ion-input>
@@ -97,7 +98,7 @@
     
     <button ion-button icon-left clear small (click)="saveInspection()">
             <ion-icon name="brush" ></ion-icon>
-            <div>Create / Update Inspection</div>
+            <div>{{ updateLabel }}</div>
     </button>
     
     <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="listFindings()">
@@ -105,10 +106,7 @@
             <div>Findings</div>
           </button>
     
-    <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="addFinding()">
-            <ion-icon name="add" ></ion-icon>
-            <div>Add Findings</div>
-    </button>
+    
     
    
    

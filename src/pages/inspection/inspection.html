@@ -15,14 +15,33 @@
 
 <ion-content padding>
     
-    <ion-content padding>
+  <ion-card>
         
-   <ion-row><ion-col><h2><font color="blue">{{inspectiondata.year}}  {{inspectiondata.make}}  {{inspectiondata.model}}</font></h2></ion-col><ion-col></ion-col><ion-col><h3>{{ inspectiondata.licensePlateNumber }} {{inspectiondata.licensePlateState}}</h3></ion-col></ion-row>
-   <ion-row><ion-col>
-       <h3>{{ inspectiondata.createDate }}</h3>
-    </ion-col><ion-col><h3>{{ inspectiondata.odometer }}MILES</h3></ion-col><ion-col><h3>{{ inspectiondata.vin }}</h3></ion-col></ion-row>
-       
+  <ion-row>
+    <ion-col>
+    <h1><font color="blue">{{ inspectiondata.year}} {{ inspectiondata.make}} {{ inspectiondata.model }}</font></h1> 
+     </ion-col>
+     <ion-col>   </ion-col>
+     <ion-col>
+    <h2>{{ inspectiondata.licensePlateNumber }} {{ inspectiondata.licensePlateState }}  </h2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+       <h2>{{ inspectiondata.createDate }}</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ inspectiondata.odometer }}MILES</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ inspectiondata.vin }}</h2>
+    </ion-col>
    
+    
+  </ion-row>
+        
+        
+        
             <img [src]="imageURI" onerror="this.src='assets/imgs/not-available.png';" />
         <ion-row><ion-col>
             <button ion-button icon-left clear small (click)="update(inspectiondata)">
@@ -48,7 +67,7 @@
         
         </ion-row>
         
-        
+     </ion-card>   
 
 </ion-content>
 

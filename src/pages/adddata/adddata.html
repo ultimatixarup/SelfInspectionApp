@@ -14,6 +14,34 @@
 
 
 <ion-content padding>
+    
+    <ion-card>
+         <ion-row>
+    <ion-col>
+        <h1><font color="blue">{{ inspectiondata.year}} {{ inspectiondata.make}} {{ inspectiondata.model }}</font></h1> </ion-col>
+     </ion-row>
+     <ion-row>
+     <ion-col>
+    <h2>{{ inspectiondata.licensePlateNumber }} {{ inspectiondata.licensePlateState }}  </h2>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+       <h2>{{ inspectiondata.createDate }}</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ inspectiondata.odometer }}MILES</h2>
+    </ion-col>
+    <ion-col>
+      <h2> {{ inspectiondata.vin }}</h2>
+    </ion-col>
+   
+    
+  </ion-row>
+    
+    </ion-card>
+    
+    
     <div style="background-color: lightblue;">
         
           <button ion-button icon-left clear small (click)="addImage(1)">
