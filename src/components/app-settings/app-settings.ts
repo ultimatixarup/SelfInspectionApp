@@ -27,7 +27,7 @@ export class AppSettingsComponent {
   public static INSPECTION_PHOTO = AppSettingsComponent.API_ENDPOINT + '/inspection/photo';
   
   
-  public static AI_SERVICE= 'https://vda-service-dev/damageAnalysis';
+  public static AI_SERVICE= 'https://vda-service-dev.herokuapp.com/damageAnalysis';
   
   constructor() {
     console.log('Hello AppSettingsComponent Component');
