@@ -17,7 +17,12 @@ import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 import { InspectionPage } from '../inspection/inspection';
 
+
+
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
+
+import { PhotosearchPage } from '../photosearch/photosearch';
+
 
 
 /**
@@ -231,6 +236,16 @@ presentToast(msg) {
 }
 
 
+addFinding(){
+    this.navCtrl.push(AdddataPage , {data: this.inspectiondata,itemdata: this.inspectiondata,type:1 });
+    
+
+}
+
+photoSearch(){
+ 
+    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata});
+ }
 
 addImage(src){
 
@@ -248,6 +263,11 @@ addImage(src){
 imagePath(photoId){
         return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
 }
+
+ photoSearch(){
+ 
+    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata});
+ }
 
 
 

@@ -8,6 +8,8 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { DetailPage } from '../detail/detail';
 
+import { VinsearchPage } from '../vinsearch/vinsearch';
+
 
 
 
@@ -29,7 +31,7 @@ imagepath:any;
   inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
-    this.inspectorId = window.localStorage.getItem("INSPECTOR");
+    this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
     
     let loader = this.loadingCtrl.create({
     content: "Loading..."
@@ -38,7 +40,7 @@ imagepath:any;
   loader.present();
   
     if(this.inspectorId > 0){
-        this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'?inspectorId='+this.inspectorId).subscribe(resp => {
+        this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
                                          // alert(resp['_body']);                                                                            
             this.inspections = JSON.parse(resp['_body']);
             loader.dismiss();
@@ -76,5 +78,17 @@ imagepath:any;
 
     this.navCtrl.push(FindingsearchPage, {id:item.id,itemdata : item});
 }
+
+process(date){
+
+    return date.split('T')[0];
+}
+
+vinSearch(){
+    this.navCtrl.push(VinsearchPage, {});
+
+}
+
+
 
 }

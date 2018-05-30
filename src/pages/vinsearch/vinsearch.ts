@@ -1,9 +1,13 @@
+
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { VinresultPage } from '../vinresult/vinresult';
+
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 /**
  * Generated class for the VinsearchPage page.
@@ -56,6 +60,17 @@ export class VinsearchPage {
     this.navCtrl.push(VinresultPage,{vin:this.inputVin});
 
 
+  }
+  
+  home(){
+  
+    this.navCtrl.setRoot(InspectiondetailsPage);
+  }
+  
+  setFilteredItems(inputVin){
+    this.inputVin = inputVin.toUpperCase();
+  
+  
   }
 
 }

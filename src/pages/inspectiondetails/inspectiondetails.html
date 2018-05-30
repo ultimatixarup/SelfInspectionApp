@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Inspection Details</ion-title>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,7 +18,7 @@
 <ion-list>
 <ion-card ion-item *ngFor="let item of inspections">
  
- <a href="#"  (click)="listFindings(item)">
+ <a href="#"  (click)="openInspection(item)">
     
   <img [src]="imagePath(item.defaultPhotoId)" onerror="this.src='assets/imgs/not-available.png';" />
      
@@ -35,10 +35,10 @@
   </ion-row>
   <ion-row>
     <ion-col>
-       <h2>{{ item.createDate }}</h2>
+       <h2>{{ process(item.createDate) }}</h2>
     </ion-col>
     <ion-col>
-      <h2> {{ item.odometer }}MILES</h2>
+      <h2> {{ item.odometer }} MILES</h2>
     </ion-col>
     <ion-col>
       <h2> {{ item.vin }}</h2>
@@ -46,16 +46,30 @@
    
     
   </ion-row>
+    <!--
      <ion-row><ion-col>
             <button ion-button icon-left clear small (click)="openInspection(item)">
                 <ion-icon name="brush" ></ion-icon>
                 <div>Update Inspection</div>
             </button>    
         </ion-col></ion-row>
-    
+    -->
 
 </ion-card>
 </ion-list>
 
 
 </ion-content>
+
+<<ion-footer>
+  <ion-toolbar>
+  
+   <div style="text-align:center"><a href="#" (click)="vinSearch()" ><img src="assets/imgs/create.png" height="40px" width="40px"/>
+       </a>
+       </div>
+
+
+  </ion-toolbar>
+</ion-footer>
+
+ 
