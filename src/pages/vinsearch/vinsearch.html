@@ -6,7 +6,7 @@
 
 <ion-content padding>
     
-    <br/><br/><br/><br/><br/><br/><br/><br/>    
+    <br/><br/><br/><br/><br/>    
     <div style="margin-left:8%;width:100%;">
         
         <img style="height:80px;width:300px;" src="assets/imgs/barcode.gif">
@@ -17,10 +17,25 @@
    
     <br/><br/>
   <ion-item>
-    <ion-input placeholder="Enter Vin" [(ngModel)]="inputVin"></ion-input>
+    <ion-input placeholder="Enter Vin" [ngModel]="inputVin"></ion-input>
   </ion-item>
     
     <button ion-button full  (click)="search()">Search Vin</button>
 
     
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  
+   <div style="text-align:center">
+       <button ion-button icon-left clear small (click)="home()">
+            <ion-icon ios="ios-home" md="md-home"></ion-icon>
+            
+          </button>
+     
+       </div>
+
+
+  </ion-toolbar>
+</ion-footer>

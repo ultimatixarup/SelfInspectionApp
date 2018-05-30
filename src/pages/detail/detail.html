@@ -22,7 +22,7 @@
         <ion-input placeholder="License Plate" [(ngModel)]="licensePlate"></ion-input>
     </ion-item>
     <ion-item>
-  <ion-label>State</ion-label>
+  <ion-label color="primary">State</ion-label>
     <ion-select [(ngModel)]="state">
         <ion-option value="AL">Alabama</ion-option>
 	<ion-option value="AK">Alaska</ion-option>
@@ -83,30 +83,38 @@
         <ion-input placeholder="Odometer" [(ngModel)]="odometer"></ion-input>
     </ion-item>
     
-    <div style="background-color: lightblue;">
-        
+    <div style="background-color: white;">
+        <ion-row>
+            <ion-col>
           <button ion-button icon-left clear small (click)="addImage(1)">
             <ion-icon name="camera" ></ion-icon>
             <div>Take Photo</div>
           </button>
-          <button ion-button icon-left clear small (click)="addImage(0)">
-            <ion-icon name="albums" ></ion-icon>
-            <div>Chose from Album</div>
+                </ion-col>
+            <ion-col></ion-col>
+            <ion-col>
+          <button ion-button icon-left clear small (click)="addFinding()">
+            <ion-icon name="paper" ></ion-icon>
+            <div>Make Finding</div>
           </button>
+                </ion-col>
+        </ion-row>
     </div>
     <img [src]="imagePath(imageId)" onerror="this.src='assets/imgs/not-available.png';" />
     
+    <ion-row><ion-col>
     <button ion-button icon-left clear small (click)="saveInspection()">
-            <ion-icon name="brush" ></ion-icon>
-            <div>{{ updateLabel }}</div>
+            <ion-icon name="images" ></ion-icon>
+            <div>Photos</div>
     </button>
-    
+        </ion-col><ion-col></ion-col>
+    <ion-col>
     <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="listFindings()">
             <ion-icon name="folder-open" ></ion-icon>
             <div>Findings</div>
           </button>
-    
-    
+    </ion-col>
+    </ion-row>
     
    
    
