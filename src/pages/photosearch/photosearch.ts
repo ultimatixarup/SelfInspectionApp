@@ -4,6 +4,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 
+import { AdddataPage } from '../adddata/adddata';
+
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
+
+import { FindingsearchPage } from '../findingsearch/findingsearch';
 
 
 import { AppSettingsComponent } from '../../components/app-settings/app-settings';
@@ -118,6 +123,28 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
          
 });
 
+}
+
+
+
+addFinding(){
+    this.navCtrl.push(AdddataPage , {data: this.inspectionData,itemdata: this.inspectionData,type:1 });
+    
+
+}
+
+process(data){
+  return data.split('T')[0];
+
+}
+
+listFinding(){
+ 
+  this.navCtrl.push(FindingsearchPage, {id:this.inspectionData.id,itemdata : this.inspectionData});
+}
+
+  gohome(){
+  this.navCtrl.setRoot(InspectiondetailsPage);
 }
 
 }

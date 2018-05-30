@@ -10,6 +10,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 import { SelectSearchable } from 'ionic-select-searchable';
 
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
@@ -294,6 +295,10 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
     
     imagePath(photoId){
         return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+      }
+
+      gohome(){
+        this.navCtrl.setRoot(InspectiondetailsPage);
       }
 
 }

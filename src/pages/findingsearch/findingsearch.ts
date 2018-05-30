@@ -5,6 +5,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
 
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
+
 import { AidataPage } from '../aidata/aidata';
 
 import { PhotosearchPage } from '../photosearch/photosearch';
@@ -67,4 +69,18 @@ itemdata:any;
     this.navCtrl.push(PhotosearchPage, {data:this.itemdata});
  }
 
+ process(date){
+  return date.split('T')[0];
+
+ }
+
+ addFinding(){
+
+   this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: this.itemdata,type:1 });
+ }
+
+
+  gohome(){
+  this.navCtrl.setRoot(InspectiondetailsPage);
+}
 }

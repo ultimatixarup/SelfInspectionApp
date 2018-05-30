@@ -62,10 +62,10 @@ export class VinsearchPage {
 
   }
   
-  home(){
-  
-    this.navCtrl.setRoot(InspectiondetailsPage);
-  }
+  gohome(){
+  this.navCtrl.setRoot(InspectiondetailsPage);
+}
+
   
   setFilteredItems(inputVin){
     this.inputVin = inputVin.toUpperCase();

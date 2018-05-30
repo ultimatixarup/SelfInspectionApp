@@ -15,6 +15,8 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { DetailPage } from '../detail/detail';
 
+import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
+
 
 @Component({
   selector: 'page-vinresult',
@@ -95,6 +97,10 @@ goToInspections(type){
 goToNewInspection(){
     this.navCtrl.push(DetailPage, {vinresult : this.results });
 
+}
+
+  gohome(){
+  this.navCtrl.setRoot(InspectiondetailsPage);
 }
 
 }

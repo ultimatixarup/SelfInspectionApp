@@ -7,7 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Inspection photo search</ion-title>
+        <ion-row>
+            <ion-col></ion-col><ion-col>
+              <h2><a style="text-decoration: none;  color: #000000;" (click)="listFinding()">Finding</a></h2>
+            </ion-col>
+            <ion-col>
+              <h2><a style="text-decoration: none; border-bottom: 2px solid blue; color: #000000;">Photo</a></h2>
+            </ion-col>
+            <ion-col>
+         </ion-col>
+        </ion-row>
   </ion-navbar>
 
 </ion-header>
@@ -27,7 +36,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-       <h2>{{ inspectionData.createDate }}</h2>
+       <h2>{{ process(inspectionData.createDate) }}</h2>
     </ion-col>
     <ion-col>
       <h2> {{ inspectionData.odometer }}MILES</h2>
@@ -41,18 +50,24 @@
     
     </ion-card>
     
+     
     
-    
-     <div style="background-color: lightblue;">
-        
+     <div style="background-color: white;">
+        <ion-row>
+            <ion-col>
           <button ion-button icon-left clear small (click)="addImage(1)">
             <ion-icon name="camera" ></ion-icon>
             <div>Take Photo</div>
           </button>
-          <button ion-button icon-left clear small (click)="addImage(0)">
-            <ion-icon name="albums" ></ion-icon>
-            <div>Chose from Album</div>
+                </ion-col>
+            <ion-col></ion-col>
+            <ion-col>
+          <button ion-button icon-left clear small (click)="addFinding()">
+            <ion-icon name="paper" ></ion-icon>
+            <div>Make Finding</div>
           </button>
+                </ion-col>
+        </ion-row>
     </div>
     <img *ngIf="imageId" [src]="imagePath(imageId)" onerror="this.src='assets/imgs/not-available.png';"  />
      <ion-item *ngIf="imageId">
@@ -71,3 +86,14 @@
     
     
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  
+   <div style="text-align:center"><a href="#" (click)="gohome()" ><img src="assets/imgs/home.png" height="40px" width="40px"/>
+       </a>
+       </div>
+
+
+  </ion-toolbar>
+</ion-footer>

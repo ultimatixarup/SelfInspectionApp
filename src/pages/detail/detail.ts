@@ -129,16 +129,6 @@ inspectionupdate:any;
        
   }
   
-  
-   
-  
-  addFinding(){
-      alert(this.inspectiondata.id);
-      this.navCtrl.push(AdddataPage , {itemdata: this.inspectiondata,'image':"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
-
-  }
-
-  
   saveInspection(vin,inspectorId){
   
     if(this.licensePlate && this.licensePlate === ""){
@@ -264,14 +254,12 @@ imagePath(photoId){
         return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
 }
 
- photoSearch(){
- 
-    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata});
- }
+gohome(){
+  this.navCtrl.setRoot(InspectiondetailsPage);
+}
 
 
-
-  }
+}
 
 
 

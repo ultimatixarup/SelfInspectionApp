@@ -42,16 +42,18 @@
     </ion-card>
     
     
-    <div style="background-color: lightblue;">
-        
+     <div style="background-color: white;">
+        <ion-row>
+            <ion-col>
           <button ion-button icon-left clear small (click)="addImage(1)">
             <ion-icon name="camera" ></ion-icon>
             <div>Take Photo</div>
           </button>
-          <button ion-button icon-left clear small (click)="addImage(0)">
-            <ion-icon name="albums" ></ion-icon>
-            <div>Chose from Album</div>
-          </button>
+                </ion-col>
+            <ion-col></ion-col>
+            <ion-col>
+         </ion-col>
+        </ion-row>
     </div>
    
     <img [src]="imagePath(imageId)" onerror="this.src='assets/imgs/not-available.png';" />
