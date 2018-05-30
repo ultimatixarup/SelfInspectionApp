@@ -17,7 +17,7 @@ import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 import { InspectionPage } from '../inspection/inspection';
 
-import { AdddataPage } from '../adddata/adddata';
+
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
 
@@ -263,6 +263,11 @@ addImage(src){
 imagePath(photoId){
         return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
 }
+
+ photoSearch(){
+ 
+    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata});
+ }
 
 
 

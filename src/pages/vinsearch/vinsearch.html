@@ -17,7 +17,9 @@
    
     <br/><br/>
   <ion-item>
-    <ion-input placeholder="Enter Vin" [ngModel]="inputVin"></ion-input>
+      
+      <ion-input [(ngModel)]="inputVin" (ionChange)="setFilteredItems(inputVin)"  placeholder="Enter Vin"></ion-input>
+   
   </ion-item>
     
     <button ion-button full  (click)="search()">Search Vin</button>
