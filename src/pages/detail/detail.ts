@@ -129,7 +129,7 @@ inspectionupdate:any;
        
   }
   
-  saveInspection(vin,inspectorId){
+  saveInspection(){
   
     if(this.licensePlate && this.licensePlate === ""){
       alert("Please enter License Plate");

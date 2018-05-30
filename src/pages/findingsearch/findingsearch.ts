@@ -79,6 +79,19 @@ itemdata:any;
    this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: this.itemdata,type:1 });
  }
 
+ valid(photoid){
+    if(photoid){
+        if(photoid === "null"){
+          return false;
+        }
+      return true;
+    } else {
+      return false;
+    }
+    
+
+ }
+
 
   gohome(){
   this.navCtrl.setRoot(InspectiondetailsPage);

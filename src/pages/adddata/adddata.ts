@@ -301,6 +301,10 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
         this.navCtrl.setRoot(InspectiondetailsPage);
       }
 
+      process(date){
+        return date.split('T')[0];
+      }
+
 }
 
 

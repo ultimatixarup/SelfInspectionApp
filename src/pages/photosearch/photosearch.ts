@@ -15,6 +15,8 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
 
+import { PhotoviewPage } from '../photoview/photoview';
+
 /**
  * Generated class for the PhotosearchPage page.
  *
@@ -145,6 +147,11 @@ listFinding(){
 
   gohome(){
   this.navCtrl.setRoot(InspectiondetailsPage);
+}
+
+openPhoto(item){
+  this.navCtrl.push(PhotoviewPage, {item:item});
+
 }
 
 }

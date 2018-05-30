@@ -64,7 +64,7 @@
         </ion-row>
     </div>
 <ion-list>
-<ion-card ion-item *ngFor="let item of findings">
+<ion-card ion-item *ngFor="let item of findings" on-tap="itemTapped($event, item)">
 <!--<ion-row>
 <ion-col>
     <a href="#" (click)="gotoAi(item)">
@@ -74,9 +74,9 @@
     
       </ion-col>
     </ion-row>-->
-  <a href="#" (click)="itemTapped($event, item)">
-   <img [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
-</a>
+  
+   <img *ngIf="valid(item.defaultPhotoId)" [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
+
   <ion-row>
       
     <ion-col>
@@ -85,6 +85,7 @@
       
     
   </ion-row>
+  
 
 </ion-card>
 </ion-list>

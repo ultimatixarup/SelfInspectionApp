@@ -45,7 +45,7 @@ import { CameraPage } from '../pages/camera/camera';
 
 import { PhotosearchPage } from '../pages/photosearch/photosearch';
 
-
+import { PhotoviewPage } from '../pages/photoview/photoview';
 
 
 import { SelectSearchableModule } from 'ionic-select-searchable';
@@ -68,7 +68,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     AppSettingsComponent,
     PhotosearchPage,
     ImageTakerComponent,
-   
+    PhotoviewPage,
     TabsPage
   ],
   imports: [
@@ -95,7 +95,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     AppSettingsComponent,
     PhotosearchPage,
     ImageTakerComponent,
-
+    PhotoviewPage,
     TabsPage
   ],
   providers: [
