@@ -15,8 +15,6 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
-import { InspectionPage } from '../inspection/inspection';
-
 
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
@@ -191,7 +189,8 @@ inspectionupdate:any;
                                              let newinspection = JSON.parse(resp['_body']);
 
                 loader.dismiss();
-                this.navCtrl.push(InspectionPage,{data:newinspection});
+                this.inspectionupdate = true;
+                this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
             },
              err => { 
                         loader.dismiss();
@@ -239,7 +238,7 @@ photoSearch(){
 
 addImage(src){
 
-    //this.imageId = 1;
+    //this.imageId = 1410;
     
     let miscinfo = { caller: this};
 

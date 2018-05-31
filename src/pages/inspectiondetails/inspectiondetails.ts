@@ -32,7 +32,7 @@ imagepath:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
-    
+    window.localStorage.setItem("INSPECTOR",this.inspectorId);
     let loader = this.loadingCtrl.create({
     content: "Loading..."
   });

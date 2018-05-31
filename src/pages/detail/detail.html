@@ -103,7 +103,7 @@
                 </ion-col>
             <ion-col></ion-col>
             <ion-col>
-          <button ion-button icon-left clear small (click)="addFinding()">
+          <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="addFinding()">
             <ion-icon name="paper" ></ion-icon>
             <div>Make Finding</div>
           </button>
@@ -113,7 +113,7 @@
     <img [src]="imagePath(imageId)" onerror="this.src='assets/imgs/not-available.png';" />
     
     <ion-row><ion-col>
-    <button ion-button icon-left clear small (click)="photoSearch()">
+    <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="photoSearch()">
             <ion-icon name="images" ></ion-icon>
             <div>Photos</div>
     </button>
