@@ -30,8 +30,10 @@
     
     <ion-list>
     
-        <ion-item [color]="even? 'primary' : 'white'" *ngFor="let data of probabilities; let even = even">
-            <ion-label>{{ data.label}}  {{ data.confidence }}</ion-label>
+        <ion-item *ngFor="let data of probabilities; let i = index">
+            
+            
+            <div [style.backgroundColor]="getcolor(i)" [style.color]="getfrontcolor(i)"><b><ion-row><ion-col>{{ data.label}}</ion-col><ion-col></ion-col><ion-col> {{ data.confidence }}%</ion-col></ion-row> </b></div>
         
         </ion-item> 
     

@@ -19,7 +19,9 @@ export class AidataPage {
 item:any;
 aidata:any;
 probabilities:any;
+aicolors:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, public loadingCtrl:LoadingController) {
+  this.aicolors = ["#6FB2D6","#C5E0EE","#DDEDF6","#F0F7FB"];
     this.item = navParams.get('data');
   let loader = this.loadingCtrl.create({
     content: "Loading..."
@@ -48,6 +50,16 @@ probabilities:any;
 
  imagePath(photoId){
     return AppSettingsComponent.MEDIA_ENDPOINT +'/'+ photoId + '/content';
+  }
+  
+  getcolor(i){
+    
+    return this.aicolors[i];
+  }
+  
+  getfrontcolor(i){
+    if(i==0) return "white";
+    return "black";
   }
   
 }
