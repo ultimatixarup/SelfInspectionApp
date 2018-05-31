@@ -15,9 +15,9 @@
 
 <ion-content padding>
 
-<img [src]="imagePath(item.defaultPhotoId)" height="90%"  onerror="this.src='assets/imgs/not-available.png';"  />
+<img [src]="imagePath(item.publicId)" height="90%"  onerror="this.src='assets/imgs/not-available.png';"  />
 
-   <div style="text-align:center"><a href="#" (click)="gotoAi()" ><img src="assets/imgs/aiicon.jpeg" height="40px" width="40px"/>
+   <div style="text-align:center"><a href="#" (click)="gotoAi(item)" ><img src="assets/imgs/aiicon.jpeg" height="40px" width="40px"/>
        </a>
        </div>
 
