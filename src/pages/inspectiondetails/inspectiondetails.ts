@@ -37,6 +37,8 @@ imagepath:any;
     content: "Loading..."
   });
   
+  this.initializeCache();
+  
   loader.present();
   
     if(this.inspectorId > 0){
@@ -89,6 +91,42 @@ vinSearch(){
 
 }
 
+ initializeCache(){
 
+  this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_NOUN).subscribe(resp => {
+                                                                                                                 
+    //alert(JSON.stringify(resp['_body'])); 
+    setTimeout(() => {
+        window.localStorage.setItem("NOUNS",resp['_body']);
+  }, 1000);
+});
+
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_LOCATION).subscribe(resp => {
+                                                                                                                 
+    //alert(JSON.stringify(resp['_body'])); 
+    setTimeout(() => {
+        window.localStorage.setItem("LOCATIONS",resp['_body']);
+  }, 1000);
+});
+
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_DAMAGE).subscribe(resp => {
+                                                                                                                 
+    //alert(JSON.stringify(resp['_body'])); 
+    setTimeout(() => {
+        window.localStorage.setItem("DAMAGES",resp['_body']);
+  }, 1000);
+});
+
+this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp => {
+                                                                                                                 
+    //alert(JSON.stringify(resp['_body'])); 
+    setTimeout(() => {
+        window.localStorage.setItem("FINDINGS",resp['_body']);
+  }, 1000);
+  });
+
+
+  }
+  
 
 }

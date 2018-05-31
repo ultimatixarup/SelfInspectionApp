@@ -48,6 +48,7 @@ itemdata:any;
   }
 
   itemTapped(event, item){
+  
     this.navCtrl.push(AdddataPage , {data: this.itemdata,itemdata: item,type:0,image:"http://www.iihs.org/media/5a157607-944d-4b7b-a05e-4363e64494ee/2Cambw/Status%20Report/42-08/lex.jpg"});
   }
   

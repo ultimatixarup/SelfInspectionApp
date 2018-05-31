@@ -19,7 +19,7 @@
   
    <img [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
 
-  <ion-row>
+  <ion-row *ngIf="item.vifNoun">
     <ion-col>
       <h2> <font color="red">{{ item.vifLocationAdj}} &nbsp; {{ item.vifNoun}} &nbsp; {{ item.vifFindingAdj}} &nbsp; {{ item.vifDamageClf}} </font></h2>
     </ion-col>
@@ -30,7 +30,7 @@
     
     <ion-list>
     
-        <ion-item [color]="even? 'primary' : 'secondary'" *ngFor="let data of probabilities">
+        <ion-item [color]="even? 'primary' : 'white'" *ngFor="let data of probabilities; let even = even">
             <ion-label>{{ data.label}}  {{ data.confidence }}</ion-label>
         
         </ion-item> 

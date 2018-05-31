@@ -81,7 +81,7 @@ inspectionupdate:any;
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
      this.inspectionupdate = true;
      this.imageId=0;
-    this.inspectorId = window.localStorage.getItem('INSPECTOR');
+    this.inspectorId = 1 ;//window.localStorage.getItem('INSPECTOR');
     
     this.vinresult = this.navParams.get("vinresult");
     

@@ -12,6 +12,8 @@ import { SelectSearchable } from 'ionic-select-searchable';
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
+import { AidataPage } from '../aidata/aidata';
+
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
 
@@ -65,7 +67,7 @@ ports: Port[];
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
-  
+ 
     this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
     this.ports = JSON.parse(window.localStorage.getItem("NOUNS"));
     
@@ -269,7 +271,22 @@ let inspectionjson = {id:this.inspectionId};
   
 
 
+valid(photoid){
+    if(photoid){
+        if(photoid === "null"){
+          return false;
+        }
+      return true;
+    } else {
+      return false;
+    }
+    
 
+ }
+ 
+ gotoAi(item){
+    this.navCtrl.push(AidataPage, {data:this.itemdata});
+  }
 
 addImage(src){
 
