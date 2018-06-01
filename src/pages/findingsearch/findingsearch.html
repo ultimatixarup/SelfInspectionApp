@@ -67,7 +67,7 @@
 <ion-card ion-item *ngFor="let item of findings" (click)="itemTapped($event, item)">
 
   
-   <img *ngIf="valid(item.defaultPhotoId)" [src]="imagePath(item.defaultPhotoId)"  onerror="this.src='assets/imgs/not-available.png';"  />
+   <img *ngIf="valid(item.defaultPhotoId)" [src]="imagePath(item.defaultPhotoId)" onerror="this.src='assets/imgs/not-available.png';"  />
 
   <ion-row>
       
