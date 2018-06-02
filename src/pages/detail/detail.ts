@@ -59,6 +59,8 @@ source:string;
 vin:any;
 inspectorId:any;
 imageId:any;
+catData:any;
+photoChanged:boolean;
 
 inspectionId : any;
 
@@ -76,12 +78,15 @@ inspectionupdate:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
   public loadingCtrl: LoadingController,public toastCtrl:ToastController,public imageTaker:ImageTakerComponent
   ) {
+  
+  this.catData = " ";
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
      this.inspectionupdate = true;
      this.imageId=0;
     this.inspectorId = 1 ;//window.localStorage.getItem('INSPECTOR');
     
     this.vinresult = this.navParams.get("vinresult");
+    this.photoChanged = false;
     
     this.type = navParams.get('type');
     this.inspectorId = window.localStorage.getItem("INSPECTOR");
@@ -158,14 +163,14 @@ inspectionupdate:any;
     if(this.inspectionId){
         inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + this.inspectionId;
          this.http.patch(inspectionEndpoint,insepctioninput).subscribe(resp => {
-                                     // alert(resp['_body']);  
-                                     //alert(resp['_body']); 
-                                     let newinspection = JSON.parse(resp['_body']);
                                      
+                                      
+                                      this.getInspection();
+                                     this.addPhoto();
         
             loader.dismiss();
             
-            this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
+           // this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
         },
          err => { 
                     loader.dismiss();
@@ -184,13 +189,15 @@ inspectionupdate:any;
   
   
             this.http.post(inspectionEndpoint,insepctioninput).subscribe(resp => {
-                                             // alert(resp['_body']);  
-                                             //alert(resp['_body']); 
-                                             let newinspection = JSON.parse(resp['_body']);
+                                           
+                                             
+                                             this.inspectiondata = JSON.parse(resp['_body']);
+                                             this.getInspection();
 
                 loader.dismiss();
                 this.inspectionupdate = true;
-                this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
+                this.addPhoto();
+               // this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
             },
              err => { 
                         loader.dismiss();
@@ -202,6 +209,32 @@ inspectionupdate:any;
 
             );
     }
+  }
+  
+  getInspection(){
+     let inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + this.inspectionId;
+     this.http.get(inspectionEndpoint).subscribe(resp => {
+                                     // alert(resp['_body']);  
+                                     
+                                      this.inspectiondata = JSON.parse(resp['_body']);
+                                    
+                                     this.addPhoto();
+        
+            //loader.dismiss();
+            
+           // this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
+        },
+         err => { 
+                    //loader.dismiss();
+                    alert(err);
+                }
+
+
+
+
+        );
+        
+  
   }
     
     
@@ -225,6 +258,39 @@ presentToast(msg) {
 }
 
 
+
+ addPhoto(){
+  if(this.photoChanged){
+  let data = {publicId: this.imageId, "inspection": {"id": this.inspectiondata.id}};
+  let loader = this.loadingCtrl.create({
+    content: "Loading..."
+  });
+  
+  
+  loader.present();
+    this.http.post(AppSettingsComponent.INSPECTION_SERVICE+'/photo',data).subscribe(resp => {
+                                    // alert(resp['_body']);  
+                                    
+                                    
+                                    
+    
+        
+    },
+    err=>{
+        alert(err);
+        loader.dismiss();
+    });
+    }
+  
+
+    
+    
+  
+  }
+  
+
+
+
 addFinding(){
     this.navCtrl.push(AdddataPage , {data: this.inspectiondata,itemdata: this.inspectiondata,type:1 });
     
@@ -246,6 +312,7 @@ addImage(src){
         let imageid = JSON.parse(data.response).id;
         //let imageid = 1;
         miscinfo.caller.imageId = imageid;
+        miscinfo.caller.photoChanged = true;
     });
 }
 
@@ -256,6 +323,12 @@ imagePath(photoId){
 gohome(){
   this.navCtrl.setRoot(InspectiondetailsPage);
 }
+
+ setFilteredItems(licensePlate){
+    this.licensePlate = licensePlate.toUpperCase();
+  
+  
+  }
 
 
 }

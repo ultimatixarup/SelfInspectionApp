@@ -170,22 +170,13 @@ addInspection(){
 
     
 
-   if(this.findingData && this.findingData === ""){
-      alert("Please enter Finding");
-      return;
-    } else if(this.locationData && this.locationData === ""){
-      alert("Please enter Location");
-      return;
-    } else if(this.nounData && this.nounData === ""){
+   if(this.nounData && this.nounData === ""){
       alert("Please enter Object");
       return;
     } else if(this.damageData && this.damageData === ""){
       alert("Please enter Damage");
       return;
-    } else if(this.nounData && this.nounData === ""){
-      alert("Please enter Object");
-      return;
-    }
+    } 
 
 if(this.findingData && this.locationData && this.nounData && this.damageData && this.nounData){
 if(this.nounData.noun){
@@ -197,7 +188,7 @@ if(this.nounData.noun){
 
 
 let inspectionjson = {id:this.inspectionId};
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounValue, vifDamageClf: this.damageData, defaultPhotoId: this.imageId+'', inspection: inspectionjson};
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounValue, vifDamageClf: this.damageData, defaultPhotoId: this.imageId?this.imageId+'':null, inspection: inspectionjson};
  
  
  let loader = this.loadingCtrl.create({

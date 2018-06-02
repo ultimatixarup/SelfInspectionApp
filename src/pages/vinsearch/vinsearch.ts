@@ -39,10 +39,12 @@ export class VinsearchPage {
     this.barcodeScanner.scan({
                     showTorchButton:true
                 }).then(barcodeData => {
-        alert('Barcode data - ' + barcodeData.text);
+        
         
        if(barcodeData.text){
-        
+         if(barcodeData.text.length==18){
+            barcodeData.text = barcodeData.text.substring(1);
+         }
          this.navCtrl.push(VinresultPage,{vin:barcodeData.text});
        }
         

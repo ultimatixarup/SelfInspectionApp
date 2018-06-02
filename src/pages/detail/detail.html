@@ -22,7 +22,8 @@
        <ion-col>
         <ion-label color="primary">License Plate</ion-label>
          </ion-col><ion-col col-8>
-        <ion-input placeholder="License Plate" [(ngModel)]="licensePlate"></ion-input>
+         <ion-input [(ngModel)]="licensePlate" (ionChange)="setFilteredItems(licensePlate)"  placeholder="License Plate"></ion-input>
+        
          </ion-col>
       </ion-row>
     
@@ -30,7 +31,7 @@
       <ion-col>
   <ion-label color="primary">State</ion-label>
       </ion-col><ion-col col-8>
-    <ion-select [(ngModel)]="state">
+   <ion-select width="100%;" [(ngModel)]="state">
         <ion-option value="AL">Alabama</ion-option>
 	<ion-option value="AK">Alaska</ion-option>
 	<ion-option value="AZ">Arizona</ion-option>
