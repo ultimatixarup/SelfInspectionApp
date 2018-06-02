@@ -6,7 +6,12 @@
 -->
 <ion-header>
 
+     
+    
   <ion-navbar>
+      <button ion-button icon-left clear small (click)="gohome()">
+            <ion-icon name="arrow-back" ></ion-icon>
+     </button>
     <ion-title>{{ header }}</ion-title>
   </ion-navbar>
 
@@ -21,8 +26,8 @@
      <ion-row>
        <ion-col>
         <ion-label color="primary">License Plate</ion-label>
-         </ion-col><ion-col col-8>
-         <ion-input [(ngModel)]="licensePlate" (ionChange)="setFilteredItems(licensePlate)"  placeholder="License Plate"></ion-input>
+         </ion-col><ion-col></ion-col><ion-col>
+         <ion-input float-right [(ngModel)]="licensePlate" (ionChange)="setFilteredItems(licensePlate)"  placeholder="License Plate"></ion-input>
         
          </ion-col>
       </ion-row>
@@ -89,7 +94,7 @@
      <ion-row><ion-col>
         <ion-label color="primary">Odo Reading</ion-label>
         </ion-col>
-         <ion-col col-8>
+          <ion-col></ion-col><ion-col>
         <ion-input placeholder="Odometer" [(ngModel)]="odometer"></ion-input>
              </ion-col>
     </ion-row>

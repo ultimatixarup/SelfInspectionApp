@@ -95,7 +95,7 @@ goToInspections(type){
 
 }
 goToNewInspection(){
-    this.navCtrl.push(DetailPage, {vinresult : this.results });
+    this.navCtrl.setRoot(DetailPage, {vinresult : this.results });
 
 }
 

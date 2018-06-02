@@ -134,24 +134,11 @@ inspectionupdate:any;
   
   saveInspection(){
   
-    if(this.licensePlate && this.licensePlate === ""){
-      alert("Please enter License Plate");
-      return;
-    } else if(this.state && this.state === ""){
-      alert("Please enter License State");
-      return;
-    } else if(this.odoReading && this.odoReading === ""){
-      alert("Please enter Odometer reading");
-      return;
-    } 
     
-    if(this.imageId == 0){
-        alert("Please select a photo");
-        return;
-    }
-  
+    alert("save");
+    
 
-    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,createDate:'',defaultPhotoId:this.imageId+''};
+    let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,defaultPhotoId:this.imageId?this.imageId+'':null};
     this.insepction.inspectorId = window.localStorage.getItem("INSPECTOR");
 
   let loader = this.loadingCtrl.create({
@@ -192,6 +179,7 @@ inspectionupdate:any;
                                            
                                              
                                              this.inspectiondata = JSON.parse(resp['_body']);
+                                             this.inspectionId = this.inspectiondata.id;
                                              this.getInspection();
 
                 loader.dismiss();
@@ -304,8 +292,8 @@ photoSearch(){
 
 addImage(src){
 
-    //this.imageId = 1410;
-    
+    this.imageId = 1410;
+    /*
     let miscinfo = { caller: this};
 
     this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
@@ -313,7 +301,7 @@ addImage(src){
         //let imageid = 1;
         miscinfo.caller.imageId = imageid;
         miscinfo.caller.photoChanged = true;
-    });
+    });*/
 }
 
 imagePath(photoId){
@@ -329,6 +317,8 @@ gohome(){
   
   
   }
+  
+  
 
 
 }

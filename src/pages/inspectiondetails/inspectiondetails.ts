@@ -30,6 +30,7 @@ inspectorId:any;
 imagepath:any;
   inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
     window.localStorage.setItem("INSPECTOR",this.inspectorId);
@@ -68,7 +69,7 @@ imagepath:any;
  
   
   openInspection(item){
-    this.navCtrl.push(DetailPage, {data : item});
+    this.navCtrl.setRoot(DetailPage, {data : item});
    
   }
   
