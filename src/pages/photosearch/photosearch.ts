@@ -6,6 +6,8 @@ import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
 
+import { DetailPage } from '../detail/detail';
+
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
 import { FindingsearchPage } from '../findingsearch/findingsearch';
@@ -36,10 +38,14 @@ export class PhotosearchPage {
   inspectionData:any;
   categories:any;
   catData:any;
+  selectCover:boolean;
+  inspectioninput:any;
+  inspectionEndpoint:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
   this.inspectionData = navParams.get('data');
+  this.selectCover = navParams.get('selectCover');
   this.categories =[{'name':'Exterior','value':'Exterior'},{'name':'Interior','value':'Interior'},
   {'name':'Left','value':'Left'},
   {'name':'Right','value':'Right'},
@@ -150,8 +156,41 @@ listFinding(){
 }
 
 openPhoto(item){
-  this.navCtrl.push(PhotoviewPage, {item:item});
 
+  if(this.selectCover){
+    this.inspectioninput = item.inspection;
+    this.inspectioninput.defaultPhotoId = item.publicId;
+    this.inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + item.inspection.id;
+    let loader = this.loadingCtrl.create({
+    content: "Loading..."
+  });
+  
+  
+  loader.present();
+         this.http.patch(this.inspectionEndpoint,this.inspectioninput).subscribe(resp => {
+                                     
+                                      
+                                      
+        
+            loader.dismiss();
+            
+           // this.navCtrl.push(InspectiondetailsPage,{data:newinspection});
+        },
+         err => { 
+                    loader.dismiss();
+                    alert(err);
+                }
+
+
+
+
+        );
+        this.navCtrl.setRoot(DetailPage, {data : item.inspection});
+  
+  } else {
+ 
+  this.navCtrl.push(PhotoviewPage, {item:item});
+}
 }
 
 }

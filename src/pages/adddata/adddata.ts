@@ -170,7 +170,14 @@ addInspection(){
 
     
 
-   
+   if(this.nounData && this.nounData === ""){
+      alert("Please enter Object");
+      return;
+    } else if(this.findingData && this.findingData === ""){
+      alert("Please enter Finding");
+      return;
+    } 
+
 if( this.nounData && this.findingData ){
 if(this.nounData.noun){
     this.nounValue = this.nounData.noun;
@@ -181,7 +188,7 @@ if(this.nounData.noun){
 
 
 let inspectionjson = {id:this.inspectionId};
- let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounValue, vifDamageClf: this.damageData,  inspection: inspectionjson};
+ let newfinding = {vifFindingAdj: this.findingData , vifLocationAdj: this.locationData, vifNoun: this.nounValue, vifDamageClf: this.damageData, defaultPhotoId: this.imageId?this.imageId+'':null, inspection: inspectionjson};
  
  
  let loader = this.loadingCtrl.create({
@@ -207,7 +214,6 @@ let inspectionjson = {id:this.inspectionId};
      err => { 
                 loader.dismiss();
                 alert(err);
-                
             }
     
     );
@@ -275,9 +281,9 @@ valid(photoid){
 
 addImage(src){
 
-this.imageId = "1428";
+//this.imageId = "1423";
 
-    /*
+    
     let miscinfo = { caller: this};
 
 this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
@@ -285,7 +291,7 @@ this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
    
     miscinfo.caller.imageId = imageid;
          
-});*/
+});
 
 }
 

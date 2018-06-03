@@ -15,7 +15,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
-
+import { PhotoviewPage } from '../photoview/photoview';
 
 import { ImageTakerComponent } from '../../components/image-taker/image-taker';
 
@@ -51,11 +51,7 @@ fileName:any;
 type:any;
 vinScanned:any;
 header: any;
-image1:string;
-image2:string;
-image3:string;
-image4:string;
-source:string;
+
 vin:any;
 inspectorId:any;
 imageId:any;
@@ -78,7 +74,7 @@ inspectionupdate:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
   public loadingCtrl: LoadingController,public toastCtrl:ToastController,public imageTaker:ImageTakerComponent
   ) {
-  
+  this.photoChanged = false;
   this.catData = " ";
     this.insepction = {id:'',year:'',make:'',model:'',vin:'',inspectorId:'',licensePlateNumber:'',licensePlateState:'',odometer:'',createDate:'',defaultPhotoId:'',findings:[],photos:[]};
      this.inspectionupdate = true;
@@ -135,7 +131,7 @@ inspectionupdate:any;
   saveInspection(){
   
     
-    alert("save");
+    //alert("save");
     
 
     let insepctioninput = {year:this.year,make:this.make,model:this.model,vin:this.vin,inspectorId:this.inspectorId,licensePlateNumber:this.licensePlate,licensePlateState:this.state,odometer:this.odometer,defaultPhotoId:this.imageId?this.imageId+'':null};
@@ -206,7 +202,7 @@ inspectionupdate:any;
                                      
                                       this.inspectiondata = JSON.parse(resp['_body']);
                                     
-                                     this.addPhoto();
+                                    // this.addPhoto();
         
             //loader.dismiss();
             
@@ -248,8 +244,9 @@ presentToast(msg) {
 
 
  addPhoto(){
+  
   if(this.photoChanged){
-  let data = {publicId: this.imageId, "inspection": {"id": this.inspectiondata.id}};
+  let data = {publicId: this.imageId,"category":"Exterior", "inspection": {"id": this.inspectiondata.id}};
   let loader = this.loadingCtrl.create({
     content: "Loading..."
   });
@@ -258,7 +255,7 @@ presentToast(msg) {
   loader.present();
     this.http.post(AppSettingsComponent.INSPECTION_SERVICE+'/photo',data).subscribe(resp => {
                                     // alert(resp['_body']);  
-                                    
+                                    loader.dismiss();
                                     
                                     
     
@@ -292,8 +289,9 @@ photoSearch(){
 
 addImage(src){
 
-    this.imageId = 1410;
-    /*
+   /* this.imageId = 1410;
+    this.photoChanged = true;*/
+    
     let miscinfo = { caller: this};
 
     this.imageTaker.addImage(src,miscinfo,function(data,miscinfo){
@@ -301,7 +299,7 @@ addImage(src){
         //let imageid = 1;
         miscinfo.caller.imageId = imageid;
         miscinfo.caller.photoChanged = true;
-    });*/
+    });
 }
 
 imagePath(photoId){
@@ -318,7 +316,15 @@ gohome(){
   
   }
   
+  selectCover(){
+    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata,selectCover:true});
   
+  }
+  
+  viewPhoto(){
+     let item = {publicId:this.inspectiondata.defaultPhotoId}
+    this.navCtrl.push(PhotoviewPage, {item:item});
+  }
 
 
 }
