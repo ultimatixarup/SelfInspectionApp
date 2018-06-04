@@ -123,7 +123,7 @@
             <ion-icon name="images" ></ion-icon>
             <div>Photos</div>
         </button>
-        </ion-col><ion-col><div style="text-align:center"><img src="assets/imgs/nophoto.jpeg" (click)="selectCover()" height="30px;" width="30px;"/></div></ion-col>
+        </ion-col><ion-col><div style="text-align:center"><img *ngIf="inspectionupdate" src="assets/imgs/nophoto.jpeg" (click)="selectCover()" height="30px;" width="30px;"/></div></ion-col>
     <ion-col>
     <button *ngIf="inspectionupdate" ion-button icon-left clear small (click)="listFindings()">
             <ion-icon name="folder-open" ></ion-icon>

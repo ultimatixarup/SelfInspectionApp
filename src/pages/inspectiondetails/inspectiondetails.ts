@@ -42,20 +42,14 @@ imagepath:any;
   
   loader.present();
   
-    if(this.inspectorId > 0){
-        this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
                                          // alert(resp['_body']);                                                                            
             this.inspections = JSON.parse(resp['_body']);
+            this.inspections.sort(function(a,b){
+                return b.id - a.id;
+            });
             loader.dismiss();
         });
-    } else {
-       this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
-                                         // alert(resp['_body']);                                                                            
-            this.inspections = JSON.parse(resp['_body']);
-            loader.dismiss();
-        });
-    
-    }
   }
 
   ionViewDidLoad() {

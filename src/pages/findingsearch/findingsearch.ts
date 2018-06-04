@@ -39,6 +39,9 @@ itemdata:any;
     this.http.get(AppSettingsComponent.INSPECTION_FINDING+'?inspectionId='+this.inspectionId).subscribe(resp => {
                                      // alert(resp['_body']);                                                                            
         this.findings = JSON.parse(resp['_body']);
+        this.findings.sort(function(a,b){
+            return b.id - a.id;
+        });
         loader.dismiss();
     });
   }
