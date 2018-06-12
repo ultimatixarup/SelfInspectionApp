@@ -149,6 +149,7 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
         item.vin.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         (item.licensePlateNumber+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         (item.licensePlateState+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.odometer+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         item.createDate.split('T')[0].indexOf(val.toLowerCase()) > -1
         );
       })
