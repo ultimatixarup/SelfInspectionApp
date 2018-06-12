@@ -156,7 +156,7 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   }
   
   onCancel(event : any){
-    this.initializeItems();
+   this.inspections = this.cachedInspections;
   }
 
 }
