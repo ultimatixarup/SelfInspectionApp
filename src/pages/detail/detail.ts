@@ -284,7 +284,7 @@ addFinding(){
 
 photoSearch(){
  
-    this.navCtrl.push(PhotosearchPage, {data:this.inspectiondata});
+    this.navCtrl.setRoot(PhotosearchPage, {data:this.inspectiondata});
  }
 
 addImage(src){

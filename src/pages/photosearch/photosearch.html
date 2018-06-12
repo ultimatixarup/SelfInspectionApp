@@ -5,11 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
+ 
   <ion-navbar>
         <ion-row *ngIf="selectCover"><ion-col> Select Cover </ion-col></ion-row>
         <ion-row *ngIf="!selectCover">
-            <ion-col></ion-col><ion-col>
+            <ion-col ><button ion-button icon-left clear small (click)="goback(inspectionData)">
+            <ion-icon name="arrow-back" ></ion-icon>
+    </button></ion-col><ion-col>
               <h2><a style="text-decoration: none;  color: #000000;" (click)="listFinding()">Finding</a></h2>
             </ion-col>
             <ion-col>

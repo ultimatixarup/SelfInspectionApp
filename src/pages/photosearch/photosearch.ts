@@ -193,4 +193,8 @@ openPhoto(item){
 }
 }
 
+goback(item){
+  this.navCtrl.setRoot(DetailPage, {data : item });
+}
+
 }
