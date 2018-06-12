@@ -147,8 +147,8 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
         return (item.make.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         item.model.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         item.vin.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
-        (item.licensePlateNumber+'').toLowerCase().indexOf(val.toLowerCase()) > -1
-        
+        (item.licensePlateNumber+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        item.createDate.split('T')[0].indexOf(val.toLowerCase()) > -1
         );
       })
     }
