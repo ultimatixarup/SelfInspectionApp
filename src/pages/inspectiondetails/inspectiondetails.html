@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-
+<ion-searchbar (ionInput)="getItems($event)" (ionClear)="onCancel($event)"></ion-searchbar>
 <ion-list>
 <ion-card ion-item *ngFor="let item of inspections">
  

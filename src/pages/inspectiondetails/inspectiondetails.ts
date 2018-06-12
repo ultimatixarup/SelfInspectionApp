@@ -29,25 +29,34 @@ export class InspectiondetailsPage {
 inspectorId:any;
 imagepath:any;
   inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
+  cachedInspections:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
   
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
     window.localStorage.setItem("INSPECTOR",this.inspectorId);
-    let loader = this.loadingCtrl.create({
-    content: "Loading..."
-  });
+    
   
   this.initializeCache();
   
-  loader.present();
+  this.initializeItems();
   
-    this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+   
+  }
+
+  initializeItems(){
+    let loader = this.loadingCtrl.create({
+    content: "Loading..."
+  });
+  loader.present();
+      this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
                                          // alert(resp['_body']);                                                                            
             this.inspections = JSON.parse(resp['_body']);
+            
             this.inspections.sort(function(a,b){
                 return b.id - a.id;
             });
+            this.cachedInspections = this.inspections;
             loader.dismiss();
         });
   }
@@ -123,5 +132,30 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
 
   }
   
+
+   getItems(ev: any) {
+    // Reset items back to all of the items
+    this.inspections = this.cachedInspections;
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.inspections = this.inspections.filter((item) => {
+
+        return (item.make.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        item.model.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        item.vin.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.licensePlateNumber+'').toLowerCase().indexOf(val.toLowerCase()) > -1
+        
+        );
+      })
+    }
+  }
+  
+  onCancel(event : any){
+    this.initializeItems();
+  }
 
 }
