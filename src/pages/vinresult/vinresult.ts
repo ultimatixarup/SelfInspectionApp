@@ -46,6 +46,9 @@ results:any;
 
   }
   
+  process(vins){
+      if(vins.size > 17) return vins.substring(1);
+  }
   
   load(){
   
@@ -54,7 +57,7 @@ results:any;
          });
   
   loading.present();
-        this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.vinScanned).subscribe(resp => {
+        this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.process(this.vinScanned)).subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
               
              this.results = JSON.parse(resp['_body']);

@@ -26,6 +26,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 })
 export class FindingsearchPage {
 findings : Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any,photos:any,inspection:any}>;
+cachedFindings:any;
 inspectionId:any;
 itemdata:any; 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
@@ -42,6 +43,7 @@ itemdata:any;
         this.findings.sort(function(a,b){
             return b.id - a.id;
         });
+        this.cachedFindings = this.findings;
         loader.dismiss();
     });
   }
@@ -100,4 +102,34 @@ itemdata:any;
   gohome(){
   this.navCtrl.setRoot(InspectiondetailsPage);
 }
+
+ getItems(ev: any) {
+    // Reset items back to all of the items
+    this.findings = this.cachedFindings;
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.findings = this.findings.filter((item) => {
+
+        return ((item.vifLocationAdj+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.vifNoun+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.vifFindingAdj+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.vifDamageClf+'').toLowerCase().indexOf(val.toLowerCase()) > -1 
+      
+        );
+      })
+    }
+  }
+  
+  onCancel(event : any){
+   this.findings = this.cachedFindings;
+  }
+
+
+
+
+
 }
