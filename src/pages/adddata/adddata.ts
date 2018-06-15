@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { LoadingController } from 'ionic-angular';
 
@@ -44,7 +44,7 @@ ports: Port[];
   image:any;
   source:any;
   nounsData:Array<{noun:string,category:string,vsa:string,ewu:string}>;
-  nouns:Array<{noun:string,category:string,vsa:string,ewu:string}>;
+  nouns:any;//Array<{noun:string,category:string,vsa:string,ewu:string}>;
   locations:Array<{locationAdj:string}>;
   damages:Array<{damageClf:string}>;
   catagories:Array<{name:string}>;
@@ -65,7 +65,7 @@ ports: Port[];
   imageURI:any;
   nounValue:any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
  
     this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
@@ -157,7 +157,7 @@ let loader = this.loadingCtrl.create({
   loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_NOUN+'?category='+this.categoryData).subscribe(resp => {
                                                                                                                   
-        this.nouns = JSON.parse(resp['_body']);
+        this.nouns = resp;
         loader.dismiss();
     });
 
@@ -227,10 +227,10 @@ let inspectionjson = {id:this.inspectionId};
  
     this.http.post(findingEndpoint,newfinding).subscribe(resp => {
                                   
-                                let newfinding = JSON.parse(resp['_body']);
+                                let newfinding = resp;
                                 this.type = 'update';
-                                this.findingId = newfinding.id;
-                                this.inspectionId = newfinding.inspection.id;
+                                this.findingId = newfinding['id'];
+                                this.inspectionId = newfinding['inspection'].id;
         
         loader.dismiss();
         this.navCtrl.push(FindingsearchPage,{id:this.inspectiondata.id,itemdata: this.inspectiondata});

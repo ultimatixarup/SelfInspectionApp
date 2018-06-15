@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+
+
+
 import { LoadingController } from 'ionic-angular';
 import { FindingsearchPage } from '../findingsearch/findingsearch';
 
@@ -9,6 +11,8 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
 import { DetailPage } from '../detail/detail';
 
 import { VinsearchPage } from '../vinsearch/vinsearch';
+
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -28,9 +32,9 @@ import { VinsearchPage } from '../vinsearch/vinsearch';
 export class InspectiondetailsPage {
 inspectorId:any;
 imagepath:any;
-  inspections : Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
+  inspections : any;//Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   cachedInspections:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController) {
   
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
@@ -50,8 +54,9 @@ imagepath:any;
   });
   loader.present();
       this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
-                                         // alert(resp['_body']);                                                                            
-            this.inspections = JSON.parse(resp['_body']);
+                                         // alert(resp['_body']);  
+                                         console.log(resp);                                                                          
+            this.inspections = resp;
             
             this.inspections.sort(function(a,b){
                 return b.id - a.id;

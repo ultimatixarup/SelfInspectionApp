@@ -17,6 +17,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { HttpModule } from '@angular/http';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Camera } from '@ionic-native/camera';
@@ -39,6 +41,8 @@ import { ImageTakerComponent } from '../components/image-taker/image-taker';
 
 import { AidataPage } from '../pages/aidata/aidata';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 import { CameraPage } from '../pages/camera/camera'; 
@@ -47,8 +51,11 @@ import { PhotosearchPage } from '../pages/photosearch/photosearch';
 
 import { PhotoviewPage } from '../pages/photoview/photoview';
 
+import { JWTInterceptor } from './http-interceptor'
+
 
 import { SelectSearchableModule } from 'ionic-select-searchable';
+
 
 @NgModule({
   declarations: [
@@ -69,11 +76,13 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     PhotosearchPage,
     ImageTakerComponent,
     PhotoviewPage,
+    
     TabsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     SelectSearchableModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -105,6 +114,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     ImageTakerComponent,
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     FileTransfer,
   
   FileTransferObject,
