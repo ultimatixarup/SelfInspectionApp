@@ -6,7 +6,7 @@ import { AidataPage } from '../aidata/aidata';
 import { PhotosearchPage } from '../photosearch/photosearch';
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 /**
  * Generated class for the PhotoviewPage page.
  *
@@ -22,7 +22,7 @@ import { Http } from '@angular/http';
 export class PhotoviewPage {
 
   item : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http:Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http:HttpClient) {
     this.item = navParams.get('item');
   }
 

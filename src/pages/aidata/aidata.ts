@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppSettingsComponent } from '../../components/app-settings/app-settings';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 /**
@@ -22,7 +22,7 @@ aidata:any;
 probabilities:any;
 photoId:any;
 aicolors:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient, public loadingCtrl:LoadingController) {
   this.aicolors = ["#6FB2D6","#C5E0EE","#DDEDF6","#F0F7FB"];
     this.item = navParams.get('data');
     if(this.item.defaultPhotoId){
@@ -38,7 +38,7 @@ aicolors:any;
   loader.present();
     this.http.get(AppSettingsComponent.AI_SERVICE+'?imageId='+this.photoId).subscribe(resp => {
                                      
-        this.aidata = JSON.parse(resp['_body']);
+        this.aidata = resp;
         this.probabilities = this.aidata.probabilities;
        
         

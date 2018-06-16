@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
@@ -42,7 +42,7 @@ export class PhotosearchPage {
   inspectioninput:any;
   inspectionEndpoint:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
   this.inspectionData = navParams.get('data');
   this.selectCover = navParams.get('selectCover');
@@ -57,7 +57,7 @@ export class PhotosearchPage {
   loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'/photo/?inspectionId='+this.inspectionData.id).subscribe(resp => {
                                     // alert(resp['_body']);                                                                            
-        this.photos = JSON.parse(resp['_body']);
+        this.photos = resp;
         loader.dismiss();
     },
     err=>{
@@ -93,7 +93,7 @@ export class PhotosearchPage {
                                     
     this.http.get(AppSettingsComponent.INSPECTION_SERVICE+'/photo/?inspectionId='+this.inspectionData.id).subscribe(resp => {
                                     // alert(resp['_body']);                                                                            
-        this.photos = JSON.parse(resp['_body']);
+        this.photos = resp;
         loader.dismiss();
     },
     err=>{

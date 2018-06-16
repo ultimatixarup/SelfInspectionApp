@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { ToastController } from 'ionic-angular';
 
@@ -71,7 +71,7 @@ vinresult:any;
 inspectionupdate:any;
 
  items: Array<{name:string}>;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,
   public loadingCtrl: LoadingController,public toastCtrl:ToastController,public imageTaker:ImageTakerComponent
   ) {
   this.photoChanged = false;
@@ -174,7 +174,7 @@ inspectionupdate:any;
             this.http.post(inspectionEndpoint,insepctioninput).subscribe(resp => {
                                            
                                              
-                                             this.inspectiondata = JSON.parse(resp['_body']);
+                                             this.inspectiondata = resp;
                                              this.inspectionId = this.inspectiondata.id;
                                              this.getInspection();
 
@@ -198,9 +198,8 @@ inspectionupdate:any;
   getInspection(){
      let inspectionEndpoint = AppSettingsComponent.INSPECTION_SERVICE + "/" + this.inspectionId;
      this.http.get(inspectionEndpoint).subscribe(resp => {
-                                     // alert(resp['_body']);  
-                                     
-                                      this.inspectiondata = JSON.parse(resp['_body']);
+                                    
+                                      this.inspectiondata = resp;
                                     
                                     // this.addPhoto();
         

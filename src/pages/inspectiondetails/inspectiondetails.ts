@@ -104,33 +104,33 @@ vinSearch(){
 
   this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_NOUN).subscribe(resp => {
                                                                                                                  
-    //alert(JSON.stringify(resp['_body'])); 
+    
     setTimeout(() => {
-        window.localStorage.setItem("NOUNS",resp['_body']);
+        window.localStorage.setItem("NOUNS",JSON.stringify(resp));
   }, 1000);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_LOCATION).subscribe(resp => {
                                                                                                                  
-    //alert(JSON.stringify(resp['_body'])); 
+    
     setTimeout(() => {
-        window.localStorage.setItem("LOCATIONS",resp['_body']);
+        window.localStorage.setItem("LOCATIONS",JSON.stringify(resp));
   }, 1000);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_DAMAGE).subscribe(resp => {
                                                                                                                  
-    //alert(JSON.stringify(resp['_body'])); 
+    
     setTimeout(() => {
-        window.localStorage.setItem("DAMAGES",resp['_body']);
+        window.localStorage.setItem("DAMAGES",JSON.stringify(resp));
   }, 1000);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp => {
                                                                                                                  
-    //alert(JSON.stringify(resp['_body'])); 
+    
     setTimeout(() => {
-        window.localStorage.setItem("FINDINGS",resp['_body']);
+        window.localStorage.setItem("FINDINGS",JSON.stringify(resp));
   }, 1000);
   });
 

@@ -68,8 +68,11 @@ ports: Port[];
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public imageTaker:ImageTakerComponent) {
   
  
-    this.nounsData = JSON.parse(window.localStorage.getItem("NOUNS"));
-    this.ports = JSON.parse(window.localStorage.getItem("NOUNS"));
+    this.nounsData = window.localStorage.getItem("NOUNS");
+    //console.log(JSON.parse(this.nounsData));
+
+    this.ports = JSON.parse(this.nounsData);
+    
     
     this.inspectiondata = navParams.get('data');
     this.image = this.navParams.get('image');

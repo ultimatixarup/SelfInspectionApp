@@ -4,7 +4,7 @@ import { NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 
 import { ToastController } from 'ionic-angular';
@@ -36,7 +36,7 @@ results:any;
   constructor(
   public navCtrl: NavController, 
   public navParam: NavParams,
-  private http: Http,
+  private http: HttpClient,
   public loadingCtrl: LoadingController,
   public toastCtrl: ToastController) {
   
@@ -60,7 +60,7 @@ results:any;
         this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.process(this.vinScanned)).subscribe(resp => {
               //alert(JSON.parse(resp['_body']).Results);
               
-             this.results = JSON.parse(resp['_body']);
+             this.results = resp;
              //alert(Object.keys(results));
              
              let keys = Object.keys(this.results);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
 
 import { AdddataPage } from '../adddata/adddata';
@@ -29,7 +29,7 @@ findings : Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,v
 cachedFindings:any;
 inspectionId:any;
 itemdata:any; 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController) {
     
     this.inspectionId = navParams.get('id');
     this.itemdata = navParams.get('itemdata');
@@ -39,7 +39,7 @@ itemdata:any;
   loader.present();
     this.http.get(AppSettingsComponent.INSPECTION_FINDING+'?inspectionId='+this.inspectionId).subscribe(resp => {
                                      // alert(resp['_body']);                                                                            
-        this.findings = JSON.parse(resp['_body']);
+        this.findings = resp;
         this.findings.sort(function(a,b){
             return b.id - a.id;
         });
