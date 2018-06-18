@@ -20,13 +20,19 @@ export class HomePage {
 
   constructor(
   public navCtrl: NavController,public auth: AuthService) {
+       // alert(auth.isAuthenticated());
+        if(auth.isAuthenticated()){
+           // alert("forwarding");
+            navCtrl.push(InspectiondetailsPage,{});
+        }
+  }
   
-  alert(auth.isAuthenticated());
- 
-    if(auth.isAuthenticated()){
-        navCtrl.setRoot(InspectiondetailsPage,{});
-    } 
   
+  login(){
+    this.auth.login();
+    if(this.auth.isAuthenticated()){
+            this.navCtrl.setRoot(InspectiondetailsPage,{});
+    }
   }
   
   

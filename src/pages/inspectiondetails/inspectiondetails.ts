@@ -12,8 +12,10 @@ import { DetailPage } from '../detail/detail';
 
 import { VinsearchPage } from '../vinsearch/vinsearch';
 
-import { HttpClient } from '@angular/common/http';
+import { HomePage } from '../home/home';
 
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -28,13 +30,14 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'page-inspectiondetails',
   templateUrl: 'inspectiondetails.html',
+  providers: [AuthService]
 })
 export class InspectiondetailsPage {
 inspectorId:any;
 imagepath:any;
   inspections : any;//Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   cachedInspections:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public auth:AuthService) {
   
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
@@ -163,6 +166,14 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   
   onCancel(event : any){
    this.inspections = this.cachedInspections;
+  }
+  
+  
+  
+  logout(){
+     
+   this.auth.logout();
+   this.navCtrl.setRoot(HomePage, {});
   }
 
 }

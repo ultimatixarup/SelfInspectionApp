@@ -7,6 +7,8 @@ import Auth0Cordova from '@auth0/cordova';
 
 import { HomePage } from '../pages/home/home';
 
+//import { InspectiondetailsPage } from '../pages/inspectiondetails/inspectiondetails';
+
 @Component({
   templateUrl: 'app.html'
 })

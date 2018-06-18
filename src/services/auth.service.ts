@@ -47,6 +47,7 @@ export class AuthService {
 
   public isAuthenticated() {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    //alert(expiresAt);
     return Date.now() < expiresAt;
   }
 
@@ -63,6 +64,7 @@ export class AuthService {
       }
 
       this.setIdToken(authResult.idToken);
+     // alert(authResult.accessToken);
       this.setAccessToken(authResult.accessToken);
 
       const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
