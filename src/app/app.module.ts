@@ -41,6 +41,7 @@ import { ImageTakerComponent } from '../components/image-taker/image-taker';
 
 import { AidataPage } from '../pages/aidata/aidata';
 
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -55,6 +56,9 @@ import { JWTInterceptor } from './http-interceptor'
 
 
 import { SelectSearchableModule } from 'ionic-select-searchable';
+
+import { IonicStorageModule } from '@ionic/storage';
+ 
 
 
 @NgModule({
@@ -84,7 +88,8 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     HttpModule,
     HttpClientModule,
     SelectSearchableModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -115,6 +120,7 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+    
     FileTransfer,
   
   FileTransferObject,

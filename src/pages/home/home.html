@@ -1,35 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inspection Master</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-   
-<ion-item>
-  <ion-label>Inspector Id</ion-label>
-  <ion-select [(ngModel)]="inspectorId">
-    <ion-option value="1">1</ion-option>
-    <ion-option value="2">2</ion-option>
-    <ion-option value="3">3</ion-option>
-    <ion-option value="4">4</ion-option>
-    <ion-option value="5">5</ion-option>
-    <ion-option value="6">6</ion-option>
-    <ion-option value="7">7</ion-option>
-    <ion-option value="8">8</ion-option>
-    <ion-option value="9">9</ion-option>
-    <ion-option value="10">10</ion-option>
+<ion-content>
+    
+<div style="height:100%;background: url('assets/imgs/splash.png');background-repeat:round">
+  <div *ngIf="!auth.isAuthenticated()">
+    <button ion-button block color="primary" (click)="auth.login()">Log In</button>
+  </div>
 
-  </ion-select>
-</ion-item>
-
-
- <div style="height:100%;background: url('assets/imgs/lfa.jpg');background-repeat:round">
-        <div style="top:100px;left:30%" align="center">
-          <button ion-button full  (click)="vinSearch()">Search Vin</button>
-          <button ion-button full  (click)="myInspections()">My Inspections</button>
-          </div>
-</div>
-
+  <div *ngIf="auth.isAuthenticated()">
+    <button ion-button block color="primary" (click)="auth.logout()">Logout, {{ auth.user.nickname }}</button>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        <ion-card>
+          <img src="{{ item.avatar }}">
+          <ion-card-content>
+            <ion-card-title class="card-title">
+              {{ item.title }}
+            </ion-card-title>
+            <p>
+              <ion-badge> {{ item.member }} </ion-badge>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>  
 </ion-content>
-

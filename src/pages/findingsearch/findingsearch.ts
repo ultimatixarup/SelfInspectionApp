@@ -25,7 +25,7 @@ import { AppSettingsComponent } from '../../components/app-settings/app-settings
   templateUrl: 'findingsearch.html',
 })
 export class FindingsearchPage {
-findings : Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any,photos:any,inspection:any}>;
+findings : any; //Array<{id:any,inspectionId:any,vifFindingAdj:any,vifLocationAdj:any,vifNoun:any,vifDamageClf:any,photos:any,inspection:any}>;
 cachedFindings:any;
 inspectionId:any;
 itemdata:any; 

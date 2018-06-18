@@ -5,12 +5,18 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse }
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
+import { AuthService } from '../services/auth.service';
+
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
+
+
+  constructor(public auth: AuthService){}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({
       setHeaders: {
-        authorization: "authtoken"
+        access_token: window.localStorage.getItem("access_token")
       }
     });
 
