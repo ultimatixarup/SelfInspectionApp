@@ -72,7 +72,7 @@ itemdata:any;
 
  photoSearch(){
  
-    this.navCtrl.push(PhotosearchPage, {data:this.itemdata});
+    this.navCtrl.setRoot(PhotosearchPage, {data:this.itemdata});
  }
 
  process(date){

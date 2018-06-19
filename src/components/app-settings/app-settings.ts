@@ -29,6 +29,8 @@ export class AppSettingsComponent {
   
   public static AI_SERVICE= 'https://vda-service-dev02.herokuapp.com/damageAnalysis';
   
+  public static LOGOUT = 'https://autofinance.auth0.com/v2/logout';
+  
   constructor() {
     console.log('Hello AppSettingsComponent Component');
     this.text = 'Hello World';

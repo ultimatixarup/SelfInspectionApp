@@ -6,11 +6,11 @@ import Auth0 from 'auth0-js';
 
 const auth0Config = {
   // needed for auth0
-  clientID: '01Sd6Vq9OJDjluYZR3nVEW5PlblFl4Wn',
+  clientID: 'l4K3kM0kR2fKRd5fP4AUeHxBHKQ6G16b',
 
   // needed for auth0cordova
-  clientId: '01Sd6Vq9OJDjluYZR3nVEW5PlblFl4Wn',
-  domain: 'inspection-service.auth0.com',
+  clientId: 'l4K3kM0kR2fKRd5fP4AUeHxBHKQ6G16b',
+  domain: 'autofinance.auth0.com',
   callbackURL: location.href,
   packageIdentifier: 'com.tfs.inspection.app'
 };
