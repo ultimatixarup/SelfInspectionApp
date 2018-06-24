@@ -66,7 +66,11 @@ imagepath:any;
             });
             this.cachedInspections = this.inspections;
             loader.dismiss();
-        });
+        },
+err=>{
+    console.log(err);
+    loader.dismiss();
+});
   }
 
   ionViewDidLoad() {
@@ -111,6 +115,9 @@ vinSearch(){
     setTimeout(() => {
         window.localStorage.setItem("NOUNS",JSON.stringify(resp));
   }, 1000);
+},
+err=>{
+    console.log(err);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_LOCATION).subscribe(resp => {
@@ -119,6 +126,9 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_LOCATION).subscribe(resp 
     setTimeout(() => {
         window.localStorage.setItem("LOCATIONS",JSON.stringify(resp));
   }, 1000);
+},
+err=>{
+    console.log(err);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_DAMAGE).subscribe(resp => {
@@ -127,6 +137,9 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_DAMAGE).subscribe(resp =>
     setTimeout(() => {
         window.localStorage.setItem("DAMAGES",JSON.stringify(resp));
   }, 1000);
+},
+err=>{
+    console.log(err);
 });
 
 this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp => {
@@ -155,6 +168,7 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
         return (item.make.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         item.model.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         item.vin.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
+        (item.year+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         (item.licensePlateNumber+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         (item.licensePlateState+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||
         (item.odometer+'').toLowerCase().indexOf(val.toLowerCase()) > -1 ||

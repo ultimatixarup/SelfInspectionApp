@@ -14,10 +14,21 @@ export class JWTInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({
       setHeaders: {
-        access_token: window.localStorage.getItem("access_token")
+        Authorization: 'Bearer '+ window.localStorage.getItem("access_token")
       }
     });
+    console.log("REQUEST--");
+    console.log(req);
+    return next.handle(req).do((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          // do stuff with response if you want
+          console.log("RESPONSE--");
+          console.log(event);
+        }
+      }, (err: any) => {
+        console.log(err);
+      }
+  );
+}
 
-    return next.handle(req);
-  }
 }

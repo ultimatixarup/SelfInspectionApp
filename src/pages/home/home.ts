@@ -6,6 +6,8 @@ import { AuthService } from '../../services/auth.service';
 
 import { InspectiondetailsPage } from '../inspectiondetails/inspectiondetails';
 
+import { Platform } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -19,11 +21,16 @@ export class HomePage {
 
 
   constructor(
-  public navCtrl: NavController,public auth: AuthService) {
-       // alert(auth.isAuthenticated());
+  public navCtrl: NavController,public auth: AuthService, public platform:Platform) {
+  
+       if(this.platform.is('ios')){ 
+        alert("cons="+auth.isAuthenticated());
         if(auth.isAuthenticated()){
            // alert("forwarding");
             navCtrl.push(InspectiondetailsPage,{});
+        }
+        } else {
+            this.navCtrl.setRoot(InspectiondetailsPage,{});
         }
   }
   
