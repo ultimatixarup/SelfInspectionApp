@@ -13,9 +13,9 @@ import { Component } from '@angular/core';
 export class AppSettingsComponent {
 
   text: string;
-  public static API_ENDPOINT='http://inspection-service-dev02.herokuapp.com/';
+  public static API_ENDPOINT='http://inspection-service-dev02.herokuapp.com';
   
-  public static MEDIA_ENDPOINT= 'https://media-service-stage.herokuapp.com' + '/media';
+  public static MEDIA_ENDPOINT= 'https://media-service-dev02.herokuapp.com' + '/media';
 
     public static INSPECTION_SERVICE= AppSettingsComponent.API_ENDPOINT + '/inspection';
   public static INSPECTION_RESOURCE_NOUN= AppSettingsComponent.API_ENDPOINT + '/inspection/resources/noun';

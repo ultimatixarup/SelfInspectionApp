@@ -41,13 +41,15 @@ results:any;
   public toastCtrl: ToastController) {
   
     this.vinScanned = navParam.get('vin');
-    //alert(this.vinScanned);
+    
     this.load();
 
   }
   
   process(vins){
-      if(vins.size > 17) return vins.substring(1);
+ 
+      if(vins.length > 17) return vins.substring(1);
+      else return vins;
   }
   
   load(){
@@ -58,10 +60,10 @@ results:any;
   
   loading.present();
         this.http.get(AppSettingsComponent.VIN_SEARCH+'?vin='+this.process(this.vinScanned)).subscribe(resp => {
-              //alert(JSON.parse(resp['_body']).Results);
+              
               
              this.results = resp;
-             //alert(Object.keys(results));
+             
              
              let keys = Object.keys(this.results);
              
@@ -82,7 +84,7 @@ results:any;
        },
         err => { 
                         loading.dismiss();
-                        alert(err);
+                        console.log(err);
                     }
 
             );
