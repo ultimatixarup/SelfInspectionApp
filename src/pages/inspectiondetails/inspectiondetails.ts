@@ -17,6 +17,8 @@ import { HomePage } from '../home/home';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 
+import { Platform } from 'ionic-angular';
+
 
 
 /**
@@ -38,7 +40,7 @@ imagepath:any;
 idToken:any;
   inspections : any;//Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   cachedInspections:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public auth:AuthService) {
+  constructor(public navCtrl: NavController, public platform:Platform,public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public auth:AuthService) {
     
     let idToken = (window.location + "").split('=')[1];
     
@@ -190,8 +192,12 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   
   logout(){
      
-   window.location.replace('https://autofinance.auth0.com/v2/logout?returnTo=http%3A%2F%2Fins-master-web-login-dev.herokuapp.com');
-   
+   //this.auth.logout();
+      if(this.platform.is('ios')){                               
+      this.navCtrl.setRoot(HomePage, {});
+      } else {
+        window.location.replace('http://ins-master-web-login-dev.herokuapp.com');
+      }
   }
 
 }
