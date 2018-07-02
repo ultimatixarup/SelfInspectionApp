@@ -190,27 +190,7 @@ this.http.get(AppSettingsComponent.INSPECTION_RESOURCE_FINDING).subscribe(resp =
   
   logout(){
      
-   //this.auth.logout();
-   
-  
-  let loader = this.loadingCtrl.create({
-    content: "Loading..."
-  });
-  loader.present();
-    this.http.get('https://autofinance.auth0.com/v2/logout').subscribe(resp => {
-                                     
-                                    
-                                    this.navCtrl.setRoot(HomePage, {});
-       
-    },
-    err=>{
-    alert('error='+ err);
-    console.log(err);
-    loader.dismiss();
-    
-    });
-
-
+   window.location.replace('https://autofinance.auth0.com/v2/logout?returnTo=http%3A%2F%2Fins-master-web-login-dev.herokuapp.com');
    
   }
 
