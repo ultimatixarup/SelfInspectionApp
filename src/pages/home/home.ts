@@ -24,7 +24,7 @@ export class HomePage {
   public navCtrl: NavController,public auth: AuthService, public platform:Platform) {
   
        if(this.platform.is('ios')){ 
-        alert("cons="+auth.isAuthenticated());
+       
         if(auth.isAuthenticated()){
            // alert("forwarding");
             navCtrl.push(InspectiondetailsPage,{});

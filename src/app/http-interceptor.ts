@@ -12,6 +12,7 @@ export class JWTInterceptor implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+   // alert(window.localStorage.getItem("id_token"));
     req = req.clone({
       setHeaders: {
         Authorization: 'Bearer '+ window.localStorage.getItem("id_token")

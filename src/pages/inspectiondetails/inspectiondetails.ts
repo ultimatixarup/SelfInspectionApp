@@ -39,7 +39,9 @@ idToken:any;
   inspections : any;//Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   cachedInspections:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public auth:AuthService) {
+    
     let idToken = (window.location + "").split('=')[1];
+    
     if(idToken){ window.localStorage.setItem('id_token',idToken); }
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
