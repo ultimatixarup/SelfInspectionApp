@@ -108,7 +108,7 @@ err=>{
   
   
   
-  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad InspectiondetailsPage');
   }
