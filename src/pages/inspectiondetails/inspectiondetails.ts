@@ -38,11 +38,14 @@ export class InspectiondetailsPage {
 inspectorId:any;
 imagepath:any;
 idToken:any;
+vin:any;
   inspections : any;//Array<{id:any,year:any,make:any,model:any,vin:any,inspectorId:any,licensePlateNumber:any,licensePlateState:any,odometer:any,createDate:any,defaultPhotoId:any,findings:any,photos:any}>;
   cachedInspections:any;
   constructor(public navCtrl: NavController, public platform:Platform,public navParams: NavParams,public http:HttpClient,public loadingCtrl:LoadingController,public auth:AuthService) {
     
     let idToken = (window.location + "").split('=')[1];
+    
+    this.vin = this.parseVin(window.location + "");
     
     if(idToken){ window.localStorage.setItem('id_token',idToken); }
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
@@ -62,7 +65,16 @@ idToken:any;
     content: "Loading..."
   });
   loader.present();
-      this.http.get(AppSettingsComponent.INSPECTION_SERVICE).subscribe(resp => {
+  
+  var inspectionurl = AppSettingsComponent.INSPECTION_SERVICE;
+  
+  if(this.vin){
+    inspectionurl = inspectionurl + "/?vin="+this.vin;
+  }
+  
+  
+  
+      this.http.get(inspectionurl).subscribe(resp => {
                                          // alert(resp['_body']);  
                                          console.log(resp);                                                                          
             this.inspections = resp;
@@ -79,6 +91,24 @@ err=>{
 });
   }
 
+
+  parseVin(locationData){
+  
+  
+  var temp = locationData.split("vin=")[1];
+  if(temp){
+    if(temp.indexOf("&")>0){
+        return temp.split("&")[0];
+    } else {
+        return temp;
+    }
+   }
+   return null;
+  }
+  
+  
+  
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad InspectiondetailsPage');
   }
