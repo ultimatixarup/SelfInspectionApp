@@ -47,6 +47,7 @@ vin:any;
     
     this.vin = this.parseVin(window.location + "");
     
+    
     if(idToken){ window.localStorage.setItem('id_token',idToken); }
     this.imagepath = AppSettingsComponent.MEDIA_ENDPOINT;
     this.inspectorId = 1; //window.localStorage.getItem("INSPECTOR");
