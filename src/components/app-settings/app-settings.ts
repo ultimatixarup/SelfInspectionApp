@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
 export class AppSettingsComponent {
 
   text: string;
-  public static API_ENDPOINT='http://inspector.autof.in';
+  public static API_ENDPOINT='https://inspector.autof.in';
   
   public static MEDIA_ENDPOINT= AppSettingsComponent.API_ENDPOINT + '/media';
 
