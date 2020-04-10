@@ -5,15 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import Auth0Cordova from '@auth0/cordova';
 
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 
-//import { InspectiondetailsPage } from '../pages/inspectiondetails/inspectiondetails';
+import { InspectiondetailsPage } from '../pages/inspectiondetails/inspectiondetails';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = InspectiondetailsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -22,8 +22,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-     (window as any).handleOpenURL = (url: string) => {
+     /*(window as any).handleOpenURL = (url: string) => {
         Auth0Cordova.onRedirectUri(url);
-  }
+  }*/
   }
 }
